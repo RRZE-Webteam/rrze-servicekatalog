@@ -1,0 +1,222 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: RRZE Servicekatalog\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-04 19:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.3.1\n"
+"X-Domain: rrze-servicekatalog"
+
+#: includes/CPT/Service.php:36
+msgctxt "add new on admin bar"
+msgid "Services"
+msgstr ""
+
+#: includes/CPT/Service.php:38
+msgid "Add New Service"
+msgstr ""
+
+#: includes/CPT/Service.php:37
+msgctxt "admin menu"
+msgid "Add New"
+msgstr ""
+
+#: includes/CPT/Service.php:35
+msgctxt "admin menu"
+msgid "Services"
+msgstr ""
+
+#: includes/CPT/Service.php:42
+msgid "All Services"
+msgstr ""
+
+#: includes/CPT/Service.php:40
+msgid "Edit Service"
+msgstr ""
+
+#: includes/CPT/Service.php:126
+msgid "General Information"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://blogs.fau.de/webworking/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/RRZE-Webteam/rrze-servicekatalog"
+msgstr ""
+
+#: includes/CPT/Service.php:51
+msgid "Insert into service"
+msgstr ""
+
+#: includes/CPT/Service.php:134
+msgid "Max. 240 characters"
+msgstr ""
+
+#: includes/CPT/Service.php:39
+msgid "New Service"
+msgstr ""
+
+#: includes/CPT/Service.php:46
+msgid "No services found in Trash."
+msgstr ""
+
+#: includes/CPT/Service.php:45
+msgid "No services found."
+msgstr ""
+
+#: includes/CPT/Service.php:44
+msgid "Parent Services:"
+msgstr ""
+
+#. 1: The plugin name, 2: The error string.
+#: rrze-servicekatalog.php:86 rrze-servicekatalog.php:143
+#, php-format
+msgid "Plugins: %1$s: %2$s"
+msgstr ""
+
+#: includes/CPT/Service.php:33
+msgctxt "post type general name"
+msgid "Services"
+msgstr ""
+
+#: includes/CPT/Service.php:34
+msgctxt "post type singular name"
+msgid "Service"
+msgstr ""
+
+#. Description of the plugin
+msgid "Presentation of RRZE Services"
+msgstr ""
+
+#: includes/CPT/Service.php:49
+msgid "Remove service icon"
+msgstr ""
+
+#. Name of the plugin
+msgid "RRZE Servicekatalog"
+msgstr ""
+
+#. Author of the plugin
+msgid "RRZE Webteam"
+msgstr ""
+
+#: includes/CPT/Service.php:43
+msgid "Search Services"
+msgstr ""
+
+#: includes/CPT/Service.php:47
+msgid "Service icon"
+msgstr ""
+
+#: includes/CPT/Service.php:48
+msgid "Set service icon"
+msgstr ""
+
+#: includes/CPT/Service.php:133
+msgid "Short Description"
+msgstr ""
+
+#: includes/CPT/Service.php:89
+msgctxt "Taxonomy general name"
+msgid "Priorities"
+msgstr ""
+
+#: includes/CPT/Service.php:105
+msgctxt "Taxonomy general name"
+msgid "Tags"
+msgstr ""
+
+#: includes/CPT/Service.php:73
+msgctxt "Taxonomy general name"
+msgid "Target Groups"
+msgstr ""
+
+#: includes/CPT/Service.php:92
+msgctxt "Taxonomy singular name"
+msgid "Add New Priority"
+msgstr ""
+
+#: includes/CPT/Service.php:76
+msgctxt "Taxonomy singular name"
+msgid "Add New Target Group"
+msgstr ""
+
+#: includes/CPT/Service.php:91
+msgctxt "Taxonomy singular name"
+msgid "Edit Priority"
+msgstr ""
+
+#: includes/CPT/Service.php:75
+msgctxt "Taxonomy singular name"
+msgid "Edit Target Group"
+msgstr ""
+
+#: includes/CPT/Service.php:90
+msgctxt "Taxonomy singular name"
+msgid "Priority"
+msgstr ""
+
+#: includes/CPT/Service.php:106
+msgctxt "Taxonomy singular name"
+msgid "Tag"
+msgstr ""
+
+#: includes/CPT/Service.php:74
+msgctxt "Taxonomy singular name"
+msgid "Target Group"
+msgstr ""
+
+#. 1: Server PHP version number, 2: Required PHP version number.
+#: rrze-servicekatalog.php:60
+#, php-format
+msgid ""
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
+msgstr ""
+
+#. 1: Server WordPress version number, 2: Required WordPress version number.
+#: rrze-servicekatalog.php:67
+#, php-format
+msgid ""
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
+msgstr ""
+
+#: includes/CPT/Service.php:52
+msgid "Uploaded to this service"
+msgstr ""
+
+#: includes/CPT/Service.php:142
+msgid "URL Portal"
+msgstr ""
+
+#: includes/CPT/Service.php:148
+msgid "URL Service Description"
+msgstr ""
+
+#: includes/CPT/Service.php:154
+msgid "URL Tutorial"
+msgstr ""
+
+#: includes/CPT/Service.php:160
+msgid "URL Video Tutorial"
+msgstr ""
+
+#: includes/CPT/Service.php:50
+msgid "Use as service icon"
+msgstr ""
+
+#: includes/CPT/Service.php:41
+msgid "View Service"
+msgstr ""

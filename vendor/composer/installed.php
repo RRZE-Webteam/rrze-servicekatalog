@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'rrze/rrze-servicekatalog',
+        'pretty_version' => '0.1.0',
+        'version' => '0.1.0.0',
+        'reference' => NULL,
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'cmb2/cmb2' => array(
+            'pretty_version' => 'v2.10.1',
+            'version' => '2.10.1.0',
+            'reference' => '4afc4bb7b92ab6d93aac2247c9a84af773e42532',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../cmb2/cmb2',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'rrze/rrze-servicekatalog' => array(
+            'pretty_version' => '0.1.0',
+            'version' => '0.1.0.0',
+            'reference' => NULL,
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'rrze/wp' => array(
+            'pretty_version' => '1.2.1',
+            'version' => '1.2.1.0',
+            'reference' => '404f0ed48d6ead0482d720123df7eb78b00e8aa4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rrze/wp',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

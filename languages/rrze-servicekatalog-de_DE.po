@@ -1,0 +1,225 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RRZE Servicekatalog\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-04 19:13+0000\n"
+"PO-Revision-Date: 2023-10-04 19:59+0000\n"
+"Last-Translator: Barbara Bothe\n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.3.1\n"
+"X-Domain: rrze-servicekatalog"
+
+#: includes/CPT/Service.php:36
+msgctxt "add new on admin bar"
+msgid "Services"
+msgstr "Services"
+
+#: includes/CPT/Service.php:38
+msgid "Add New Service"
+msgstr "Neuen Service hinzufügen"
+
+#: includes/CPT/Service.php:37
+msgctxt "admin menu"
+msgid "Add New"
+msgstr "Erstellen"
+
+#: includes/CPT/Service.php:35
+msgctxt "admin menu"
+msgid "Services"
+msgstr "Services"
+
+#: includes/CPT/Service.php:42
+msgid "All Services"
+msgstr "Alle Services"
+
+#: includes/CPT/Service.php:40
+msgid "Edit Service"
+msgstr "Service bearbeiten"
+
+#: includes/CPT/Service.php:126
+msgid "General Information"
+msgstr "Allgemeine Informationen"
+
+#. Author URI of the plugin
+msgid "https://blogs.fau.de/webworking/"
+msgstr "https://blogs.fau.de/webworking/"
+
+#. URI of the plugin
+msgid "https://github.com/RRZE-Webteam/rrze-servicekatalog"
+msgstr "https://github.com/RRZE-Webteam/rrze-servicekatalog"
+
+#: includes/CPT/Service.php:51
+msgid "Insert into service"
+msgstr "Zum Service hinzufügen"
+
+#: includes/CPT/Service.php:134
+msgid "Max. 240 characters"
+msgstr "Max. 240 Zeichen"
+
+#: includes/CPT/Service.php:39
+msgid "New Service"
+msgstr "Neuer Service"
+
+#: includes/CPT/Service.php:46
+msgid "No services found in Trash."
+msgstr "Keine Services im Papierkorb gefunden."
+
+#: includes/CPT/Service.php:45
+msgid "No services found."
+msgstr "Keine Services gefunden."
+
+#: includes/CPT/Service.php:44
+msgid "Parent Services:"
+msgstr "Übergeordnete Services:"
+
+#. 1: The plugin name, 2: The error string.
+#: rrze-servicekatalog.php:86 rrze-servicekatalog.php:143
+#, php-format
+msgid "Plugins: %1$s: %2$s"
+msgstr "Plugins: %1$s: %2$s"
+
+#: includes/CPT/Service.php:33
+msgctxt "post type general name"
+msgid "Services"
+msgstr "Services"
+
+#: includes/CPT/Service.php:34
+msgctxt "post type singular name"
+msgid "Service"
+msgstr "Service"
+
+#. Description of the plugin
+msgid "Presentation of RRZE Services"
+msgstr "Präsentation der RRZE-Services"
+
+#: includes/CPT/Service.php:49
+msgid "Remove service icon"
+msgstr "Service-Icon entfernen"
+
+#. Name of the plugin
+msgid "RRZE Servicekatalog"
+msgstr "RRZE Servicekatalog"
+
+#. Author of the plugin
+msgid "RRZE Webteam"
+msgstr "RRZE Webteam"
+
+#: includes/CPT/Service.php:43
+msgid "Search Services"
+msgstr "Services durchsuchen"
+
+#: includes/CPT/Service.php:47
+msgid "Service icon"
+msgstr "Service-Icon"
+
+#: includes/CPT/Service.php:48
+msgid "Set service icon"
+msgstr "Service-Icon setzen"
+
+#: includes/CPT/Service.php:133
+msgid "Short Description"
+msgstr "Kurzbeschreibung"
+
+#: includes/CPT/Service.php:89
+msgctxt "Taxonomy general name"
+msgid "Priorities"
+msgstr "Prioritäten"
+
+#: includes/CPT/Service.php:105
+msgctxt "Taxonomy general name"
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: includes/CPT/Service.php:73
+msgctxt "Taxonomy general name"
+msgid "Target Groups"
+msgstr "Zielgruppen"
+
+#: includes/CPT/Service.php:92
+msgctxt "Taxonomy singular name"
+msgid "Add New Priority"
+msgstr "Neue Priorität erstellen"
+
+#: includes/CPT/Service.php:76
+msgctxt "Taxonomy singular name"
+msgid "Add New Target Group"
+msgstr "Neue Zielgruppe erstellen"
+
+#: includes/CPT/Service.php:91
+msgctxt "Taxonomy singular name"
+msgid "Edit Priority"
+msgstr "Priorität bearbeiten"
+
+#: includes/CPT/Service.php:75
+msgctxt "Taxonomy singular name"
+msgid "Edit Target Group"
+msgstr "Zielgruppe bearbeiten"
+
+#: includes/CPT/Service.php:90
+msgctxt "Taxonomy singular name"
+msgid "Priority"
+msgstr "Priorität"
+
+#: includes/CPT/Service.php:106
+msgctxt "Taxonomy singular name"
+msgid "Tag"
+msgstr "Schlagwort"
+
+#: includes/CPT/Service.php:74
+msgctxt "Taxonomy singular name"
+msgid "Target Group"
+msgstr "Zielgruppe"
+
+#. 1: Server PHP version number, 2: Required PHP version number.
+#: rrze-servicekatalog.php:60
+#, php-format
+msgid ""
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
+msgstr ""
+"Auf dem Server läuft PHP Version %1$s. Das Plugin benötigt mindestens PHP "
+"Version %2$s."
+
+#. 1: Server WordPress version number, 2: Required WordPress version number.
+#: rrze-servicekatalog.php:67
+#, php-format
+msgid ""
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
+msgstr ""
+"Auf dem Server läuft WordPress Version %1$s. Das Plugin benötigt mindestens "
+"WordPress Version %2$s."
+
+#: includes/CPT/Service.php:52
+msgid "Uploaded to this service"
+msgstr "Zu diesem Service hochgeladen"
+
+#: includes/CPT/Service.php:142
+msgid "URL Portal"
+msgstr "URL Portal"
+
+#: includes/CPT/Service.php:148
+msgid "URL Service Description"
+msgstr "URL Anwendung"
+
+#: includes/CPT/Service.php:154
+msgid "URL Tutorial"
+msgstr "URL Anleitung"
+
+#: includes/CPT/Service.php:160
+msgid "URL Video Tutorial"
+msgstr "URL Video-Tutorial"
+
+#: includes/CPT/Service.php:50
+msgid "Use as service icon"
+msgstr "Als Service-Icon verwenden"
+
+#: includes/CPT/Service.php:41
+msgid "View Service"
+msgstr "Service ansehen"
