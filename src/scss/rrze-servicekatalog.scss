@@ -1,0 +1,46 @@
+.single-rrze-service {
+    a.service-commitment{
+        display: inline-block;
+        margin-bottom: var(--width-gutter, 30px);
+        border-radius: 4px;
+        padding: 0 0.5em;
+        margin-right: 0.5em;
+        font-weight: normal;
+        text-decoration: none;
+        box-shadow: none;
+        transition: none;
+        &:hover, &:focus, &:active {
+            text-decoration: none;
+            filter: drop-shadow(2px 2px rgb(0 0 0 / 0.6));
+        }
+    }
+    .service-groups {
+        margin-bottom: var(--width-gutter, 30px);
+    }
+    .rrze-service-main {
+        display: flex;
+        flex-direction: row;
+        gap: var(--width-gutter, 30px);
+        .post-thumbnail {
+            flex-basis: 20%;
+            flex-grow: 1;
+            max-width: 20%;
+            padding: 0;
+            img {
+                box-shadow: none;
+
+            }
+        }
+        .service-description {
+            flex-basis: 50%;
+            flex-grow: 2;
+         }
+        .service-urls {
+            flex-basis: 30%;
+            flex-grow: 2;
+        }
+    }
+    .label {
+        font-weight: bold;
+    }
+}

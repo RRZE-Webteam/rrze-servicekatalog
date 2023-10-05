@@ -31,13 +31,13 @@ class Main
         if (in_array($screen->post_type, [Service::POST_TYPE])) {
             wp_enqueue_style(
                 'rrze-servicekatalog-admin',
-                plugins_url('build/admin.css', plugin()->getBasename()),
+                plugins_url('assets/css/admin.css', plugin()->getBasename()),
                 [],
                 plugin()->getVersion(true)
             );
             wp_enqueue_script(
                 'rrze-servicekatalog-admin',
-                plugins_url('build/admin.js', plugin()->getBasename()),
+                plugins_url('assets/js/admin.js', plugin()->getBasename()),
                 ['jquery', 'wp-color-picker'],
                 plugin()->getVersion(true)
             );
@@ -47,14 +47,14 @@ class Main
     public function wpEnqueueScripts()
     {
         wp_register_style(
-            'rrze-servicekatalog-sc-servicekatalog',
-            plugins_url('build/servicekatalog.css', plugin()->getBasename()),
+            'rrze-servicekatalog',
+            plugins_url('assets/css/rrze-servicekatalog.css', plugin()->getBasename()),
             [],
             plugin()->getVersion(true)
         );
         wp_register_script(
             'rrze-servicekatalog-sc-servicekatalog',
-            plugins_url('build/servicekatalog.js', plugin()->getBasename()),
+            plugins_url('assets/js/rrze-servicekatalog.js', plugin()->getBasename()),
             ['jquery'],
             plugin()->getVersion(true)
         );
