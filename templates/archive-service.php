@@ -7,7 +7,7 @@
  * @since FAU 1.0
  */
 
-use RRZE\Calendar\Shortcodes\Events;
+use RRZE\Servicekatalog\Shortcodes\Servicekatalog;
 
 if (isset($_GET['format']) && $_GET['format'] == 'embedded') {
     get_template_part('template-parts/index', 'embedded');
@@ -27,18 +27,18 @@ global $wp_query;
 			    <main class="entry-content">
 
                     <?php if (empty($herotype)) {   ?>
-                        <h1 id="maintop"  class="screen-reader-text"><?php _e('Events', 'rrze-calendar'); ?></h1>
+                        <h1 id="maintop"  class="screen-reader-text"><?php _e('Services', 'rrze-servicekatalog'); ?></h1>
                     <?php } else { ?>
-                        <h1 id="maintop" ><?php _e('Events', 'rrze-calendar');; ?></h1>
+                        <h1 id="maintop" ><?php _e('Services', 'rrze-servicekatalog');; ?></h1>
                     <?php }
                     $atts = [];
                     $queryVars = $wp_query->query_vars;
-                    if (isset($queryVars['rrze-calendar-category']) && $queryVars['rrze-calendar-category'] != '') {
-                        $atts['categories'] = sanitize_title($queryVars['rrze-calendar-category']);
+                    if (isset($queryVars['rrze-servicekatalog-category']) && $queryVars['rrze-servicekatalog-category'] != '') {
+                        $atts['categories'] = sanitize_title($queryVars['rrze-servicekatalog-category']);
                         $atts['abonnement_link'] = '1';
                         $atts['number'] = '99';
                     }
-                    echo Events::shortcode($atts);
+                    echo Servicekatalog::shortcode($atts);
                     ?>
 
 			    </main>

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2023-10-05 14:24+0000\n"
+"PO-Revision-Date: 2023-10-11 13:57+0000\n"
 "Last-Translator: Barbara Bothe\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -78,7 +78,7 @@ msgstr "Neuer Service"
 msgid "No services found in Trash."
 msgstr "Keine Services im Papierkorb gefunden."
 
-#: includes/CPT/Service.php:46
+#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:88
 msgid "No services found."
 msgstr "Keine Services gefunden."
 
@@ -134,6 +134,10 @@ msgstr "Services durchsuchen"
 msgid "Service icon"
 msgstr "Service-Icon"
 
+#: templates/archive-service.php:30 templates/archive-service.php:32
+msgid "Services"
+msgstr "Services"
+
 #: includes/CPT/Service.php:49
 msgid "Set service icon"
 msgstr "Service-Icon setzen"
@@ -146,7 +150,17 @@ msgstr "Kurzbeschreibung"
 msgid "Sorry, no target groups could be found."
 msgstr "Es wurden leider keine Zielgruppen gefunden."
 
-#: templates/single-service.php:63 includes/CPT/Service.php:167
+#: templates/single-service.php:95
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: templates/single-service.php:80
+msgid "Target Group"
+msgid_plural "Target Groups"
+msgstr[0] "Zielgruppe"
+msgstr[1] "Zielgruppen"
+
+#: includes/CPT/Service.php:167
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
@@ -201,7 +215,9 @@ msgid "Target Group"
 msgstr "Zielgruppe"
 
 #: includes/CPT/Service.php:239
-#| msgid "The order in which this commitment level is displayed e.g. in select lists."
+#| msgid ""
+#| "The order in which this commitment level is displayed e.g. in select "
+#| "lists."
 msgid ""
 "The order in which this commitment level is displayed e.g. in select lists."
 msgstr ""
@@ -236,17 +252,21 @@ msgstr "Zu diesem Service hochgeladen"
 msgid "URL Portal"
 msgstr "URL Portal"
 
-#: templates/single-service.php:26 includes/CPT/Service.php:149
+#: templates/single-service.php:27 includes/CPT/Service.php:149
 msgid "URL Service Description"
 msgstr "URL Anwendung"
 
-#: templates/single-service.php:28 includes/CPT/Service.php:155
+#: templates/single-service.php:30 includes/CPT/Service.php:155
 msgid "URL Tutorial"
 msgstr "URL Anleitung"
 
-#: templates/single-service.php:30 includes/CPT/Service.php:161
+#: templates/single-service.php:33 includes/CPT/Service.php:161
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
+
+#: templates/single-service.php:69
+msgid "Use"
+msgstr "Nutzung"
 
 #: includes/CPT/Service.php:51
 msgid "Use as service icon"

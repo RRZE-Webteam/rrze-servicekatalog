@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 14:22+0000\n"
+"POT-Creation-Date: 2023-10-11 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "No services found in Trash."
 msgstr ""
 
-#: includes/CPT/Service.php:46
+#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:88
 msgid "No services found."
 msgstr ""
 
@@ -135,6 +135,10 @@ msgstr ""
 msgid "Service icon"
 msgstr ""
 
+#: templates/archive-service.php:30 templates/archive-service.php:32
+msgid "Services"
+msgstr ""
+
 #: includes/CPT/Service.php:49
 msgid "Set service icon"
 msgstr ""
@@ -147,7 +151,17 @@ msgstr ""
 msgid "Sorry, no target groups could be found."
 msgstr ""
 
-#: templates/single-service.php:63 includes/CPT/Service.php:167
+#: templates/single-service.php:95
+msgid "Tags"
+msgstr ""
+
+#: templates/single-service.php:80
+msgid "Target Group"
+msgid_plural "Target Groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/CPT/Service.php:167
 msgid "Target Groups"
 msgstr ""
 
@@ -230,16 +244,20 @@ msgstr ""
 msgid "URL Portal"
 msgstr ""
 
-#: templates/single-service.php:26 includes/CPT/Service.php:149
+#: templates/single-service.php:27 includes/CPT/Service.php:149
 msgid "URL Service Description"
 msgstr ""
 
-#: templates/single-service.php:28 includes/CPT/Service.php:155
+#: templates/single-service.php:30 includes/CPT/Service.php:155
 msgid "URL Tutorial"
 msgstr ""
 
-#: templates/single-service.php:30 includes/CPT/Service.php:161
+#: templates/single-service.php:33 includes/CPT/Service.php:161
 msgid "URL Video Tutorial"
+msgstr ""
+
+#: templates/single-service.php:69
+msgid "Use"
 msgstr ""
 
 #: includes/CPT/Service.php:51

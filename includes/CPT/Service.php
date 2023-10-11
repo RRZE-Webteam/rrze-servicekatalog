@@ -25,7 +25,7 @@ class Service
         add_action('cmb2_admin_init', [__CLASS__, 'serviceCategoryCommitmentFields']);
         // Templates
         add_filter('single_template', [__CLASS__, 'includeSingleTemplate']);
-        //add_filter('archive_template', [__CLASS__, 'includeArchiveTemplate']);
+        add_filter('archive_template', [__CLASS__, 'includeArchiveTemplate']);
     }
 
     public static function registerPostType()
@@ -261,9 +261,10 @@ class Service
         return $template_path;
     }
 
-    public static function includeArchiveTemplate($archiveTemplate)
+    public static function includeArchiveTemplate($template_path)
     {
-        if (is_post_type_archive('service')) {
+        global $post;
+        if ($post->post_type == 'rrze-service' && is_archive()) {
             if ($theme_file = locate_template(array('archive-service.php'))) {
                 $template_path = $theme_file;
             } else {

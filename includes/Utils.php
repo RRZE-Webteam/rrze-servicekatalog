@@ -2,7 +2,7 @@
 
 namespace RRZE\Servicekatalog;
 
-class Util {
+class Utils {
 
     /**
      * Returns a meta value out of a given get_post_meta($post_id) array.
@@ -23,12 +23,24 @@ class Util {
         }
     }
 
+    public static function strListToArray(string $list, string $callback = 'trim'): array
+    {
+        return array_unique(
+            array_filter(
+                array_map(
+                    $callback,
+                    explode(',', $list)
+                )
+            )
+        );
+    }
+
     public static function addCSSVars() {
         $options = get_option( 'rrze_projects_options' );
         $constants = getConstants();
         $accentColor = ( isset( $options[ 'accent-color' ] ) && $options[ 'accent-color' ] != '' ) ? $options[ 'accent-color' ] : $constants[ 'default-accent-color' ];
         $linkColor = ( isset( $options[ 'link-color' ] ) && $options[ 'link-color' ] != '' ) ? $options[ 'link-color' ] : $constants[ 'default-link-color' ];
-        $linkHoverColor = Util::adjustBrightness( $linkColor, - .4 );
+        $linkHoverColor = Utils::adjustBrightness( $linkColor, - .4 );
         echo '<style type="text/css">
 :root {
     --rrze-projects-color-accent: ' . $accentColor . ';
