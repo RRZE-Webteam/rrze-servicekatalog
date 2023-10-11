@@ -18,7 +18,23 @@ if ( is_active_sidebar( 'news-sidebar' ) ) {
 }
 get_header();
 global $wp_query;
+$queryVars = $wp_query->query_vars;
 
+$atts = [];
+$title = __('Services', 'rrze-servicekatalog');
+if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-target-group'] != '') {
+    $term = get_term_by('slug', sanitize_title($queryVars['rrze-service-target-group']), 'rrze-service-target-group');
+    $title = __('Target Group', 'rrze-servicekatalog') . ': ' . $term->name;
+    $atts['group'] = sanitize_title($queryVars['rrze-service-target-group']);
+} elseif (isset($queryVars['rrze-service-commitment']) && $queryVars['rrze-service-commitment'] != '') {
+    $term = get_term_by('slug', sanitize_title($queryVars['rrze-service-commitment']), 'rrze-service-commitment');
+    $title = __('Use', 'rrze-servicekatalog') . ': ' . $term->name;
+    $atts['commitment'] = sanitize_title($queryVars['rrze-service-commitment']);
+} elseif (isset($queryVars['rrze-service-tag']) && $queryVars['rrze-service-tag'] != '') {
+    $term = get_term_by('slug', sanitize_title($queryVars['rrze-service-tag']), 'rrze-service-tag');
+    $title = __('Tag', 'rrze-servicekatalog') . ': ' . $term->name;
+    $atts['tag'] = sanitize_title($queryVars['rrze-service-tag']);
+}
 ?>
 
     <div id="content">
@@ -26,20 +42,9 @@ global $wp_query;
 		    <div class="post-row">
 			    <main class="entry-content">
 
-                    <?php if (empty($herotype)) {   ?>
-                        <h1 id="maintop"  class="screen-reader-text"><?php _e('Services', 'rrze-servicekatalog'); ?></h1>
-                    <?php } else { ?>
-                        <h1 id="maintop" ><?php _e('Services', 'rrze-servicekatalog');; ?></h1>
-                    <?php }
-                    $atts = [];
-                    $queryVars = $wp_query->query_vars;
-                    if (isset($queryVars['rrze-servicekatalog-category']) && $queryVars['rrze-servicekatalog-category'] != '') {
-                        $atts['categories'] = sanitize_title($queryVars['rrze-servicekatalog-category']);
-                        $atts['abonnement_link'] = '1';
-                        $atts['number'] = '99';
-                    }
-                    echo Servicekatalog::shortcode($atts);
-                    ?>
+                    <h1 id="maintop" class="archive-title"><span class="screen-reader-text"><?php echo __('Services', 'rrze-servicekatalog') . ' / '; ?> </span><?php echo $title; ?></h1>
+
+                    <?php echo Servicekatalog::shortcode($atts); ?>
 
 			    </main>
 		    </div>    

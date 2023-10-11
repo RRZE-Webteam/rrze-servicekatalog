@@ -92,7 +92,7 @@ while (have_posts()) : the_post();
                                         $tagURL = get_term_link($tagSlug, 'rrze-service-tag');
                                         $tagLinks[] = '<a class="service-group" href="' . esc_attr($tagURL) . '">' . strtoupper(esc_html($tagName)) . '</a>';
                                     }
-                                    echo '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . __('Tags', 'rrze-servicekatalog') . '" aria-hidden="true"></span>' . implode(', ', $tagLinks) . '</div>';
+                                    echo '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . __('Tags', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>';
                                 } ?>
                             </div>
 

@@ -127,9 +127,9 @@ class Servicekatalog
             echo '<div class="service-details" style="border-top: 5px solid ' . $commitmentBgColor . ';">'
                 . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
                 . '<div class="service-meta">'
-                . ($commitmentTerms ? '<div class="service-commitment"><span class="dashicons dashicons-shield"></span>' . $commitmentOut . '</div>' : '')
-                . ($groupTerms ? '<div class="service-groups"><span class="dashicons dashicons-admin-users"></span>' . implode(', ', $groupLinks) . '</div>' : '')
-                . ($tags ? '<div class="service-tags"><span class="dashicons dashicons-tag"></span>' . implode(', ', $tagLinks) . '</div>' : '')
+                . ($commitmentTerms ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentBgColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentOut . '</div>' : '')
+                . ($groupTerms ? '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . ': </span>' . implode(', ', $groupLinks) . '</div>' : '')
+                . ($tags ? '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>' : '')
                 . '</div>'
                 . '</div>';
             echo '</li>';

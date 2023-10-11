@@ -1,3 +1,4 @@
+// Single Service
 .single-rrze-service {
     .rrze-service-meta {
         background-color: var(--color-ContentRegions,#f5f7f9);
@@ -86,8 +87,15 @@
     }
 }
 
-// Shortcode
+// Archive Service
+.archive {
+    .archive-title {
+        margin-top: 0;
+        font-weight: normal;
+    }
+}
 
+// Shortcode
 ul.rrze-servicekatalog {
     margin: 5px 0 0;
     li {
@@ -100,6 +108,7 @@ ul.rrze-servicekatalog {
             flex-basis: 20%;
             flex-grow: 1;
             padding: 0;
+            width: 100%;
             max-width: 300px;
             border-radius: 9px;
             box-shadow: 0 3px 12px 0 #ebebeb;
