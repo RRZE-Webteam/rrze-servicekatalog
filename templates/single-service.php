@@ -47,8 +47,8 @@ while (have_posts()) : the_post();
 
     <div id="content">
         <div class="content-container">
-            <div class="content-row">
-                <main>
+            <div class="post-row">
+                <main class="entry-content">
                     <article class="rrze-service">
 
                         <header class="entry-header">
@@ -59,7 +59,7 @@ while (have_posts()) : the_post();
 
                             <?php if (has_post_thumbnail() && !post_password_required()) { ?>
                                 <div class="post-thumbnail">
-                                    <?php the_post_thumbnail('medium'); ?>
+                                    <?php the_post_thumbnail('large'); ?>
                                 </div>
                             <?php } ?>
 
@@ -96,6 +96,10 @@ while (have_posts()) : the_post();
                                 } ?>
                             </div>
 
+                            <?php if ($links['portal']['url'] != ''
+                                || $links['description']['url'] != ''
+                                || $links['tutorial']['url'] != ''
+                                || $links['video']['url'] != '') { ?>
                             <div class="service-urls">
                                 <ul>
                                 <?php foreach ($links as $link) {
@@ -105,7 +109,7 @@ while (have_posts()) : the_post();
                                 } ?>
                                 </ul>
                             </div>
-
+                            <?PHP } ?>
 
                         </div>
 

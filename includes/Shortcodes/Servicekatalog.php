@@ -102,6 +102,7 @@ class Servicekatalog
                 $commitmentOut = '<a href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
             }
             $groupTerms = get_the_terms( $service->ID, 'rrze-service-target-group');
+            $groupLinks = [];
             if ($groupTerms) {
                 foreach ($groupTerms as $groupTerm) {
                     $groupName = $groupTerm->name;
@@ -111,6 +112,7 @@ class Servicekatalog
                 }
             }
             $tags = get_the_terms( $service->ID, 'rrze-service-tag');
+            $tagLinks = [];
             if ($tags) {
                 foreach ($tags as $tag) {
                     $tagName = $tag->name;
@@ -129,7 +131,7 @@ class Servicekatalog
                 . '<div class="service-meta">'
                 . ($commitmentTerms ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentBgColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentOut . '</div>' : '')
                 . ($groupTerms ? '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . ': </span>' . implode(', ', $groupLinks) . '</div>' : '')
-                . ($tags ? '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>' : '')
+                . ($tags ? '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>' : '')
                 . '</div>'
                 . '</div>';
             echo '</li>';

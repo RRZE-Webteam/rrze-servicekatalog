@@ -1,13 +1,19 @@
 // Single Service
 .single-rrze-service {
+    .mobiletitle {
+        margin-bottom: 0;
+    }
     .rrze-service-meta {
         background-color: var(--color-ContentRegions,#f5f7f9);
         padding: var(--width-gutter-half, 15px);
-        margin-bottom: var(--width-gutter-half, 15px);
+        margin: 0 calc(var(--width-gutter-half, 15px)*-1) var(--width-gutter-half, 15px);
+        @media (min-width: 480px) {
+            margin: 0 0 var(--width-gutter-half, 15px);
+        }
     }
     a.service-commitment{
         display: inline-block;
-        margin-bottom: var(--width-gutter-half, 15px);
+        margin-bottom: calc(var(--width-gutter-half, 15px) / 2);
         border-radius: 4px;
         padding: 0 0.5em;
         margin-right: 0.5em;
@@ -19,12 +25,15 @@
             text-decoration: none;
             filter: drop-shadow(2px 2px rgb(0 0 0 / 0.6));
         }
+        @media (min-width: 480px) {
+            margin-bottom: var(--width-gutter-half, 15px);
+        }
     }
     .service-groups {
         //margin-bottom: var(--width-gutter-half, 15px);
     }
     .service-tags {
-        padding-top: 5px;
+        padding: 5px 0;
         border-top: 1px solid var(--color-content-borders,#dfe6ec);
         a {
             font-size: .8em;
@@ -41,41 +50,73 @@
     ;
     }
     .dashicons {
+        color: var(--color-TextLightKontrast, #5b5858);
         margin-right: .2em;
         position: relative;
         top: 5px;
     }
     .rrze-service-main {
-        display: flex;
-        flex-direction: row;
-        gap: var(--width-gutter, 30px);
+        @media (min-width: 768px) {
+            display: flex;
+            flex-direction: row;
+            gap: var(--width-gutter-half, 15px);
+        }
+        @media (min-width: 992px) {
+            gap: var(--width-gutter, 30px);
+        }
         .post-thumbnail {
-            flex-basis: 20%;
-            flex-grow: 1;
-            max-width: 20%;
             padding: 0;
+            margin: 0 calc(var(--width-gutter-half, 15px)*-1);
+            background-color: #fff;
+            @media (min-width: 480px) {
+                float: right;
+                margin: 0;
+                padding: 0 0 var(--width-gutter-half, 15px) var(--width-gutter-half, 15px);
+                background-color: #fff;
+                width: 40vw;
+                max-width: 240px;
+            }
+            @media (min-width: 768px) {
+                flex-basis: 20%;
+                flex-grow: 1;
+                max-width: 20%;
+                order: 3;
+                padding: 0;
+            }
             img {
                 box-shadow: none;
+                height: 40vw;
+                width: 100%;
+                object-fit: cover;
+                @media (min-width: 480px) {
+                    height: auto;
+                }
             }
         }
         .service-info {
-            flex-basis: 50%;
+            flex-basis: 55%;
             flex-grow: 2;
          }
         .service-urls {
-            flex-basis: 30%;
+            flex-basis: 25%;
             flex-grow: 2;
             ul {
-                margin-left: 0;
-                border: 2px solid var(--color-content-borders,#dfe6ec);
-                padding: var(--width-gutter-half, 15px);
+                margin: 0;
+                border-top: 2px solid var(--color-content-borders,#dfe6ec);
+                padding-top: var(--width-gutter-half, 15px);
+                @media (min-width: 768px) {
+                    border-top: none;
+                    border-left: 2px solid var(--color-content-borders,#dfe6ec);
+                    padding: var(--width-gutter-half, 15px) 0 var(--width-gutter-half, 15px) var(--width-gutter-half, 15px);
+                }
                 li {
                     list-style-type: none;
                 }
             }
             .dashicons {
                 margin-right: .3em;
-                color: var(----color-primary-dunkler, #004a9f);
+                //color: var(----color-primary-dunkler, #004a9f);
+                color: var(--color-TextLightKontrast, #5b5858);
                 text-decoration: none;
                 position: relative;
                 top: 3px;
@@ -104,18 +145,27 @@ ul.rrze-servicekatalog {
     &.display-grid {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: var(--width-gutter-half, 15px);
+        @media (min-width: 768px) {
+            gap: var(--width-gutter, 30px);
+        }
         li {
             flex-basis: 20%;
             flex-grow: 1;
             padding: 0;
             width: 100%;
-            max-width: 300px;
+            min-width: 240px;
             border-radius: 9px;
             box-shadow: 0 3px 12px 0 #ebebeb;
             transition: all 0.25s;
             &:hover, &:focus, &:active {
                 transform: translateY(-5px);
                 box-shadow: 0 2px 30px 0 #ced3d6;
+            }
+            @media (min-width: 768px) {
+                max-width: 300px;
             }
             a {
                 text-decoration: none;
@@ -132,6 +182,7 @@ ul.rrze-servicekatalog {
                     padding: 0;
                     border-radius: 9px 9px 0 0;
                     height: 200px;
+                    max-height: 50vw;
                     width: 100%;
                     object-fit: cover;
                 }
