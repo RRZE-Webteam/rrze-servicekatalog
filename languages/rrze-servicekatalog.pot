@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 13:56+0000\n"
+"POT-Creation-Date: 2023-10-16 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "No services found in Trash."
 msgstr ""
 
-#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:88
+#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:168
 msgid "No services found."
 msgstr ""
 
@@ -127,15 +127,23 @@ msgstr ""
 msgid "RRZE Webteam"
 msgstr ""
 
+#: includes/Shortcodes/Servicekatalog.php:137
+msgid "Search for..."
+msgstr ""
+
 #: includes/CPT/Service.php:44
 msgid "Search Services"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:137
+msgid "Search term"
 msgstr ""
 
 #: includes/CPT/Service.php:48
 msgid "Service icon"
 msgstr ""
 
-#: templates/archive-service.php:30 templates/archive-service.php:32
+#: templates/archive-service.php:24 templates/archive-service.php:45
 msgid "Services"
 msgstr ""
 
@@ -151,17 +159,25 @@ msgstr ""
 msgid "Sorry, no target groups could be found."
 msgstr ""
 
-#: templates/single-service.php:95
+#: templates/archive-service.php:35
+msgid "Tag"
+msgstr ""
+
+#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:156
+#: includes/Shortcodes/Servicekatalog.php:223
 msgid "Tags"
 msgstr ""
 
-#: templates/single-service.php:80
+#: templates/single-service.php:80 templates/archive-service.php:27
+#: includes/Shortcodes/Servicekatalog.php:222
+#: includes/Shortcodes/Servicekatalog.php:222
+#: includes/Shortcodes/Servicekatalog.php:223
 msgid "Target Group"
 msgid_plural "Target Groups"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/CPT/Service.php:167
+#: includes/CPT/Service.php:167 includes/Shortcodes/Servicekatalog.php:149
 msgid "Target Groups"
 msgstr ""
 
@@ -256,12 +272,20 @@ msgstr ""
 msgid "URL Video Tutorial"
 msgstr ""
 
-#: templates/single-service.php:69
+#: templates/single-service.php:69 templates/archive-service.php:31
+#: includes/Shortcodes/Servicekatalog.php:142
+#: includes/Shortcodes/Servicekatalog.php:221
+#: includes/Shortcodes/Servicekatalog.php:221
 msgid "Use"
 msgstr ""
 
 #: includes/CPT/Service.php:51
 msgid "Use as service icon"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:162
+msgctxt "Verb, infinitive"
+msgid "Search"
 msgstr ""
 
 #: includes/CPT/Service.php:42

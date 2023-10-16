@@ -123,4 +123,17 @@ class Utils {
         ];
     }
 
+    public static function array_map_recursive($callback, $array) {
+        $new = array();
+        if( is_array($array) ) foreach ($array as $key => $val) {
+            if (is_array($val)) {
+                $new[$key] = self::array_map_recursive($callback, $val);
+            } else {
+                $new[$key] = call_user_func($callback, $val);
+            }
+        }
+        else $new = call_user_func($callback, $array);
+        return $new;
+    }
+
 }
