@@ -22,6 +22,7 @@ class Servicekatalog
             'ids' => '',  // Multiple ids are separated by commas
             'number' => 0,       // Number of services to show. Default value: 0
             'show' => '',
+            //'hide' => 'description, url-portal, url-description, url-tutorial, url-video',
             'hide' => '',
             'display' => 'grid',
             'searchform' => ''
@@ -103,12 +104,22 @@ class Servicekatalog
         $showCommitment = true;
         $showGroup = true;
         $showTags = true;
+        $showDescription = true;
+        $showUrlPortal = true;
+        $showUrlDescription = true;
+        $showUrlTutorial = true;
+        $showUrlVideo = true;
         if ($atts['hide'] != '') {
             $hideItems = Utils::strListToArray($atts['hide'], 'sanitize_title');
             $showThumbnail = !in_array('thumbnail', $hideItems);
             $showCommitment = !in_array('commitment', $hideItems);
             $showGroup = !in_array('group', $hideItems);
             $showTags = !in_array('tag', $hideItems);
+            $showDescription = !in_array('description', $hideItems);
+            $showUrlPortal = !in_array('url-portal', $hideItems);
+            $showUrlDescription = !in_array('url-description', $hideItems);
+            $showUrlTutorial = !in_array('url-tutorial', $hideItems);
+            $showUrlVideo = !in_array('url-video', $hideItems);
         }
 
         $services = get_posts($args );
@@ -139,25 +150,27 @@ class Servicekatalog
 
             if (!is_wp_error($taxCommitments)) {
                 $output .= '<div class="filter-commitment">'
-                    . '<span class="label">' . __('Use', 'rrze-servicekatalog') . '</span>';
+                    . '<button class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxCommitments as $taxCommitment) {
                     $output .= '<label><input type="checkbox" name="commitment[]" value="' . $taxCommitment->slug . '"' . (isset($getParams['commitment']) && in_array($taxCommitment->slug, $getParams['commitment']) ? "checked" : "") . '>' . $taxCommitment->name . '</label>';
                 }
-                $output .= '</div>';
+                $output .= '</div></div>';
             }
             if (!is_wp_error($taxGroups)) {
-                $output .= '<div class="filter-group"><span class="label">' . __('Target Groups', 'rrze-servicekatalog') . '</span>';
+                $output .= '<div class="filter-group">'
+                    . '<button class="checklist-toggle">' . __('Target Groups', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxGroups as $taxGroup) {
                     $output .= '<label><input type="checkbox" name="group[]" value="' . $taxGroup->slug . '"' . (isset($getParams['group']) && in_array($taxGroup->slug, $getParams['group']) ? "checked" : "") . '>' . $taxGroup->name . '</label>';
                 }
-                $output .= '</div>';
+                $output .= '</div></div>';
             }
             if (!is_wp_error($taxTags)) {
-                $output .= '<div class="filter-tag"><span class="label">' . __('Tags', 'rrze-servicekatalog') . '</span>';
+                $output .= '<div class="filter-tag">'
+                    . '<button class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
                     $output .= '<label><input type="checkbox" name="tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
                 }
-                $output .= '</div>';
+                $output .= '</div></div>';
             }
             $output .= '<input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '">'
                 //. '</div>'
@@ -207,15 +220,30 @@ class Servicekatalog
                         $tagNames[] = strtoupper(esc_html($tagName));
                     }
                 }
+                $postMeta = get_post_meta($service->ID);
+                $description = Utils::getMeta($postMeta, 'description');
+                $links['portal']['label'] = __('URL Portal', 'rrze-servicekatalog');
+                $links['portal']['url'] = Utils::getMeta($postMeta, 'url-portal');
+                $links['portal']['icon'] = 'dashicons-admin-home';
+                $links['description']['label'] = __('URL Service Description', 'rrze-servicekatalog');
+                $links['description']['url'] = Utils::getMeta($postMeta, 'url-description');
+                $links['description']['icon'] = 'dashicons-info';
+                $links['tutorial']['label'] = __('URL Tutorial', 'rrze-servicekatalog');
+                $links['tutorial']['url'] = Utils::getMeta($postMeta, 'url-tutorial');
+                $links['tutorial']['icon'] = 'dashicons-book';
+                $links['video']['label'] = __('URL Video Tutorial', 'rrze-servicekatalog');
+                $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
+                $links['video']['icon'] = 'dashicons-video-alt2';
 
                 $output .= '<li class="service-preview"><a href="' . get_permalink($service->ID) . '" class="service-link"  style="border-color: ' . $commitmentBgColor . ';">';
                 if (has_post_thumbnail($service->ID) && $showThumbnail) {
                     //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
                     $output .= get_the_post_thumbnail($service->ID, 'medium');
                 }
+                $output .= '</a>';
                 $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
-                    //. '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
-                    . '<span class="service-title">' . $service->post_title . '</span>';
+                    . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
+                    //. '<span class="service-title">' . $service->post_title . '</span>';
                 if ($showCommitment || $showGroup || $showTags) {
                     $output .= '<div class="service-meta">'
                         . ($commitmentTerms && $showCommitment ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentName . '</div>' : '')
@@ -223,8 +251,23 @@ class Servicekatalog
                         . ($tags && $showTags ? '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagNames) . '</div>' : '')
                         . '</div>';
                 }
+                if ($showDescription) {
+                    $output .= '<div class="service-description">' . $description . '</div>';
+                }
+                if ($links['portal']['url'] != ''
+                    || $links['description']['url'] != ''
+                    || $links['tutorial']['url'] != ''
+                    || $links['video']['url'] != '') {
+                    $output .= '<div class="service-urls"><ul>';
+                    foreach ($links as $link) {
+                        if ($link['url'] != '') {
+                            $output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                        }
+                    }
+                    $output .= '</ul></div>';
+                }
                 $output .= '</div>';
-                $output .= '</a></li>';
+                $output .= '</li>';
             }
             $output .= '</ul>';
         }
