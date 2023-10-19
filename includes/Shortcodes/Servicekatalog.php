@@ -46,6 +46,9 @@ class Servicekatalog
         }
         if (isset($getParams['group'])) {
             $groups = $getParams['group'];
+            $spanGroupsSelected = '<span class="filter-count">' . count($groups) . '</span>';
+        } else {
+            $spanGroupsSelected = 0;
         }
         if (isset($groups)) {
             $args['tax_query'] = array(
@@ -64,6 +67,9 @@ class Servicekatalog
         }
         if (isset($getParams['commitment'])) {
             $commitments = $getParams['commitment'];
+            $spanCommitmentsSelected = '<span class="filter-count">' . count($commitments) . '</span>';
+        } else {
+            $spanCommitmentsSelected = '';
         }
         if (isset($commitments)) {
             $args['tax_query'] = array(
@@ -82,6 +88,9 @@ class Servicekatalog
         }
         if (isset($getParams['tag'])) {
             $tags = $getParams['tag'];
+            $spanTagsSelected = '<span class="filter-count">' . count($tags) . '</span>';
+        } else {
+            $spanTagsSelected = '';
         }
         if (isset($tags)) {
             $args['tax_query'] = array(
@@ -150,7 +159,7 @@ class Servicekatalog
 
             if (!is_wp_error($taxCommitments)) {
                 $output .= '<div class="filter-commitment">'
-                    . '<button class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
+                    . '<button type="button" class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . $spanCommitmentsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxCommitments as $taxCommitment) {
                     $output .= '<label><input type="checkbox" name="commitment[]" value="' . $taxCommitment->slug . '"' . (isset($getParams['commitment']) && in_array($taxCommitment->slug, $getParams['commitment']) ? "checked" : "") . '>' . $taxCommitment->name . '</label>';
                 }
@@ -158,7 +167,7 @@ class Servicekatalog
             }
             if (!is_wp_error($taxGroups)) {
                 $output .= '<div class="filter-group">'
-                    . '<button class="checklist-toggle">' . __('Target Groups', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
+                    . '<button type="button" class="checklist-toggle">' . __('Target Groups', 'rrze-servicekatalog') . $spanGroupsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxGroups as $taxGroup) {
                     $output .= '<label><input type="checkbox" name="group[]" value="' . $taxGroup->slug . '"' . (isset($getParams['group']) && in_array($taxGroup->slug, $getParams['group']) ? "checked" : "") . '>' . $taxGroup->name . '</label>';
                 }
@@ -166,7 +175,7 @@ class Servicekatalog
             }
             if (!is_wp_error($taxTags)) {
                 $output .= '<div class="filter-tag">'
-                    . '<button class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
+                    . '<button type="button" class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . $spanTagsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
                     $output .= '<label><input type="checkbox" name="tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
                 }
@@ -274,6 +283,9 @@ class Servicekatalog
         $output .= '</div>';
 
         wp_enqueue_style('rrze-servicekatalog');
+        if ($showFilter) {
+            wp_enqueue_script('rrze-servicekatalog-sc');
+        }
 
         return $output;
     }

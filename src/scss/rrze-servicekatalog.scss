@@ -398,6 +398,7 @@
             flex-basis: 30%;
             flex-shrink: 0;
             flex-grow: 1;
+            position: relative;
             button.checklist-toggle {
                 width: 100%;
                 background: #0000;
@@ -410,12 +411,32 @@
                     color: var(--color-ghostbutton-hover-text, #ffffff);
                 }
             }
+            .filter-count {
+                display: inline-block;
+                margin-left: .5em;
+                background-color: var(--color-button-bg, #004a9f);
+                color: var(--color-button-text, #fff);
+                width: 1.5em;
+                height: 1.5em;
+                line-height: 1.55;
+                border-radius: 50%;
+                font-size: .7em;
+                position: relative;
+                top: -.1em;
+            }
             .checklist {
-                border: 2px solid var(--color-content-borders,#dfe6ec);
-                border-top-width: 1px;
+                border: 1px solid var(--color-content-borders,#dfe6ec);
+                border-top-width: 0px;
                 padding: 0 5px;
+                max-height: 100px;
+                overflow-x: hidden;
+                overflow-y: scroll;
                 .js-enabled & {
-                    //display: none;
+                    display: none;
+                    position: absolute;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: 0 3px 12px 0 #ebebeb;
                 }
             }
             label {
@@ -425,7 +446,7 @@
             .dashicons {
                 margin-left: .5em;
                 position: relative;
-                top: 3px;
+                top: 4px;
             }
         }
         .filter-group {

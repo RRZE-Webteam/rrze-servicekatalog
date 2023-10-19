@@ -53,14 +53,14 @@ class Main
             plugin()->getVersion(true)
         );
         wp_register_script(
-            'rrze-servicekatalog-sc-servicekatalog',
+            'rrze-servicekatalog-sc',
             plugins_url('assets/js/rrze-servicekatalog.js', plugin()->getBasename()),
             ['jquery'],
             plugin()->getVersion(true)
         );
-        wp_localize_script('rrze-servicekatalog-sc-servicekatalog', 'rrze_servicekatalog_ajax', [
+        /*wp_localize_script('rrze-servicekatalog-sc', 'rrze_servicekatalog_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce( 'rrze-servicekatalog-ajax-nonce' ),
-        ]);
+        ]);*/
     }
 }
