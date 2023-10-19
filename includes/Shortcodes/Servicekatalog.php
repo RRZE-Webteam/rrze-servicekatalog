@@ -5,21 +5,32 @@ namespace RRZE\Servicekatalog\Shortcodes;
 use RRZE\Servicekatalog\CPT\Service;
 use RRZE\Servicekatalog\Utils;
 
+use function RRZE\Servicekatalog\Config\getShortcodeSettings;
+
 defined('ABSPATH') || exit;
 
 class Servicekatalog
 {
+    public function __construct() {
+        //$this->pluginFile = $pluginFile;
+        $this->settings = getShortcodeSettings();
+        add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
+        add_action('init', [$this, 'initGutenberg']);
+        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+        add_shortcode('servicekatalog', [__CLASS__, 'shortcodeOutput']);
+    }
     public static function init()
     {
-        add_shortcode('servicekatalog', [__CLASS__, 'shortcode']);
+        add_shortcode('servicekatalog', [__CLASS__, 'shortcodeOutput']);
     }
 
-    public static function shortcode($atts, $content = "") {
+    public static function shortcodeOutput($atts, $content = "") {
         $atts_default = [
             'group' => '',
+            'target-group' => '',
             'commitment' => '',
             'tag' => '',  // Multiple tags (slugs) are separated by commas
-            'ids' => '',  // Multiple ids are separated by commas
+            'id' => '',  // Multiple ids are separated by commas
             'number' => 0,       // Number of services to show. Default value: 0
             'show' => '',
             //'hide' => 'description, url-portal, url-description, url-tutorial, url-video',
@@ -44,11 +55,15 @@ class Servicekatalog
         if ($atts['group'] != '') {
             $groups = Utils::strListToArray($atts['group'], 'sanitize_title');
         }
+        if (is_array($atts['target-group']) && $atts['target-group'][0] != '0') { // block editor settings
+            $groups = Utils::strListToArray($atts['group'], 'sanitize_title');
+        }
+        //var_dump($groups);
         if (isset($getParams['group'])) {
             $groups = $getParams['group'];
             $spanGroupsSelected = '<span class="filter-count">' . count($groups) . '</span>';
         } else {
-            $spanGroupsSelected = 0;
+            $spanGroupsSelected = '';
         }
         if (isset($groups)) {
             $args['tax_query'] = array(
@@ -62,7 +77,7 @@ class Servicekatalog
         }
 
         // Commitment Levels
-        if ($atts['commitment'] != '') {
+        if (!is_array($atts['commitment']) && $atts['commitment'] != '') {
             $commitments = Utils::strListToArray($atts['commitment'], 'sanitize_title');
         }
         if (isset($getParams['commitment'])) {
@@ -83,7 +98,7 @@ class Servicekatalog
         }
 
         // Tags
-        if ($atts['commitment'] != '') {
+        if (!is_array($atts['tag']) && $atts['tag'] != '') {
             $tags = Utils::strListToArray($atts['tag'], 'sanitize_title');
         }
         if (isset($getParams['tag'])) {
@@ -104,8 +119,8 @@ class Servicekatalog
         }
 
         // IDs
-        if ($atts['ids'] != '') {
-            $IDs = Utils::strListToArray($atts['ids'], 'intval');
+        if (!is_array($atts['id']) &&$atts['id'] != '') {
+            $IDs = Utils::strListToArray($atts['id'], 'intval');
             $args['post__in'] = $IDs;
         }
 
@@ -118,7 +133,7 @@ class Servicekatalog
         $showUrlDescription = true;
         $showUrlTutorial = true;
         $showUrlVideo = true;
-        if ($atts['hide'] != '') {
+        if (!is_array($atts['hide']) && $atts['hide'] != '') {
             $hideItems = Utils::strListToArray($atts['hide'], 'sanitize_title');
             $showThumbnail = !in_array('thumbnail', $hideItems);
             $showCommitment = !in_array('commitment', $hideItems);
@@ -132,7 +147,7 @@ class Servicekatalog
         }
 
         $services = get_posts($args );
-
+var_dump($args);
         $output = '<div class="rrze-servicekatalog">';
 
         // Filter Area
@@ -288,5 +303,122 @@ class Servicekatalog
         }
 
         return $output;
+    }
+
+    public function fillGutenbergOptions(): array {
+        // fill selects "category" and "tag"
+        $fields = array('target-group', 'commitment', 'tag');
+        foreach ($fields as $field) {
+            // set new params for gutenberg / the old ones are used for shortcode in classic editor
+            $this->settings[$field]['values'] = array();
+            $this->settings[$field]['field_type'] = 'multi_select';
+            $this->settings[$field]['default'] = array(0);
+            $this->settings[$field]['type'] = 'array';
+            $this->settings[$field]['items'] = array('type' => 'string');
+            $this->settings[$field]['values'][] = ['id' => 0, 'val' => __('-- all --', 'rrze-servicekatalog')];
+
+            // get categories and tags from this website
+            $terms = get_terms([
+                'taxonomy' => 'rrze-service-' . $field,
+                'hide_empty' => true,
+                'orderby' => 'name',
+                'order' => 'ASC',
+            ]);
+
+            foreach ($terms as $term) {
+                $this->settings[$field]['values'][] = [
+                    'id' => $term->slug,
+                    'val' => $term->name,
+                ];
+            }
+        }
+
+        // fill select id ( = FAQ )
+        $faqs = get_posts(array(
+            'posts_per_page' => -1,
+            'post_type' => 'rrze-service',
+            'orderby' => 'title',
+            'order' => 'ASC',
+        ));
+
+        $this->settings['id']['values'] = array();
+        $this->settings['id']['field_type'] = 'multi_select';
+        $this->settings['id']['default'] = array(0);
+        $this->settings['id']['type'] = 'array';
+        $this->settings['id']['items'] = array('type' => 'number');
+        $this->settings['id']['values'][] = ['id' => 0, 'val' => __('-- all --', 'rrze-servicekatalog')];
+        foreach ($faqs as $faq) {
+            $this->settings['id']['values'][] = [
+                'id' => $faq->ID,
+                'val' => str_replace("'", "", str_replace('"', "", $faq->post_title)),
+            ];
+        }
+
+        return $this->settings;
+    }
+
+    public function isGutenberg()
+    {
+        $postID = get_the_ID();
+        if ($postID && !use_block_editor_for_post($postID)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function initGutenberg()
+    {
+        if (!$this->isGutenberg()) {
+            return;
+        }
+
+        // get prefills for dropdowns
+        $this->settings = $this->fillGutenbergOptions();
+
+        // register js-script to inject php config to call gutenberg lib
+        $editor_script = $this->settings['block']['blockname'] . '-block';
+        $js = '../../assets/js/' . $editor_script . '.js';
+
+        wp_register_script(
+            $editor_script,
+            plugins_url($js, __FILE__),
+            array(
+                'RRZE-Gutenberg',
+            ),
+            null
+        );
+        wp_localize_script($editor_script, $this->settings['block']['blockname'] . 'Config', $this->settings);
+
+        // register block
+        register_block_type(
+            $this->settings['block']['blocktype'],
+            array(
+                'editor_script' => $editor_script,
+                'render_callback' => [$this, 'shortcodeOutput'],
+                'attributes' => $this->settings,
+            )
+        );
+    }
+
+    public function enqueueGutenberg()
+    {
+        if (!$this->isGutenberg()) {
+            return;
+        }
+
+        // include gutenberg lib
+        wp_enqueue_script(
+            'RRZE-Gutenberg',
+            plugins_url('../assets/js/gutenberg.js', __FILE__),
+            array(
+                'wp-blocks',
+                'wp-i18n',
+                'wp-element',
+                'wp-components',
+                'wp-editor',
+            ),
+            null
+        );
     }
 }

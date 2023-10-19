@@ -26,6 +26,8 @@ const RRZE_WP_VERSION = '6.2';
 // Autoloader
 require_once 'vendor/autoload.php';
 
+require_once 'config/config.php';
+
 register_activation_hook(__FILE__, __NAMESPACE__ . '\activation');
 register_deactivation_hook(__FILE__, __NAMESPACE__ . '\deactivation');
 
