@@ -18,7 +18,6 @@ class Main
         add_action('wp_enqueue_scripts', [$this, 'wpEnqueueScripts']);
 
         Service::init();
-        //Servicekatalog::init();
         new Servicekatalog();
     }
 

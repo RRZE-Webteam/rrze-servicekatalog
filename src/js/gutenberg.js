@@ -33,10 +33,10 @@ function createBlock(blockConfig) {
 				}
 			}
 
-            /*if ( ( props['isSelected'] === false ) && ( edited === true ) ){
+            if ( ( props['isSelected'] === false ) && ( edited === true ) ){
 				clean( att );
 				return createElement( serverSideRender, { block: blockConfig.block.blocktype, attributes: att });
-			} else {*/
+			} else {
 				var ret = [];
 				ret.push( createElement( 'div', { className: 'components-placeholder__label' }, [ createElement( 'span', { className: 'editor-block-icon block-editor-block-icon dashicons-before dashicons-' + blockConfig.block.icon }, null ), blockConfig.block.title ] ) );
 
@@ -73,9 +73,9 @@ function createBlock(blockConfig) {
 				}
 
 				edited = true;
-
+console.log(props);
 			    return createElement('div', { className: "components-placeholder" }, ret )
-			/*}*/
+			}
 		},
 		save( props ){
 			return null;

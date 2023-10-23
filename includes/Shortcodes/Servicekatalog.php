@@ -12,19 +12,14 @@ defined('ABSPATH') || exit;
 class Servicekatalog
 {
     public function __construct() {
-        //$this->pluginFile = $pluginFile;
         $this->settings = getShortcodeSettings();
         add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
         add_action('init', [$this, 'initGutenberg']);
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
-        add_shortcode('servicekatalog', [__CLASS__, 'shortcodeOutput']);
-    }
-    public static function init()
-    {
-        add_shortcode('servicekatalog', [__CLASS__, 'shortcodeOutput']);
+        add_shortcode('servicekatalog', [$this, 'shortcodeOutput']);
     }
 
-    public static function shortcodeOutput($atts, $content = "") {
+    public function shortcodeOutput($atts, $content = "") {
         $atts_default = [
             'group' => '',
             'target-group' => '',
@@ -40,118 +35,91 @@ class Servicekatalog
         ];
         $atts = shortcode_atts($atts_default, $atts);
 
-        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
+        if (!empty($atts['target-group'])) {
+            $atts['group'] = $atts['target-group'];
+        }
+        foreach ($atts as $k => $v) {
+            if (!is_array($v) // Shortcode
+                && in_array($k, ['group', 'commitment', 'tag', 'id', 'hide'])) {
+                $atts[$k] = Utils::strListToArray($atts[$k], 'sanitize_title');
+            } elseif (is_array($v) // Block
+                && isset($atts[$k][0])
+                && $atts[$k][0] == '0') { // "all" selected
+                $atts[$k] = [];
+            }
+        }
+        $groups = $atts['group'];
+        $commitments = $atts['commitment'];
+        $tags = $atts['tag'];
+        $IDs = $atts['id'];
+        $hideItems = $atts['hide'];
 
+        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
         $args = [
             'post_type' => Service::POST_TYPE,
             'posts_per_page' => -1,
-            'meta_query' => [
+            'orderby' => 'title',
+            'tax_query' => [
                 'relation' => 'AND',
             ],
-            'orderby' => 'title',
         ];
 
         // Target Groups
-        if ($atts['group'] != '') {
-            $groups = Utils::strListToArray($atts['group'], 'sanitize_title');
-        }
-        if (is_array($atts['target-group']) && $atts['target-group'][0] != '0') { // block editor settings
-            $groups = Utils::strListToArray($atts['group'], 'sanitize_title');
-        }
-        //var_dump($groups);
         if (isset($getParams['group'])) {
             $groups = $getParams['group'];
             $spanGroupsSelected = '<span class="filter-count">' . count($groups) . '</span>';
         } else {
             $spanGroupsSelected = '';
         }
-        if (isset($groups)) {
-            $args['tax_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'rrze-service-target-group',
-                    'field' => 'slug',
-                    'terms' => $groups,
-                )
+        if (!empty($groups)) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'rrze-service-target-group',
+                'field' => 'slug',
+                'terms' => $groups,
             );
         }
 
         // Commitment Levels
-        if (!is_array($atts['commitment']) && $atts['commitment'] != '') {
-            $commitments = Utils::strListToArray($atts['commitment'], 'sanitize_title');
-        }
         if (isset($getParams['commitment'])) {
             $commitments = $getParams['commitment'];
             $spanCommitmentsSelected = '<span class="filter-count">' . count($commitments) . '</span>';
         } else {
             $spanCommitmentsSelected = '';
         }
-        if (isset($commitments)) {
-            $args['tax_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'rrze-service-commitment',
-                    'field' => 'slug',
-                    'terms' => $commitments,
-                )
+        if (!empty($commitments)) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'rrze-service-commitment',
+                'field' => 'slug',
+                'terms' => $commitments,
             );
         }
 
         // Tags
-        if (!is_array($atts['tag']) && $atts['tag'] != '') {
-            $tags = Utils::strListToArray($atts['tag'], 'sanitize_title');
-        }
         if (isset($getParams['tag'])) {
             $tags = $getParams['tag'];
             $spanTagsSelected = '<span class="filter-count">' . count($tags) . '</span>';
         } else {
             $spanTagsSelected = '';
         }
-        if (isset($tags)) {
-            $args['tax_query'] = array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'rrze-service-tag',
-                    'field' => 'slug',
-                    'terms' => $tags,
-                )
+        if (!empty($tags)) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'rrze-service-tag',
+                'field' => 'slug',
+                'terms' => $tags,
             );
         }
 
         // IDs
-        if (!is_array($atts['id']) &&$atts['id'] != '') {
-            $IDs = Utils::strListToArray($atts['id'], 'intval');
+        if (!empty($IDs)) {
             $args['post__in'] = $IDs;
         }
 
-        $showThumbnail = true;
-        $showCommitment = true;
-        $showGroup = true;
-        $showTags = true;
-        $showDescription = true;
-        $showUrlPortal = true;
-        $showUrlDescription = true;
-        $showUrlTutorial = true;
-        $showUrlVideo = true;
-        if (!is_array($atts['hide']) && $atts['hide'] != '') {
-            $hideItems = Utils::strListToArray($atts['hide'], 'sanitize_title');
-            $showThumbnail = !in_array('thumbnail', $hideItems);
-            $showCommitment = !in_array('commitment', $hideItems);
-            $showGroup = !in_array('group', $hideItems);
-            $showTags = !in_array('tag', $hideItems);
-            $showDescription = !in_array('description', $hideItems);
-            $showUrlPortal = !in_array('url-portal', $hideItems);
-            $showUrlDescription = !in_array('url-description', $hideItems);
-            $showUrlTutorial = !in_array('url-tutorial', $hideItems);
-            $showUrlVideo = !in_array('url-video', $hideItems);
-        }
-
         $services = get_posts($args );
-var_dump($args);
+
         $output = '<div class="rrze-servicekatalog">';
 
         // Filter Area
-        $showFilter = in_array($atts['searchform'], ['true', '1', 'yes', 'ja']);
+        $showFilter = in_array($atts['searchform'], [true, 'true', '1', 'yes', 'ja']);
         if ($showFilter) {
             $taxCommitments = get_terms([
                 'taxonomy' => 'rrze-service-commitment',
@@ -204,6 +172,27 @@ var_dump($args);
         if (count($services) < 1) {
             $output .= __('No services found.', 'rrze-servicekatalog');
         } else {
+            // Hide Items
+            $showThumbnail = true;
+            $showCommitment = true;
+            $showGroup = true;
+            $showTags = true;
+            $showDescription = true;
+            $showUrlPortal = true;
+            $showUrlDescription = true;
+            $showUrlTutorial = true;
+            $showUrlVideo = true;
+            if (isset($hideItems)) {
+                $showThumbnail = !in_array('thumbnail', $hideItems);
+                $showCommitment = !in_array('commitment', $hideItems);
+                $showGroup = !in_array('group', $hideItems);
+                $showTags = !in_array('tag', $hideItems);
+                $showDescription = !in_array('description', $hideItems);
+                $showUrlPortal = !in_array('url-portal', $hideItems);
+                $showUrlDescription = !in_array('url-description', $hideItems);
+                $showUrlTutorial = !in_array('url-tutorial', $hideItems);
+                $showUrlVideo = !in_array('url-video', $hideItems);
+            }
             // Services List / Grid
             $layout = $atts['display'] == 'list' ? 'list' : 'grid';
             $output .= '<ul class="display-' . $layout . '">';
@@ -278,10 +267,11 @@ var_dump($args);
                 if ($showDescription) {
                     $output .= '<div class="service-description">' . $description . '</div>';
                 }
-                if ($links['portal']['url'] != ''
-                    || $links['description']['url'] != ''
-                    || $links['tutorial']['url'] != ''
-                    || $links['video']['url'] != '') {
+                if (($showUrlPortal && $links['portal']['url'] != '')
+                    || ($showUrlDescription && $links['description']['url'] != '')
+                    || ($showUrlTutorial && $links['tutorial']['url'] != '')
+                    || ($showUrlVideo && $links['video']['url'] != '')) {
+
                     $output .= '<div class="service-urls"><ul>';
                     foreach ($links as $link) {
                         if ($link['url'] != '') {
@@ -379,6 +369,7 @@ var_dump($args);
         // register js-script to inject php config to call gutenberg lib
         $editor_script = $this->settings['block']['blockname'] . '-block';
         $js = '../../assets/js/' . $editor_script . '.js';
+        $css = '../../assets/css/' . $editor_script . '.css';
 
         wp_register_script(
             $editor_script,
@@ -390,6 +381,11 @@ var_dump($args);
         );
         wp_localize_script($editor_script, $this->settings['block']['blockname'] . 'Config', $this->settings);
 
+        wp_register_style(
+            $editor_script,
+            plugins_url($css, __FILE__),
+        );
+
         // register block
         register_block_type(
             $this->settings['block']['blocktype'],
@@ -397,6 +393,7 @@ var_dump($args);
                 'editor_script' => $editor_script,
                 'render_callback' => [$this, 'shortcodeOutput'],
                 'attributes' => $this->settings,
+                'editor_style' => $editor_script,
             )
         );
     }

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2023-10-16 11:32+0000\n"
+"PO-Revision-Date: 2023-10-23 09:17+0000\n"
 "Last-Translator: Barbara Bothe\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -14,6 +14,11 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: rrze-servicekatalog"
+
+#: includes/Shortcodes/Servicekatalog.php:307
+#: includes/Shortcodes/Servicekatalog.php:338
+msgid "-- all --"
+msgstr "-- alle --"
 
 #: includes/CPT/Service.php:37
 msgctxt "add new on admin bar"
@@ -42,9 +47,13 @@ msgstr "Alle Services"
 msgid "Color"
 msgstr "Farbe"
 
-#: includes/CPT/Service.php:185
+#: config/config.php:43 config/config.php:90 includes/CPT/Service.php:185
 msgid "Commitment Level"
 msgstr "Verbindlichkeit"
+
+#: config/config.php:55
+msgid "Description"
+msgstr "Beschreibung"
 
 #: includes/CPT/Service.php:41
 msgid "Edit Service"
@@ -53,6 +62,14 @@ msgstr "Service bearbeiten"
 #: includes/CPT/Service.php:127
 msgid "General Information"
 msgstr "Allgemeine Informationen"
+
+#: config/config.php:20
+msgid "Grid"
+msgstr "Kacheln"
+
+#: config/config.php:75
+msgid "Hide Elements"
+msgstr "Elemente verbergen"
 
 #. Author URI of the plugin
 msgid "https://blogs.fau.de/webworking/"
@@ -66,6 +83,10 @@ msgstr "https://github.com/RRZE-Webteam/rrze-servicekatalog"
 msgid "Insert into service"
 msgstr "Zum Service hinzufügen"
 
+#: config/config.php:21
+msgid "List"
+msgstr "Liste"
+
 #: includes/CPT/Service.php:135
 msgid "Max. 240 characters"
 msgstr "Max. 240 Zeichen"
@@ -78,7 +99,7 @@ msgstr "Neuer Service"
 msgid "No services found in Trash."
 msgstr "Keine Services im Papierkorb gefunden."
 
-#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:168
+#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:172
 msgid "No services found."
 msgstr "Keine Services gefunden."
 
@@ -95,7 +116,7 @@ msgid "Parent Services:"
 msgstr "Übergeordnete Services:"
 
 #. 1: The plugin name, 2: The error string.
-#: rrze-servicekatalog.php:86 rrze-servicekatalog.php:143
+#: rrze-servicekatalog.php:88 rrze-servicekatalog.php:145
 #, php-format
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
@@ -126,7 +147,7 @@ msgstr "RRZE Servicekatalog"
 msgid "RRZE Webteam"
 msgstr "RRZE Webteam"
 
-#: includes/Shortcodes/Servicekatalog.php:137
+#: includes/Shortcodes/Servicekatalog.php:139
 msgid "Search for..."
 msgstr "Suchen nach..."
 
@@ -134,7 +155,7 @@ msgstr "Suchen nach..."
 msgid "Search Services"
 msgstr "Services durchsuchen"
 
-#: includes/Shortcodes/Servicekatalog.php:137
+#: includes/Shortcodes/Servicekatalog.php:139
 msgid "Search term"
 msgstr "Suchbegriff"
 
@@ -142,7 +163,8 @@ msgstr "Suchbegriff"
 msgid "Service icon"
 msgstr "Service-Icon"
 
-#: templates/archive-service.php:24 templates/archive-service.php:45
+#: config/config.php:102 templates/archive-service.php:24
+#: templates/archive-service.php:45
 msgid "Services"
 msgstr "Services"
 
@@ -154,6 +176,10 @@ msgstr "Service-Icon setzen"
 msgid "Short Description"
 msgstr "Kurzbeschreibung"
 
+#: config/config.php:30
+msgid "Show Searchform"
+msgstr "Suchformular anzeigen"
+
 #: includes/CPT/Service.php:176 includes/CPT/Service.php:195
 msgid "Sorry, no target groups could be found."
 msgstr "Es wurden leider keine Zielgruppen gefunden."
@@ -162,21 +188,22 @@ msgstr "Es wurden leider keine Zielgruppen gefunden."
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:156
-#: includes/Shortcodes/Servicekatalog.php:223
+#: config/config.php:51 config/config.php:96 templates/single-service.php:95
+#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:160
+#: includes/Shortcodes/Servicekatalog.php:263
 msgid "Tags"
 msgstr "Schlagwörter"
 
+#: config/config.php:47 templates/single-service.php:80
 #: templates/single-service.php:80 templates/archive-service.php:27
-#: includes/Shortcodes/Servicekatalog.php:222
-#: includes/Shortcodes/Servicekatalog.php:222
-#: includes/Shortcodes/Servicekatalog.php:223
+#: includes/Shortcodes/Servicekatalog.php:262
+#: includes/Shortcodes/Servicekatalog.php:262
+#: includes/Shortcodes/Servicekatalog.php:263
 msgid "Target Group"
-msgid_plural "Target Groups"
-msgstr[0] "Zielgruppe"
-msgstr[1] "Zielgruppen"
+msgstr "Zielgruppe"
 
-#: includes/CPT/Service.php:167 includes/Shortcodes/Servicekatalog.php:149
+#: config/config.php:84 includes/CPT/Service.php:167
+#: includes/Shortcodes/Servicekatalog.php:152
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
@@ -241,7 +268,7 @@ msgstr ""
 "wird."
 
 #. 1: Server PHP version number, 2: Required PHP version number.
-#: rrze-servicekatalog.php:60
+#: rrze-servicekatalog.php:62
 #, php-format
 msgid ""
 "The server is running PHP version %1$s. The Plugin requires at least PHP "
@@ -251,7 +278,7 @@ msgstr ""
 "Version %2$s."
 
 #. 1: Server WordPress version number, 2: Required WordPress version number.
-#: rrze-servicekatalog.php:67
+#: rrze-servicekatalog.php:69
 #, php-format
 msgid ""
 "The server is running WordPress version %1$s. The Plugin requires at least "
@@ -260,30 +287,42 @@ msgstr ""
 "Auf dem Server läuft WordPress Version %1$s. Das Plugin benötigt mindestens "
 "WordPress Version %2$s."
 
+#: config/config.php:39
+msgid "Thumbnail"
+msgstr "Bild"
+
+#: config/config.php:25
+msgid "Type of output"
+msgstr "Ausgabe"
+
 #: includes/CPT/Service.php:53
 msgid "Uploaded to this service"
 msgstr "Zu diesem Service hochgeladen"
 
-#: templates/single-service.php:24 includes/CPT/Service.php:143
+#: config/config.php:59 templates/single-service.php:24
+#: includes/CPT/Service.php:143 includes/Shortcodes/Servicekatalog.php:237
 msgid "URL Portal"
 msgstr "URL Portal"
 
-#: templates/single-service.php:27 includes/CPT/Service.php:149
+#: config/config.php:63 templates/single-service.php:27
+#: includes/CPT/Service.php:149 includes/Shortcodes/Servicekatalog.php:240
 msgid "URL Service Description"
 msgstr "URL Anwendung"
 
-#: templates/single-service.php:30 includes/CPT/Service.php:155
+#: config/config.php:67 templates/single-service.php:30
+#: includes/CPT/Service.php:155 includes/Shortcodes/Servicekatalog.php:243
 msgid "URL Tutorial"
 msgstr "URL Anleitung"
 
-#: templates/single-service.php:33 includes/CPT/Service.php:161
+#: config/config.php:71 templates/single-service.php:33
+#: includes/CPT/Service.php:161 includes/Shortcodes/Servicekatalog.php:246
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
 
 #: templates/single-service.php:69 templates/archive-service.php:31
-#: includes/Shortcodes/Servicekatalog.php:142
-#: includes/Shortcodes/Servicekatalog.php:221
-#: includes/Shortcodes/Servicekatalog.php:221
+#: includes/Shortcodes/Servicekatalog.php:144
+#: includes/Shortcodes/Servicekatalog.php:261
+#: includes/Shortcodes/Servicekatalog.php:261
 msgid "Use"
 msgstr "Nutzung"
 
@@ -291,7 +330,7 @@ msgstr "Nutzung"
 msgid "Use as service icon"
 msgstr "Als Service-Icon verwenden"
 
-#: includes/Shortcodes/Servicekatalog.php:162
+#: includes/Shortcodes/Servicekatalog.php:166
 msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr "Suchen"

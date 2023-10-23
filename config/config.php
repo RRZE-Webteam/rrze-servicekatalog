@@ -40,7 +40,7 @@ function getShortcodeSettings(): array {
                 ],
                 [
                     'id' => 'commitment',
-                    'val' =>  __( 'Commitment', 'rrze-servicekatalog' )
+                    'val' =>  __( 'Commitment Level', 'rrze-servicekatalog' )
                 ],
                 [
                     'id' => 'group',
@@ -60,7 +60,7 @@ function getShortcodeSettings(): array {
                 ],
                 [
                     'id' => 'url-description',
-                    'val' =>  __( 'URL Description', 'rrze-servicekatalog' )
+                    'val' =>  __( 'URL Service Description', 'rrze-servicekatalog' )
                 ],
                 [
                     'id' => 'url-tutorial',
@@ -68,7 +68,7 @@ function getShortcodeSettings(): array {
                 ],
                 [
                     'id' => 'url-video',
-                    'val' =>  __( 'URL Video', 'rrze-servicekatalog' )
+                    'val' =>  __( 'URL Video Tutorial', 'rrze-servicekatalog' )
                 ],
             ],
             'field_type' => 'multi_select',
@@ -87,7 +87,7 @@ function getShortcodeSettings(): array {
         'commitment' => [
             'default' => '',
             'field_type' => 'text',
-            'label' => __( 'Commitment', 'rrze-servicekatalog' ),
+            'label' => __( 'Commitment Level', 'rrze-servicekatalog' ),
             'type' => 'text'
         ],
         'tag' => [
@@ -99,7 +99,7 @@ function getShortcodeSettings(): array {
         'id' => [
             'default' => NULL,
             'field_type' => 'text',
-            'label' => __( 'IDs', 'rrze-servicekatalog' ),
+            'label' => __( 'Services', 'rrze-servicekatalog' ),
             'type' => 'number'
         ],
     ];

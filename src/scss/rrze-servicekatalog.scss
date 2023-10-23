@@ -142,6 +142,7 @@
 
 // Shortcode
 .rrze-servicekatalog {
+    margin: 1em 0 2em;
     ul {
         margin: 5px 0 0;
 
@@ -365,6 +366,7 @@
         border: 1px solid var(--color-content-borders,#dfe6ec);
         width: 100%;
         padding: var(--width-gutter, 30px);
+        margin-top: 0;
         @media (min-width:768px) {
             display: flex;
             flex-wrap: wrap;
@@ -426,7 +428,7 @@
             }
             .checklist {
                 border: 1px solid var(--color-content-borders,#dfe6ec);
-                border-top-width: 0px;
+                border-top-width: 0;
                 padding: 0 5px;
                 overflow-x: hidden;
                 overflow-y: scroll;
