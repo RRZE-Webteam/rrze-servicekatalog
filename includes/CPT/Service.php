@@ -136,7 +136,8 @@ class Service
             'id'      => 'description',
             'type'    => 'wysiwyg',
             'options' => array(
-                'textarea_rows' => get_option('default_post_edit_rows', 12),
+                'textarea_rows' => 8,
+                'teeny' => true,
             ),
         ));
         $cmb->add_field(array(

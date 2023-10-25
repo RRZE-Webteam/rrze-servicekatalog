@@ -21,16 +21,16 @@ while (have_posts()) : the_post();
     $id = get_the_ID();
     $meta = get_post_meta($id);
     $description = Utils::getMeta($meta, 'description');
-    $links['portal']['label'] = __('URL Portal', 'rrze-servicekatalog');
+    $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
     $links['portal']['url'] = Utils::getMeta($meta, 'url-portal');
     $links['portal']['icon'] = 'dashicons-admin-home';
-    $links['description']['label'] = __('URL Service Description', 'rrze-servicekatalog');
+    $links['description']['label'] = __('Service Description', 'rrze-servicekatalog');
     $links['description']['url'] = Utils::getMeta($meta, 'url-description');
     $links['description']['icon'] = 'dashicons-info';
-    $links['tutorial']['label'] = __('URL Tutorial', 'rrze-servicekatalog');
+    $links['tutorial']['label'] = __('Tutorial', 'rrze-servicekatalog');
     $links['tutorial']['url'] = Utils::getMeta($meta, 'url-tutorial');
     $links['tutorial']['icon'] = 'dashicons-book';
-    $links['video']['label'] = __('URL Video Tutorial', 'rrze-servicekatalog');
+    $links['video']['label'] = __('Video Tutorial', 'rrze-servicekatalog');
     $links['video']['url'] = Utils::getMeta($meta, 'url-video');
     $links['video']['icon'] = 'dashicons-video-alt2';
     $commitmentTerms = get_the_terms( $id, 'rrze-service-commitment');
@@ -66,8 +66,8 @@ while (have_posts()) : the_post();
                             <div class="service-info">
                                 <div class="rrze-service-meta">
                                     <?php if ($commitmentTerms) {
-                                        echo '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>';
-                                        echo '<a class="service-commitment" href="' . esc_attr($commitmentURL) . '" style="background-color:' . esc_attr($commitmentBgColor) . ';color:' . esc_attr($commitmentTextColor) . ';">' . esc_html($commitmentName) . '</a>';
+                                        echo '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentBgColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>';
+                                        echo '<a class="service-commitment" href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
                                         echo '</div>';
                                     }
                                     if ($groupTerms) {

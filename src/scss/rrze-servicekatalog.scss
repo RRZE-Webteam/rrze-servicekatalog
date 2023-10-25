@@ -11,26 +11,18 @@
             margin: 0 0 var(--width-gutter-half, 15px);
         }
     }
-    a.service-commitment{
-        display: inline-block;
-        margin-bottom: calc(var(--width-gutter-half, 15px) / 2);
-        border-radius: 4px;
-        padding: 0 0.5em;
-        margin-right: 0.5em;
-        font-weight: normal;
-        text-decoration: none;
-        box-shadow: none;
-        transition: none;
-        &:hover, &:focus, &:active {
-            text-decoration: none;
-            filter: drop-shadow(2px 2px rgb(0 0 0 / 0.6));
-        }
-        @media (min-width: 480px) {
-            margin-bottom: var(--width-gutter-half, 15px);
+    .service-commitments,
+    .service-groups {
+        a {
+            text-decoration-thickness: unset;
+            text-underline-offset: unset;
+            &:hover, &:focus, &:active {
+                text-decoration-thickness: .15rem;
+            }
         }
     }
-    .service-groups {
-        //margin-bottom: var(--width-gutter-half, 15px);
+    .service-commitments {
+        margin-bottom: .5em;
     }
     .service-tags {
         padding: 5px 0;
@@ -46,14 +38,14 @@
         }
         .dashicons {
             font-size: .8em;
+            top: 5px;
         }
-    ;
     }
     .dashicons {
         color: var(--color-TextLightKontrast, #5b5858);
         margin-right: .2em;
         position: relative;
-        top: 5px;
+        top: 3px;
     }
     .rrze-service-main {
         @media (min-width: 768px) {
@@ -111,6 +103,13 @@
                 }
                 li {
                     list-style-type: none;
+                }
+            }
+            a {
+                text-decoration-thickness: unset;
+                text-underline-offset: unset;
+                &:hover, &:focus, &:active {
+                    text-decoration-thickness: .15rem;
                 }
             }
             .dashicons {

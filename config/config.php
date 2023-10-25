@@ -56,19 +56,19 @@ function getShortcodeSettings(): array {
                 ],
                 [
                     'id' => 'url-portal',
-                    'val' =>  __( 'URL Portal', 'rrze-servicekatalog' )
+                    'val' =>  __( 'Portal', 'rrze-servicekatalog' )
                 ],
                 [
                     'id' => 'url-description',
-                    'val' =>  __( 'URL Service Description', 'rrze-servicekatalog' )
+                    'val' =>  __( 'Service Description', 'rrze-servicekatalog' )
                 ],
                 [
                     'id' => 'url-tutorial',
-                    'val' =>  __( 'URL Tutorial', 'rrze-servicekatalog' )
+                    'val' =>  __( 'Tutorial', 'rrze-servicekatalog' )
                 ],
                 [
                     'id' => 'url-video',
-                    'val' =>  __( 'URL Video Tutorial', 'rrze-servicekatalog' )
+                    'val' =>  __( 'Video Tutorial', 'rrze-servicekatalog' )
                 ],
             ],
             'field_type' => 'multi_select',

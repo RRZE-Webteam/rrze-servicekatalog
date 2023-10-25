@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2023-10-23 09:17+0000\n"
+"PO-Revision-Date: 2023-10-25 07:54+0000\n"
 "Last-Translator: Barbara Bothe\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: rrze-servicekatalog"
 
-#: includes/Shortcodes/Servicekatalog.php:307
-#: includes/Shortcodes/Servicekatalog.php:338
+#: includes/Shortcodes/Servicekatalog.php:308
+#: includes/Shortcodes/Servicekatalog.php:339
 msgid "-- all --"
 msgstr "-- alle --"
 
@@ -99,7 +99,7 @@ msgstr "Neuer Service"
 msgid "No services found in Trash."
 msgstr "Keine Services im Papierkorb gefunden."
 
-#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:172
+#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:173
 msgid "No services found."
 msgstr "Keine Services gefunden."
 
@@ -120,6 +120,11 @@ msgstr "Übergeordnete Services:"
 #, php-format
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
+
+#: config/config.php:59 templates/single-service.php:24
+#: includes/Shortcodes/Servicekatalog.php:238
+msgid "Portal"
+msgstr "Anwendung"
 
 #: includes/CPT/Service.php:34
 msgctxt "post type general name"
@@ -147,7 +152,7 @@ msgstr "RRZE Servicekatalog"
 msgid "RRZE Webteam"
 msgstr "RRZE Webteam"
 
-#: includes/Shortcodes/Servicekatalog.php:139
+#: includes/Shortcodes/Servicekatalog.php:140
 msgid "Search for..."
 msgstr "Suchen nach..."
 
@@ -155,9 +160,14 @@ msgstr "Suchen nach..."
 msgid "Search Services"
 msgstr "Services durchsuchen"
 
-#: includes/Shortcodes/Servicekatalog.php:139
+#: includes/Shortcodes/Servicekatalog.php:140
 msgid "Search term"
 msgstr "Suchbegriff"
+
+#: config/config.php:63 templates/single-service.php:27
+#: includes/Shortcodes/Servicekatalog.php:241
+msgid "Service Description"
+msgstr "Beschreibung"
 
 #: includes/CPT/Service.php:48
 msgid "Service icon"
@@ -189,21 +199,21 @@ msgid "Tag"
 msgstr "Schlagwort"
 
 #: config/config.php:51 config/config.php:96 templates/single-service.php:95
-#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:160
-#: includes/Shortcodes/Servicekatalog.php:263
+#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:161
+#: includes/Shortcodes/Servicekatalog.php:264
 msgid "Tags"
 msgstr "Schlagwörter"
 
 #: config/config.php:47 templates/single-service.php:80
 #: templates/single-service.php:80 templates/archive-service.php:27
-#: includes/Shortcodes/Servicekatalog.php:262
-#: includes/Shortcodes/Servicekatalog.php:262
 #: includes/Shortcodes/Servicekatalog.php:263
+#: includes/Shortcodes/Servicekatalog.php:263
+#: includes/Shortcodes/Servicekatalog.php:264
 msgid "Target Group"
 msgstr "Zielgruppe"
 
 #: config/config.php:84 includes/CPT/Service.php:167
-#: includes/Shortcodes/Servicekatalog.php:152
+#: includes/Shortcodes/Servicekatalog.php:153
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
@@ -291,6 +301,11 @@ msgstr ""
 msgid "Thumbnail"
 msgstr "Bild"
 
+#: config/config.php:67 templates/single-service.php:30
+#: includes/Shortcodes/Servicekatalog.php:244
+msgid "Tutorial"
+msgstr "Anleitung"
+
 #: config/config.php:25
 msgid "Type of output"
 msgstr "Ausgabe"
@@ -299,30 +314,26 @@ msgstr "Ausgabe"
 msgid "Uploaded to this service"
 msgstr "Zu diesem Service hochgeladen"
 
-#: config/config.php:59 templates/single-service.php:24
-#: includes/CPT/Service.php:143 includes/Shortcodes/Servicekatalog.php:237
+#: includes/CPT/Service.php:143
 msgid "URL Portal"
-msgstr "URL Portal"
-
-#: config/config.php:63 templates/single-service.php:27
-#: includes/CPT/Service.php:149 includes/Shortcodes/Servicekatalog.php:240
-msgid "URL Service Description"
 msgstr "URL Anwendung"
 
-#: config/config.php:67 templates/single-service.php:30
-#: includes/CPT/Service.php:155 includes/Shortcodes/Servicekatalog.php:243
+#: includes/CPT/Service.php:149
+msgid "URL Service Description"
+msgstr "URL Beschreibung"
+
+#: includes/CPT/Service.php:155
 msgid "URL Tutorial"
 msgstr "URL Anleitung"
 
-#: config/config.php:71 templates/single-service.php:33
-#: includes/CPT/Service.php:161 includes/Shortcodes/Servicekatalog.php:246
+#: includes/CPT/Service.php:161
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
 
 #: templates/single-service.php:69 templates/archive-service.php:31
-#: includes/Shortcodes/Servicekatalog.php:144
-#: includes/Shortcodes/Servicekatalog.php:261
-#: includes/Shortcodes/Servicekatalog.php:261
+#: includes/Shortcodes/Servicekatalog.php:145
+#: includes/Shortcodes/Servicekatalog.php:262
+#: includes/Shortcodes/Servicekatalog.php:262
 msgid "Use"
 msgstr "Nutzung"
 
@@ -330,10 +341,15 @@ msgstr "Nutzung"
 msgid "Use as service icon"
 msgstr "Als Service-Icon verwenden"
 
-#: includes/Shortcodes/Servicekatalog.php:166
+#: includes/Shortcodes/Servicekatalog.php:167
 msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr "Suchen"
+
+#: config/config.php:71 templates/single-service.php:33
+#: includes/Shortcodes/Servicekatalog.php:247
+msgid "Video Tutorial"
+msgstr "Video-Tutorial"
 
 #: includes/CPT/Service.php:42
 msgid "View Service"

@@ -44,7 +44,10 @@ if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-t
 
                     <h1 id="maintop" class="archive-title"><span class="screen-reader-text"><?php echo __('Services', 'rrze-servicekatalog') . ' / '; ?> </span><?php echo $title; ?></h1>
 
-                    <?php echo Servicekatalog::shortcode($atts); ?>
+                    <?php
+                    $servicekatalog = new Servicekatalog();
+                    echo $servicekatalog->shortcodeOutput($atts);
+                    ?>
 
 			    </main>
 		    </div>    

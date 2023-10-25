@@ -235,16 +235,16 @@ class Servicekatalog
                 }
                 $postMeta = get_post_meta($service->ID);
                 $description = Utils::getMeta($postMeta, 'description');
-                $links['portal']['label'] = __('URL Portal', 'rrze-servicekatalog');
+                $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
                 $links['portal']['url'] = Utils::getMeta($postMeta, 'url-portal');
                 $links['portal']['icon'] = 'dashicons-admin-home';
-                $links['description']['label'] = __('URL Service Description', 'rrze-servicekatalog');
+                $links['description']['label'] = __('Service Description', 'rrze-servicekatalog');
                 $links['description']['url'] = Utils::getMeta($postMeta, 'url-description');
                 $links['description']['icon'] = 'dashicons-info';
-                $links['tutorial']['label'] = __('URL Tutorial', 'rrze-servicekatalog');
+                $links['tutorial']['label'] = __('Tutorial', 'rrze-servicekatalog');
                 $links['tutorial']['url'] = Utils::getMeta($postMeta, 'url-tutorial');
                 $links['tutorial']['icon'] = 'dashicons-book';
-                $links['video']['label'] = __('URL Video Tutorial', 'rrze-servicekatalog');
+                $links['video']['label'] = __('Video Tutorial', 'rrze-servicekatalog');
                 $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
                 $links['video']['icon'] = 'dashicons-video-alt2';
 
@@ -258,11 +258,17 @@ class Servicekatalog
                     . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
                     //. '<span class="service-title">' . $service->post_title . '</span>';
                 if ($showCommitment || $showGroup || $showTags) {
-                    $output .= '<div class="service-meta">'
-                        . ($commitmentTerms && $showCommitment ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentName . '</div>' : '')
-                        . ($groupTerms && $showGroup ? '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . ': </span>' . implode(', ', $groupNames) . '</div>' : '')
-                        . ($tags && $showTags ? '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagNames) . '</div>' : '')
-                        . '</div>';
+                    $output .= '<div class="service-meta">';
+                    $output .= ($commitmentTerms && $showCommitment ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentName . '</div>' : '');
+                    if ($groupTerms && $showGroup) {
+                        foreach ($groupNames as $groupName) {
+                            $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>' . $groupName . '</div>';
+                        }
+                    }
+                    if ($tags && $showTags) {
+                        $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagNames) . '</div>';
+                    }
+                     $output .= '</div>';
                 }
                 if ($showDescription) {
                     $output .= '<div class="service-description">' . $description . '</div>';

@@ -49,3 +49,4 @@ wp-config.php
 /composer.phar
 *.po~
 *.pot~
+.DS_Store
