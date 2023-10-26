@@ -20,20 +20,7 @@ class Servicekatalog
     }
 
     public function shortcodeOutput($atts, $content = "") {
-        $atts_default = [
-            'group' => '',
-            'target-group' => '',
-            'commitment' => '',
-            'tag' => '',  // Multiple tags (slugs) are separated by commas
-            'id' => '',  // Multiple ids are separated by commas
-            'number' => 0,       // Number of services to show. Default value: 0
-            'show' => '',
-            //'hide' => 'description, url-portal, url-description, url-tutorial, url-video',
-            'hide' => '',
-            'display' => 'grid',
-            'searchform' => ''
-        ];
-        $atts = shortcode_atts($atts_default, $atts);
+        $atts = self::sanitizeAtts($atts);
 
         if (!empty($atts['target-group'])) {
             $atts['group'] = $atts['target-group'];
@@ -53,8 +40,10 @@ class Servicekatalog
         $tags = $atts['tag'];
         $IDs = $atts['id'];
         $hideItems = $atts['hide'];
+        $orderby = $atts['orderby'];
 
         $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
+
         $args = [
             'post_type' => Service::POST_TYPE,
             'posts_per_page' => -1,
@@ -115,6 +104,41 @@ class Servicekatalog
         }
 
         $services = get_posts($args );
+
+        switch($orderby) {
+            case 'commitment':
+                foreach($services as $service) {
+                    $commitmentTerms = get_the_terms($service->ID, 'rrze-service-commitment');
+                    if (!is_wp_error($commitmentTerms)) {
+                        $orderNumber = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-order', true);
+                        $servicesOrdered[$orderNumber][] = $service;
+                    }
+                }
+                break;
+            case 'group':
+                foreach($services as $service) {
+                    $groupTerms = get_the_terms($service->ID, 'rrze-service-target-group');
+                    if (!is_wp_error($groupTerms)) {
+                        foreach($groupTerms as $groupTerm) {
+                            $servicesOrdered[$groupTerm->name][] = $service;
+                        }
+                    }
+                }
+                break;
+            case 'tag':
+                foreach($services as $service) {
+                    $tagTerms = get_the_terms($service->ID, 'rrze-service-tag');
+                    if (!is_wp_error($tagTerms)) {
+                        foreach($tagTerms as $tagTerm) {
+                            $servicesOrdered[$tagTerm->name][] = $service;
+                        }
+                    }
+                }
+                break;
+            default:
+                $servicesOrdered['unordered'] = $services;
+        }
+        ksort($servicesOrdered);
 
         $output = '<div class="rrze-servicekatalog">';
 
@@ -196,98 +220,106 @@ class Servicekatalog
             // Services List / Grid
             $layout = $atts['display'] == 'list' ? 'list' : 'grid';
             $output .= '<ul class="display-' . $layout . '">';
-            foreach ($services as $service) {
-                $commitmentTerms = get_the_terms($service->ID, 'rrze-service-commitment');
-                $commitmentBgColor = '#fff';
-                $commitmentName = '';
-                if ($commitmentTerms) {
-                    $commitmentName = $commitmentTerms[0]->name;
-                    $commitmentSlug = $commitmentTerms[0]->slug;
-                    $commitmentURL = get_term_link($commitmentSlug, 'rrze-service-commitment');
-                    $commitmentBgColor = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-color', TRUE);
-                    //$commitmentTextColor = Utils::calculateContrastColor($commitmentBgColor);
-                    //$commitmentLink = '<a href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
-                }
-                $commitmentIconColor = in_array($commitmentBgColor, ['#fff', '#ffffff']) ? '#5b5858' : $commitmentBgColor;
-                $groupTerms = get_the_terms($service->ID, 'rrze-service-target-group');
-                $groupLinks = [];
-                $groupNames = [];
-                if ($groupTerms) {
-                    foreach ($groupTerms as $groupTerm) {
-                        $groupName = $groupTerm->name;
-                        $groupSlug = $groupTerm->slug;
-                        $groupURL = get_term_link($groupSlug, 'rrze-service-target-group');
-                        //$groupLinks[] = '<a class="service-group" href="' . esc_attr($groupURL) . '">' . esc_html($groupName) . '</a>';
-                        $groupNames[] = esc_html($groupName);
+            $prevID = '';
+            foreach ($servicesOrdered as $services) {
+                foreach ($services as $service) {
+                    if ($service->ID == $prevID)
+                        continue;
+                    $prevID = $service->ID;
+                    $commitmentTerms = get_the_terms($service->ID, 'rrze-service-commitment');
+                    $commitmentBgColor = '#fff';
+                    $commitmentName = '';
+                    if ($commitmentTerms) {
+                        $commitmentName = $commitmentTerms[0]->name;
+                        $commitmentSlug = $commitmentTerms[0]->slug;
+                        $commitmentURL = get_term_link($commitmentSlug, 'rrze-service-commitment');
+                        $commitmentBgColor = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-color', TRUE);
+                        //$commitmentTextColor = Utils::calculateContrastColor($commitmentBgColor);
+                        $commitmentLink = '<a href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
                     }
-                }
-                $tags = get_the_terms($service->ID, 'rrze-service-tag');
-                $tagLinks = [];
-                $tagNames = [];
-                if ($tags) {
-                    foreach ($tags as $tag) {
-                        $tagName = $tag->name;
-                        //$tagSlug = $tag->slug;
-                        //$tagURL = get_term_link($tagSlug, 'rrze-service-tag');
-                        //$tagLinks[] = '<a class="service-group" href="' . esc_attr($tagURL) . '">' . strtoupper(esc_html($tagName)) . '</a>';
-                        $tagNames[] = strtoupper(esc_html($tagName));
-                    }
-                }
-                $postMeta = get_post_meta($service->ID);
-                $description = Utils::getMeta($postMeta, 'description');
-                $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
-                $links['portal']['url'] = Utils::getMeta($postMeta, 'url-portal');
-                $links['portal']['icon'] = 'dashicons-admin-home';
-                $links['description']['label'] = __('Service Description', 'rrze-servicekatalog');
-                $links['description']['url'] = Utils::getMeta($postMeta, 'url-description');
-                $links['description']['icon'] = 'dashicons-info';
-                $links['tutorial']['label'] = __('Tutorial', 'rrze-servicekatalog');
-                $links['tutorial']['url'] = Utils::getMeta($postMeta, 'url-tutorial');
-                $links['tutorial']['icon'] = 'dashicons-book';
-                $links['video']['label'] = __('Video Tutorial', 'rrze-servicekatalog');
-                $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
-                $links['video']['icon'] = 'dashicons-video-alt2';
-
-                $output .= '<li class="service-preview"><a href="' . get_permalink($service->ID) . '" class="service-link"  style="border-color: ' . $commitmentBgColor . ';">';
-                if (has_post_thumbnail($service->ID) && $showThumbnail) {
-                    //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
-                    $output .= get_the_post_thumbnail($service->ID, 'medium');
-                }
-                $output .= '</a>';
-                $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
-                    . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
-                    //. '<span class="service-title">' . $service->post_title . '</span>';
-                if ($showCommitment || $showGroup || $showTags) {
-                    $output .= '<div class="service-meta">';
-                    $output .= ($commitmentTerms && $showCommitment ? '<div class="service-commitment"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentName . '</div>' : '');
-                    if ($groupTerms && $showGroup) {
-                        foreach ($groupNames as $groupName) {
-                            $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>' . $groupName . '</div>';
+                    $commitmentIconColor = in_array($commitmentBgColor, ['#fff', '#ffffff']) ? '#5b5858' : $commitmentBgColor;
+                    $groupTerms = get_the_terms($service->ID, 'rrze-service-target-group');
+                    $groupLinks = [];
+                    $groupNames = [];
+                    if ($groupTerms) {
+                        foreach ($groupTerms as $groupTerm) {
+                            $groupName = $groupTerm->name;
+                            $groupSlug = $groupTerm->slug;
+                            $groupURL = get_term_link($groupSlug, 'rrze-service-target-group');
+                            $groupLinks[] = '<a href="' . esc_attr($groupURL) . '">' . esc_html($groupName) . '</a>';
+                            $groupNames[] = esc_html($groupName);
                         }
                     }
-                    if ($tags && $showTags) {
-                        $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagNames) . '</div>';
-                    }
-                     $output .= '</div>';
-                }
-                if ($showDescription) {
-                    $output .= '<div class="service-description">' . $description . '</div>';
-                }
-                if (($showUrlPortal && $links['portal']['url'] != '')
-                    || ($showUrlDescription && $links['description']['url'] != '')
-                    || ($showUrlTutorial && $links['tutorial']['url'] != '')
-                    || ($showUrlVideo && $links['video']['url'] != '')) {
-
-                    $output .= '<div class="service-urls"><ul>';
-                    foreach ($links as $link) {
-                        if ($link['url'] != '') {
-                            $output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                    $tags = get_the_terms($service->ID, 'rrze-service-tag');
+                    $tagLinks = [];
+                    $tagNames = [];
+                    if ($tags) {
+                        foreach ($tags as $tag) {
+                            $tagName = $tag->name;
+                            $tagSlug = $tag->slug;
+                            $tagURL = get_term_link($tagSlug, 'rrze-service-tag');
+                            $tagLinks[] = '<a href="' . esc_attr($tagURL) . '">' . strtoupper(esc_html($tagName)) . '</a>';
+                            $tagNames[] = strtoupper(esc_html($tagName));
                         }
                     }
-                    $output .= '</ul></div>';
+                    $postMeta = get_post_meta($service->ID);
+                    $description = Utils::getMeta($postMeta, 'description');
+                    $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
+                    $links['portal']['url'] = Utils::getMeta($postMeta, 'url-portal');
+                    $links['portal']['icon'] = 'dashicons-admin-home';
+                    $links['description']['label'] = __('Service Description', 'rrze-servicekatalog');
+                    $links['description']['url'] = Utils::getMeta($postMeta, 'url-description');
+                    $links['description']['icon'] = 'dashicons-info';
+                    $links['tutorial']['label'] = __('Tutorial', 'rrze-servicekatalog');
+                    $links['tutorial']['url'] = Utils::getMeta($postMeta, 'url-tutorial');
+                    $links['tutorial']['icon'] = 'dashicons-book';
+                    $links['video']['label'] = __('Video Tutorial', 'rrze-servicekatalog');
+                    $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
+                    $links['video']['icon'] = 'dashicons-video-alt2';
+
+                    $output .= '<li class="service-preview"><a href="' . get_permalink($service->ID) . '" class="service-link">';
+                    if (has_post_thumbnail($service->ID) && $showThumbnail) {
+                        //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
+                        $output .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
+                    }
+                    $output .= '</a>';
+                    $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
+                        . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
+                    if ($showCommitment || $showGroup || $showTags) {
+                        $output .= '<div class="service-meta">';
+                        if ($commitmentTerms && $showCommitment) {
+                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
+                        }
+                        if ($groupTerms && $showGroup) {
+                            $output .= '<div class="service-groups">';
+                            foreach ($groupLinks as $groupLink) {
+                                $output .= '<div class="service-group"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>' . $groupLink . '</div>';
+                            }
+                            $output .= '</div>';
+                        }
+                        if ($tags && $showTags) {
+                            $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>';
+                        }
+                        $output .= '</div>';
+                    }
+                    if ($showDescription) {
+                        $output .= '<div class="service-description">' . $description . '</div>';
+                    }
+                    if (($showUrlPortal && $links['portal']['url'] != '')
+                        || ($showUrlDescription && $links['description']['url'] != '')
+                        || ($showUrlTutorial && $links['tutorial']['url'] != '')
+                        || ($showUrlVideo && $links['video']['url'] != '')) {
+                        $output .= '<div class="service-urls"><ul>';
+                        foreach ($links as $link) {
+                            if ($link['url'] != '') {
+                                $output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                            }
+                        }
+                        $output .= '</ul></div>';
+                    }
+                    $output .= '</div>';
+                    $output .= '</li>';
                 }
-                $output .= '</div>';
-                $output .= '</li>';
             }
             $output .= '</ul>';
         }
@@ -299,6 +331,26 @@ class Servicekatalog
         }
 
         return $output;
+    }
+
+    private function sanitizeAtts($atts) {
+        $defaults = [
+            'group' => '',
+            'target-group' => '',
+            'commitment' => '',
+            'tag' => '',  // Multiple tags (slugs) are separated by commas
+            'id' => '',  // Multiple ids are separated by commas
+            'number' => 0,       // Number of services to show. Default value: 0
+            'show' => '',
+            //'hide' => 'description, url-portal, url-description, url-tutorial, url-video',
+            'hide' => '',
+            'display' => 'grid',
+            'searchform' => '',
+            'orderby' => '',
+            ];
+        $args = shortcode_atts($defaults, $atts);
+        array_walk($args, 'sanitize_text_field');
+        return $args;
     }
 
     public function fillGutenbergOptions(): array {
