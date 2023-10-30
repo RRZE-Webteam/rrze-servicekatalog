@@ -48,6 +48,7 @@ class Servicekatalog
             'post_type' => Service::POST_TYPE,
             'posts_per_page' => -1,
             'orderby' => 'title',
+            'order' => 'ASC',
             'tax_query' => [
                 'relation' => 'AND',
             ],
@@ -216,6 +217,9 @@ class Servicekatalog
                 $showUrlDescription = !in_array('url-description', $hideItems);
                 $showUrlTutorial = !in_array('url-tutorial', $hideItems);
                 $showUrlVideo = !in_array('url-video', $hideItems);
+                if (in_array('urls', $hideItems)) {
+                    $showUrlPortal = $showUrlDescription = $showUrlTutorial = $showUrlVideo = false;
+                }
             }
             // Services List / Grid
             $layout = $atts['display'] == 'list' ? 'list' : 'grid';
@@ -277,7 +281,7 @@ class Servicekatalog
                     $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
                     $links['video']['icon'] = 'dashicons-video-alt2';
 
-                    $output .= '<li class="service-preview"><a href="' . get_permalink($service->ID) . '" class="service-link">';
+                    $output .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
                     if (has_post_thumbnail($service->ID) && $showThumbnail) {
                         //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
                         $output .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
@@ -285,23 +289,6 @@ class Servicekatalog
                     $output .= '</a>';
                     $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
-                    if ($showCommitment || $showGroup || $showTags) {
-                        $output .= '<div class="service-meta">';
-                        if ($commitmentTerms && $showCommitment) {
-                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
-                        }
-                        if ($groupTerms && $showGroup) {
-                            $output .= '<div class="service-groups">';
-                            foreach ($groupLinks as $groupLink) {
-                                $output .= '<div class="service-group"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>' . $groupLink . '</div>';
-                            }
-                            $output .= '</div>';
-                        }
-                        if ($tags && $showTags) {
-                            $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Target Group', 'Target Groups', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>' . implode(', ', $tagLinks) . '</div>';
-                        }
-                        $output .= '</div>';
-                    }
                     if ($showDescription) {
                         $output .= '<div class="service-description">' . $description . '</div>';
                     }
@@ -312,13 +299,31 @@ class Servicekatalog
                         $output .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                $output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                                //$output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                                $output .= '<li>' . do_shortcode('[button url="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
                         $output .= '</ul></div>';
                     }
+                    if ($showCommitment || $showGroup || $showTags) {
+                        $output .= '<div class="service-meta">';
+                        if ($commitmentTerms && $showCommitment) {
+                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
+                        }
+                        if ($groupTerms && $showGroup) {
+                            $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
+                                . implode(', ', $groupLinks)
+                                . '</div>';
+                        }
+                        if ($tags && $showTags) {
+                            $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
+                                . implode(', ', $tagLinks)
+                                . '</div>';
+                        }
+                        $output .= '</div>';
+                    }
                     $output .= '</div>';
-                    $output .= '</li>';
+                    $output .= '</div></li>';
                 }
             }
             $output .= '</ul>';

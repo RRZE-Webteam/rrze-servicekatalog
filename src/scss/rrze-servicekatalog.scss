@@ -170,14 +170,33 @@
             margin: 0;
         }
         li {
-            padding: .1em 0;
+            padding: 0;
+        }
+    }
+    a.standard-btn {
+        margin: 0;
+        background-color: var(--color-button-bg, #004a9f);
+        &.ghost-btn {
+            background-color: transparent;
+            border-width: 2px;
+        }
+    }
+    .service-commitments,
+    .service-groups,
+    .service-tags {
+        position: relative;
+        padding-left: calc(20px + .2em);
+        .dashicons {
+            position: absolute;
+            left: 0;
         }
     }
     ul.display-grid {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
+        align-items: flex-start;
         gap: var(--width-gutter-half, 15px);
         @media (min-width: 768px) {
             gap: var(--width-gutter, 30px);
@@ -188,19 +207,20 @@
             padding: 0;
             width: 100%;
             min-width: 240px;
-            //border-radius: 9px;
-            box-shadow: 0 3px 12px 0 #ebebeb;
-            transition: all 0.25s;
             max-width: 300px;
-            &:hover, &:focus, &:active {
-                transform: translateY(-5px);
-                box-shadow: 0 2px 30px 0 #ced3d6;
+            .service-preview-content {
+                //border-radius: 9px;
+                box-shadow: 0 3px 12px 0 #ebebeb;
+                transition: all 0.25s;
+                &:hover, &:focus, &:active {
+                    transform: translateY(-5px);
+                    box-shadow: 0 2px 30px 0 #ced3d6;
+                }
             }
             a.service-link {
                 display: block;
                 box-shadow: none;
                 //border-radius: 9px 9px 0 0;
-                //border-bottom: 5px solid transparent;
             }
             img.wp-post-image {
                 padding: 0;
@@ -220,106 +240,127 @@
                 text-decoration: none;
                 box-shadow: none;
                 font-size: 1.1em;
-                padding-bottom: 5px;
             }
             .service-meta {
-                padding: 10px 0;
-                border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                background-color: var(--color-ContentRegions, #f5f7f9);
+                padding: 10px;
             }
-            .service-commitments,
-            .service-groups,
-            .service-tags {}
-
+            .service-commitments {}
             .service-tags {}
 
             .service-description {
                 padding: 10px 0;
-                border-top: 1px solid var(--color-content-borders, #dfe6ec);
+
+            }
+            .service-urls {
+                padding-bottom: 10px;
+                ul {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    column-gap: .5em;
+                }
             }
         }
     }
     ul.display-list {
         li.service-preview {
-            padding: 5px 0;
-            border-bottom: 1px solid var(--color-content-borders, #dfe6ec);
-            display: flex;
-            flex-direction: row;
-            column-gap: 10px;
-            @media (min-width: 480px) {
-                padding: 5px 0 10px;
-            }
-            &:first-child {
+            .service-preview-content {
+                padding: 5px 0;
                 border-top: 1px solid var(--color-content-borders, #dfe6ec);
-            }
-            img.wp-post-image {
-                width: 80px;
-                height: 80px;
-                object-fit: cover;
-                padding: 0;
-                box-shadow: none;
-                border-left: 5px solid transparent;
-                box-sizing: content-box;
-            }
-            &:hover, &:focus, &:active {
-                background-color: var(--color-StandardHellgrau, #e9edf2);
-                .service-title {
-                    color: inherit;
-                }
-            }
-            a.service-link {
-                box-shadow: none;
-                flex-basis: 85px;
-                flex-shrink: 0;
-            }
-            .service-details {
-                width: 100%;
-            }
-            .service-title {
-                font-weight: bold;
-                box-shadow: none;
-                font-size: 1.1em;
-                display: block;
-                padding: 5px 0;
-            }
-            .service-meta {
-                padding: 5px 0;
+                display: flex;
+                flex-direction: row;
+                column-gap: 10px;
                 @media (min-width: 480px) {
+                    padding: 5px 0 10px;
+                }
+                img.wp-post-image {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    padding: 0;
+                    box-shadow: none;
+                    border-left: 5px solid transparent;
+                    box-sizing: content-box;
+                }
+                &:hover, &:focus, &:active {
+                    background-color: var(--color-StandardHellgrau, #e9edf2);
+                    .service-title {
+                        color: inherit;
+                    }
+                }
+                a.service-link {
+                    box-shadow: none;
+                    flex-basis: 85px;
+                    flex-shrink: 0;
+                }
+                .service-details {
                     width: 100%;
-                    display: flex;
-                    flex-wrap: wrap;
-                    column-gap: var(--width-gutter-half, 15px);
+                    @media (min-width: 768px) {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                    }
                 }
-            }
-            .service-commitments {
-                flex-basis: 20%;
-                flex-grow: 1;
-                flex-shrink: 0;
-            }
-            .service-groups {
-                flex-basis: 40%;
-                flex-grow: 1;
-                flex-shrink: 0;
-                .service-group {
-                    display: inline-block;
-                    margin-right: 10px;
+                .service-title {
+                    font-weight: bold;
+                    box-shadow: none;
+                    font-size: 1.1em;
+                    display: block;
+                    flex: 15% 1 0;
+                    @media (min-width: 1200px) {
+                        flex: 10% 0 0;
+                    }
                 }
-            }
-            .service-tags {
-                flex-basis: 30%;
-                flex-grow: 1;
-                flex-shrink: 0;
-                font-size: .9em;
-            }
-            .service-description {
-                padding: 5px 0;
-                border-top: 1px solid var(--color-content-borders, #dfe6ec);
-            }
-            .service-urls {
-                padding: 5px 0;
-                //border-top: 1px solid var(--color-content-borders, #dfe6ec);
-                li {
-                    display: inline-block;
-                    margin-right: 2em;
+                .service-description {
+                    flex: 20% 1 0;
+                    @media (min-width: 1200px) {
+                        flex: 20% 0 0;
+                    }
+                }
+                .service-urls {
+                    padding: 5px 0;
+                    flex: 15% 1 0;
+                    //border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                    @media (min-width: 1200px) {
+                        flex: 15% 0 0;
+                    }
+                    li {
+                        display: inline-block;
+                        margin-right: 2em;
+                    }
+                }
+                .service-meta {
+                    padding: 5px 0;
+                    flex: 25% 1 0;
+                    @media (min-width: 480px) {
+                        flex: 25% 1 0;
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        column-gap: var(--width-gutter-half, 15px);
+                    }
+                    .service-commitments {
+                        flex-basis: 20%;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                    }
+
+                    .service-groups {
+                        flex-basis: 40%;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+
+                        .service-group {
+                        }
+                    }
+                    .service-tags {
+                        flex-basis: 30%;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        font-size: .9em;
+                    }
                 }
             }
         }
