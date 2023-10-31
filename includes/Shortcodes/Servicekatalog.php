@@ -55,7 +55,8 @@ class Servicekatalog
         ];
 
         if (isset($getParams['search']) && $getParams['search'] != '') {
-            $args['s'] = $getParams['search'];
+            //$args['s'] = $getParams['search'];
+            $args['title'] = $getParams['search'];
         }
 
         // Target Groups

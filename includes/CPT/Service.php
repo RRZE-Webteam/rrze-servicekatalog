@@ -18,6 +18,8 @@ class Service
     {
         // Register Post Type.
         add_action('init', [__CLASS__, 'registerPostType']);
+        add_filter('get_the_excerpt', [__CLASS__, 'generateExcerpt'], 99, 2);
+        add_filter('pre_get_posts', [__CLASS__, 'addToSearch'], 99);
         // Register Taxonomies.
         add_action('init', [__CLASS__, 'registerTaxonomies']);
         // CMB2 Fields
@@ -122,7 +124,7 @@ class Service
         ];
         $args = [
             'labels'            => $labels,
-            'public'            => false,
+            'public'            => true,
             'hierarchical'      => false,
             'show_ui'           => true,
             'show_admin_column' => true,
@@ -305,5 +307,19 @@ class Service
         wp_enqueue_style('rrze-servicekatalog');
 
         return $template_path;
+    }
+
+    public static function generateExcerpt($post_excerpt, $post) {
+        if( $post->post_type != self::POST_TYPE ) return $post_excerpt;
+
+        return get_post_meta(get_the_ID(), 'description', true);
+    }
+
+    public static function addToSearch($query) {
+        if ( ! is_admin() && $query->is_main_query() ) {
+            if ( $query->is_search ) {
+                $query->set( 'post_type', 'rrze-service' );
+            }
+        }
     }
 }
