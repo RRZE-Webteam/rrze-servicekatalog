@@ -39,6 +39,30 @@ function getShortcodeSettings(): array {
                     'val' =>  __( 'Thumbnail', 'rrze-servicekatalog' )
                 ],
                 [
+                    'id' => 'description',
+                    'val' =>  __( 'Description', 'rrze-servicekatalog' )
+                ],
+                [
+                    'id' => 'urls',
+                    'val' =>  __( 'All URLs', 'rrze-servicekatalog' )
+                ],
+                [
+                    'id' => 'url-portal',
+                    'val' =>  __( 'URL Portal', 'rrze-servicekatalog' )
+                ],
+                [
+                    'id' => 'url-description',
+                    'val' =>  __( 'URL Description', 'rrze-servicekatalog' )
+                ],
+                [
+                    'id' => 'url-tutorial',
+                    'val' =>  __( 'URL Tutorial', 'rrze-servicekatalog' )
+                ],
+                [
+                    'id' => 'url-video',
+                    'val' =>  __( 'URL Video Tutorial', 'rrze-servicekatalog' )
+                ],
+                [
                     'id' => 'commitment',
                     'val' =>  __( 'Commitment Level', 'rrze-servicekatalog' )
                 ],
@@ -50,26 +74,7 @@ function getShortcodeSettings(): array {
                     'id' => 'tag',
                     'val' =>  __( 'Tags', 'rrze-servicekatalog' )
                 ],
-                [
-                    'id' => 'description',
-                    'val' =>  __( 'Description', 'rrze-servicekatalog' )
-                ],
-                [
-                    'id' => 'url-portal',
-                    'val' =>  __( 'Portal', 'rrze-servicekatalog' )
-                ],
-                [
-                    'id' => 'url-description',
-                    'val' =>  __( 'Service Description', 'rrze-servicekatalog' )
-                ],
-                [
-                    'id' => 'url-tutorial',
-                    'val' =>  __( 'Tutorial', 'rrze-servicekatalog' )
-                ],
-                [
-                    'id' => 'url-video',
-                    'val' =>  __( 'Video Tutorial', 'rrze-servicekatalog' )
-                ],
+
             ],
             'field_type' => 'multi_select',
             'label' => __( 'Hide Elements', 'rrze-servicekatalog' ),
