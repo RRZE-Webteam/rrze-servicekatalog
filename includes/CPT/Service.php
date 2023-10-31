@@ -22,7 +22,7 @@ class Service
         add_action('init', [__CLASS__, 'registerTaxonomies']);
         // CMB2 Fields
         add_action('cmb2_admin_init', [__CLASS__, 'serviceFields']);
-        add_action('cmb2_admin_init', [__CLASS__, 'serviceCategoryCommitmentFields']);
+        add_action('cmb2_admin_init', [__CLASS__, 'serviceTaxonomyFields']);
         // Templates
         add_filter('single_template', [__CLASS__, 'includeSingleTemplate']);
         add_filter('archive_template', [__CLASS__, 'includeArchiveTemplate']);
@@ -62,6 +62,8 @@ class Service
             'menu_icon'          => 'dashicons-portfolio',
             'capability_type'    => 'page',
             'has_archive'        => true,
+            'exclude_from_search' => false,
+            'publicly_queryable' => true,
         ];
 
         register_post_type(self::POST_TYPE, $args);
@@ -82,6 +84,12 @@ class Service
             'hierarchical'      => true,
             'show_admin_column' => true,
             'show_in_rest'      => true,
+            'capabilities'      => [
+                'manage_terms'  => 'manage_options',
+                'edit_terms'    => 'manage_options',
+                'delete_terms'  => 'manage_options',
+                'assign_terms'  => 'edit_pages'
+            ],
         ];
         register_taxonomy('rrze-service-target-group', self::POST_TYPE, $args);
 
@@ -98,6 +106,12 @@ class Service
             'hierarchical'      => true,
             'show_admin_column' => true,
             'show_in_rest'      => true,
+            'capabilities'      => [
+                'manage_terms'  => 'manage_options',
+                'edit_terms'    => 'manage_options',
+                'delete_terms'  => 'manage_options',
+                'assign_terms'  => 'edit_pages'
+            ],
         ];
         register_taxonomy('rrze-service-commitment', self::POST_TYPE, $args);
 
@@ -206,7 +220,7 @@ class Service
     /**
      * Hook in and add a metabox to add fields to taxonomy terms
      */
-    public static function serviceCategoryCommitmentFields() {
+    public static function serviceTaxonomyFields() {
         $prefix = 'rrze-service-commitment_';
 
         /**
@@ -244,6 +258,21 @@ class Service
                 'type'  => 'number',
             ],
             'default'   => 0,
+        ]);
+
+        $cmb_group = new_cmb2_box( array(
+            'id'               => 'rrze-service-group_edit',
+            'title'            => esc_html__( 'Internal', 'rrze-servicekatalog' ), // Doesn't output for term boxes
+            'object_types'     => array( 'term' ), // Tells CMB2 to use term_meta vs post_meta
+            'taxonomies'       => array( 'rrze-service-target-group' ), // Tells CMB2 which taxonomies should have these fields
+            'new_term_section' => true, // Will display in the "Add New Category" section
+        ) );
+
+        $cmb_group->add_field([
+            'name'  => esc_html__('Internal', 'rrze-servicekatalog'),
+            'desc'  => esc_html__("Don't show this target group publicly (e.g. in search form dropdown). You can still use it as shortcode filter.", 'rrze-servicekatalog'),
+            'id'    => 'rrze-service-group-internal',
+            'type'  => 'checkbox',
         ]);
     }
 

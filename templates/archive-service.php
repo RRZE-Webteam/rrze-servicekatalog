@@ -35,6 +35,15 @@ if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-t
     $title = __('Tag', 'rrze-servicekatalog') . ': ' . $term->name;
     $atts['tag'] = sanitize_title($queryVars['rrze-service-tag']);
 }
+
+$settings = get_option('rrze-servicekatalog-settings');
+
+$atts['display'] = isset($settings['display']) ? sanitize_text_field($settings['display']) : 'grid';
+$atts['searchform'] = isset($settings['searchform']) ? sanitize_text_field($settings['searchform']) : '';
+if (isset($settings['hide'])) {
+    array_walk($settings['hide'], 'sanitize_text_field');
+    $atts['hide'] = implode(',', $settings['hide']);
+}
 ?>
 
     <div id="content">

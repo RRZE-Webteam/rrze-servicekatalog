@@ -122,10 +122,15 @@
 /*
  * Archive Service
  */
-.archive {
+.archive, .archive.with-sidebar {
     #content {
         @media (min-width: 768px) {
             padding-top: 0;
+        }
+        .post-row .entry-content {
+            @media (min-width: 1400px) {
+                max-width: 1400px;
+            }
         }
     }
     .archive-title {
@@ -230,6 +235,7 @@
                 width: 100%;
                 object-fit: cover;
                 border-bottom: 5px solid transparent;
+                box-shadow: none;
             }
             .service-details {
                 padding: 15px;
@@ -244,16 +250,17 @@
             .service-meta {
                 background-color: var(--color-ContentRegions, #f5f7f9);
                 padding: 10px;
+                margin-top: 10px;
             }
             .service-commitments {}
             .service-tags {}
 
             .service-description {
-                padding: 10px 0;
+                margin-top: 10px;
 
             }
             .service-urls {
-                padding-bottom: 10px;
+                margin-top: 10px;
                 ul {
                     display: flex;
                     justify-content: space-between;

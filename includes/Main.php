@@ -19,6 +19,7 @@ class Main
 
         Service::init();
         new Servicekatalog();
+        new Settings();
     }
 
     public function adminEnqueueScripts()

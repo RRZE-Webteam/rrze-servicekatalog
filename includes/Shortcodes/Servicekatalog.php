@@ -54,6 +54,10 @@ class Servicekatalog
             ],
         ];
 
+        if (isset($getParams['search']) && $getParams['search'] != '') {
+            $args['s'] = $getParams['search'];
+        }
+
         // Target Groups
         if (isset($getParams['group'])) {
             $groups = $getParams['group'];
@@ -143,8 +147,10 @@ class Servicekatalog
 
         $output = '<div class="rrze-servicekatalog">';
 
-        // Filter Area
-        $showFilter = in_array($atts['searchform'], [true, 'true', '1', 'yes', 'ja']);
+        /*
+         * Filter Area
+         */
+        $showFilter = in_array($atts['searchform'], [true, 'true', '1', 'yes', 'ja', 'on']);
         if ($showFilter) {
             $taxCommitments = get_terms([
                 'taxonomy' => 'rrze-service-commitment',
@@ -154,7 +160,21 @@ class Servicekatalog
             $taxGroups = get_terms([
                 'taxonomy' => 'rrze-service-target-group',
                 'hide_empty' => false,
-                'orderby' => 'name',]);
+                'orderby' => 'name',
+                'meta_query' => [
+                    'relation' => 'OR',
+                    [
+                        'key' => 'rrze-service-group-internal',
+                        'compare' => 'NOT EXISTS',
+                    ],
+                    [
+                        'key' => 'rrze-service-group-internal',
+                        'value' => 'on',
+                        'compare' => '!=',
+                    ],
+                ],
+                ],
+                );
             $taxTags = get_terms([
                 'taxonomy' => 'rrze-service-tag',
                 'hide_empty' => false,
@@ -165,7 +185,7 @@ class Servicekatalog
                 . '<label for="rrze-servicekatalog-search" class="label">' . __('Search term', 'rrze-servicekatalog') . '</label><input type="text" name="search" id="rrze-servicekatalog-search" placeholder="' . __('Search for...', 'rrze-servicekatalog') . '" value="' . ($getParams['search'] ?? "") . '">'
                  . '</div>';
 
-            if (!is_wp_error($taxCommitments)) {
+            if (!is_wp_error($taxCommitments) && !empty($taxCommitments)) {
                 $output .= '<div class="filter-commitment">'
                     . '<button type="button" class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . $spanCommitmentsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxCommitments as $taxCommitment) {
@@ -173,7 +193,7 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            if (!is_wp_error($taxGroups)) {
+            if (!is_wp_error($taxGroups) && !empty($taxGroups)) {
                 $output .= '<div class="filter-group">'
                     . '<button type="button" class="checklist-toggle">' . __('Target Groups', 'rrze-servicekatalog') . $spanGroupsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxGroups as $taxGroup) {
@@ -181,7 +201,7 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            if (!is_wp_error($taxTags)) {
+            if (!is_wp_error($taxTags) && !empty($taxTags)) {
                 $output .= '<div class="filter-tag">'
                     . '<button type="button" class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . $spanTagsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
@@ -194,6 +214,9 @@ class Servicekatalog
                 . '</form>';
         }
 
+        /*
+         * Output
+         */
         if (count($services) < 1) {
             $output .= __('No services found.', 'rrze-servicekatalog');
         } else {
@@ -285,6 +308,8 @@ class Servicekatalog
                     if (has_post_thumbnail($service->ID) && $showThumbnail) {
                         //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
                         $output .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
+                    } else {
+                        $output .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
                     $output .= '</a>';
                     $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
