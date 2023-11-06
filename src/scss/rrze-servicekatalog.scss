@@ -184,6 +184,10 @@
         &.ghost-btn {
             background-color: transparent;
             border-width: 2px;
+            &:hover, &:focus, &:active {
+                background-color: var(--color-ghostbutton-hover-bg, #04316a);
+                color: var(--color-ghostbutton-hover-text, #ffffff);
+            }
         }
     }
     .service-commitments,

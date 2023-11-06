@@ -316,9 +316,12 @@ class Service
     }
 
     public static function addToSearch($query) {
-        if ( ! is_admin() && $query->is_main_query() ) {
+        if ( ! is_admin() && is_search() && $query->is_main_query() ) {
+            $postTypes = $query->query_vars['post_type'];
+            if (!empty($postTypes) && !is_array($postTypes)) $postTypes = [$postTypes]; // in case it is only 1 post type as string
+            $postTypes[] = self::POST_TYPE;
             if ( $query->is_search ) {
-                $query->set( 'post_type', 'rrze-service' );
+                $query->set( 'post_type', $postTypes );
             }
         }
     }
