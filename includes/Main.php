@@ -20,6 +20,7 @@ class Main
         Service::init();
         new Servicekatalog();
         new Settings();
+        new PDF();
     }
 
     public function adminEnqueueScripts()

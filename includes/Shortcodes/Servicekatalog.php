@@ -3,6 +3,7 @@
 namespace RRZE\Servicekatalog\Shortcodes;
 
 use RRZE\Servicekatalog\CPT\Service;
+use RRZE\Servicekatalog\PDF;
 use RRZE\Servicekatalog\Utils;
 
 use function RRZE\Servicekatalog\Config\getShortcodeSettings;
@@ -221,6 +222,7 @@ class Servicekatalog
         if (count($services) < 1) {
             $output .= __('No services found.', 'rrze-servicekatalog');
         } else {
+            $ids = [];
             // Hide Items
             $showThumbnail = true;
             $showCommitment = true;
@@ -254,6 +256,7 @@ class Servicekatalog
                     if ($service->ID == $prevID)
                         continue;
                     $prevID = $service->ID;
+                    $ids[] = $service->ID;
                     $commitmentTerms = get_the_terms($service->ID, 'rrze-service-commitment');
                     $commitmentBgColor = '#fff';
                     $commitmentName = '';
@@ -356,6 +359,14 @@ class Servicekatalog
         }
         $output .= '</div>';
 
+        /*
+         * PDF-Link
+         */
+        $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
+        if ($showPDF) {
+            $output .= do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download PDF', 'rrze-servicekatalog') . '[/button]');
+        }
+
         wp_enqueue_style('rrze-servicekatalog');
         if ($showFilter) {
             wp_enqueue_script('rrze-servicekatalog-sc');
@@ -378,6 +389,7 @@ class Servicekatalog
             'display' => 'grid',
             'searchform' => '',
             'orderby' => '',
+            'pdf' => '',
             ];
         $args = shortcode_atts($defaults, $atts);
         array_walk($args, 'sanitize_text_field');
