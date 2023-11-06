@@ -1,0 +1,33 @@
+{
+    "name": "rrze/rrze-servicekatalog",
+    "description": "RRZE WordPress Plugin",
+    "version": "1.0.0",
+    "type": "wordpress-plugin",
+    "license": "GPL",
+    "require": {
+        "php": "^8.0.0",
+        "rrze/wp": "^1.2.1",
+        "cmb2/cmb2": "^2.10.1"
+    },
+    "suggest": {
+        "ext-mbstring": "*",
+        "ext-intl": "*"
+    },
+    "autoload": {
+        "psr-0": {
+        },
+        "psr-4": {
+            "RRZE\\Servicekatalog\\": "includes/"
+        },
+        "files": [
+            "vendor/cmb2/cmb2/init.php"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/cmb2/cmb2": [
+                "cmb2/cmb2"
+            ]
+        }
+    }
+}
