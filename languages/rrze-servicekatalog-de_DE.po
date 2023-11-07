@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2023-10-31 13:19+0000\n"
+"PO-Revision-Date: 2023-11-07 11:09+0000\n"
 "Last-Translator: Barbara Bothe\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -15,31 +15,31 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: rrze-servicekatalog"
 
-#: includes/Shortcodes/Servicekatalog.php:396
-#: includes/Shortcodes/Servicekatalog.php:427
+#: includes/Shortcodes/Servicekatalog.php:409
+#: includes/Shortcodes/Servicekatalog.php:440
 msgid "-- all --"
 msgstr "-- alle --"
 
-#: includes/CPT/Service.php:37
+#: includes/CPT/Service.php:39
 msgctxt "add new on admin bar"
 msgid "Services"
 msgstr "Services"
 
-#: includes/CPT/Service.php:39
+#: includes/CPT/Service.php:41
 msgid "Add New Service"
 msgstr "Neuen Service hinzufügen"
 
-#: includes/CPT/Service.php:38
+#: includes/CPT/Service.php:40
 msgctxt "admin menu"
 msgid "Add New"
 msgstr "Erstellen"
 
-#: includes/CPT/Service.php:36
+#: includes/CPT/Service.php:38
 msgctxt "admin menu"
 msgid "Services"
 msgstr "Services"
 
-#: includes/CPT/Service.php:43
+#: includes/CPT/Service.php:45
 msgid "All Services"
 msgstr "Alle Services"
 
@@ -47,11 +47,11 @@ msgstr "Alle Services"
 msgid "All URLs"
 msgstr "Alle URLs"
 
-#: includes/CPT/Service.php:231 includes/CPT/Service.php:238
+#: includes/CPT/Service.php:233 includes/CPT/Service.php:240
 msgid "Color"
 msgstr "Farbe"
 
-#: config/config.php:67 config/config.php:95 includes/CPT/Service.php:200
+#: config/config.php:67 config/config.php:95 includes/CPT/Service.php:202
 msgid "Commitment Level"
 msgstr "Verbindlichkeit"
 
@@ -59,7 +59,7 @@ msgstr "Verbindlichkeit"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: includes/CPT/Service.php:273
+#: includes/CPT/Service.php:275
 msgid ""
 "Don't show this target group publicly (e.g. in search form dropdown). You "
 "can still use it as shortcode filter."
@@ -67,11 +67,15 @@ msgstr ""
 "Diese Zielgruppe nicht öffentlich anzeigen (z.B. im Filter-Dropdown). Sie "
 "kann dennoch als Shortcode-Filter verwendet werden."
 
-#: includes/CPT/Service.php:41
+#: includes/Shortcodes/Servicekatalog.php:367
+msgid "Download PDF"
+msgstr "PDF herunterladen"
+
+#: includes/CPT/Service.php:43
 msgid "Edit Service"
 msgstr "Service bearbeiten"
 
-#: includes/CPT/Service.php:141
+#: includes/CPT/Service.php:143
 msgid "General Information"
 msgstr "Allgemeine Informationen"
 
@@ -91,11 +95,11 @@ msgstr "https://blogs.fau.de/webworking/"
 msgid "https://github.com/RRZE-Webteam/rrze-servicekatalog"
 msgstr "https://github.com/RRZE-Webteam/rrze-servicekatalog"
 
-#: includes/CPT/Service.php:52
+#: includes/CPT/Service.php:54
 msgid "Insert into service"
 msgstr "Zum Service hinzufügen"
 
-#: includes/CPT/Service.php:265 includes/CPT/Service.php:272
+#: includes/CPT/Service.php:267 includes/CPT/Service.php:274
 msgid "Internal"
 msgstr "Intern"
 
@@ -107,31 +111,31 @@ msgstr "Layout Archiv-Seiten"
 msgid "List"
 msgstr "Liste"
 
-#: includes/CPT/Service.php:149
+#: includes/CPT/Service.php:151
 msgid "Max. 240 characters"
 msgstr "Max. 240 Zeichen"
 
-#: includes/CPT/Service.php:40
+#: includes/CPT/Service.php:42
 msgid "New Service"
 msgstr "Neuer Service"
 
-#: includes/CPT/Service.php:47
+#: includes/CPT/Service.php:49
 msgid "No services found in Trash."
 msgstr "Keine Services im Papierkorb gefunden."
 
-#: includes/CPT/Service.php:46 includes/Shortcodes/Servicekatalog.php:221
+#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:223
 msgid "No services found."
 msgstr "Keine Services gefunden."
 
-#: includes/CPT/Service.php:187
+#: includes/CPT/Service.php:189
 msgid "None"
 msgstr "Keine"
 
-#: includes/CPT/Service.php:253
+#: includes/CPT/Service.php:255
 msgid "Order Number"
 msgstr "Reihenfolge"
 
-#: includes/CPT/Service.php:45
+#: includes/CPT/Service.php:47
 msgid "Parent Services:"
 msgstr "Übergeordnete Services:"
 
@@ -141,16 +145,17 @@ msgstr "Übergeordnete Services:"
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
 
-#: templates/single-service.php:24 includes/Shortcodes/Servicekatalog.php:294
+#: includes/PDF.php:65 templates/single-service.php:24
+#: includes/Shortcodes/Servicekatalog.php:298
 msgid "Portal"
 msgstr "Anwendung"
 
-#: includes/CPT/Service.php:34
+#: includes/CPT/Service.php:36
 msgctxt "post type general name"
 msgid "Services"
 msgstr "Services"
 
-#: includes/CPT/Service.php:35
+#: includes/CPT/Service.php:37
 msgctxt "post type singular name"
 msgid "Service"
 msgstr "Service"
@@ -159,7 +164,7 @@ msgstr "Service"
 msgid "Presentation of RRZE Services"
 msgstr "Präsentation der RRZE-Services"
 
-#: includes/CPT/Service.php:50
+#: includes/CPT/Service.php:52
 msgid "Remove service icon"
 msgstr "Service-Icon entfernen"
 
@@ -172,23 +177,24 @@ msgstr "RRZE Servicekatalog"
 msgid "RRZE Webteam"
 msgstr "RRZE Webteam"
 
-#: includes/Shortcodes/Servicekatalog.php:185
+#: includes/Shortcodes/Servicekatalog.php:187
 msgid "Search for..."
 msgstr "Suchen nach..."
 
-#: includes/CPT/Service.php:44
+#: includes/CPT/Service.php:46
 msgid "Search Services"
 msgstr "Services durchsuchen"
 
-#: includes/Shortcodes/Servicekatalog.php:185
+#: includes/Shortcodes/Servicekatalog.php:187
 msgid "Search term"
 msgstr "Suchbegriff"
 
-#: templates/single-service.php:27 includes/Shortcodes/Servicekatalog.php:297
+#: includes/PDF.php:67 templates/single-service.php:27
+#: includes/Shortcodes/Servicekatalog.php:301
 msgid "Service Description"
 msgstr "Beschreibung"
 
-#: includes/CPT/Service.php:48
+#: includes/CPT/Service.php:50
 msgid "Service icon"
 msgstr "Service-Icon"
 
@@ -197,11 +203,11 @@ msgstr "Service-Icon"
 msgid "Services"
 msgstr "Services"
 
-#: includes/CPT/Service.php:49
+#: includes/CPT/Service.php:51
 msgid "Set service icon"
 msgstr "Service-Icon setzen"
 
-#: includes/CPT/Service.php:148
+#: includes/CPT/Service.php:150
 msgid "Short Description"
 msgstr "Kurzbeschreibung"
 
@@ -209,83 +215,83 @@ msgstr "Kurzbeschreibung"
 msgid "Show Searchform"
 msgstr "Suchformular anzeigen"
 
-#: includes/CPT/Service.php:191 includes/CPT/Service.php:210
+#: includes/CPT/Service.php:193 includes/CPT/Service.php:212
 msgid "Sorry, no target groups could be found."
 msgstr "Es wurden leider keine Zielgruppen gefunden."
 
-#: templates/archive-service.php:35 includes/Shortcodes/Servicekatalog.php:344
+#: templates/archive-service.php:35 includes/Shortcodes/Servicekatalog.php:348
 msgid "Tag"
 msgstr "Schlagwort"
 
 #: config/config.php:75 config/config.php:101 templates/single-service.php:95
-#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:206
-#: includes/Shortcodes/Servicekatalog.php:344
+#: templates/single-service.php:95 includes/Shortcodes/Servicekatalog.php:208
+#: includes/Shortcodes/Servicekatalog.php:348
 msgid "Tags"
 msgstr "Schlagwörter"
 
 #: config/config.php:71 templates/single-service.php:80
 #: templates/single-service.php:80 templates/archive-service.php:27
-#: includes/Shortcodes/Servicekatalog.php:339
-#: includes/Shortcodes/Servicekatalog.php:339
+#: includes/Shortcodes/Servicekatalog.php:343
+#: includes/Shortcodes/Servicekatalog.php:343
 msgid "Target Group"
 msgstr "Zielgruppe"
 
-#: config/config.php:89 includes/CPT/Service.php:182
-#: includes/Shortcodes/Servicekatalog.php:198
+#: config/config.php:89 includes/CPT/Service.php:184
+#: includes/Shortcodes/Servicekatalog.php:200
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
-#: includes/CPT/Service.php:98
+#: includes/CPT/Service.php:100
 msgctxt "Taxonomy general name"
 msgid "Commitment Levels"
 msgstr "Verbindlichkeiten"
 
-#: includes/CPT/Service.php:120
+#: includes/CPT/Service.php:122
 msgctxt "Taxonomy general name"
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: includes/CPT/Service.php:76
+#: includes/CPT/Service.php:78
 msgctxt "Taxonomy general name"
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
-#: includes/CPT/Service.php:101
+#: includes/CPT/Service.php:103
 msgctxt "Taxonomy singular name"
 msgid "Add New Commitment Level"
 msgstr "Neue Verbindlichkeit erstellen"
 
-#: includes/CPT/Service.php:79
+#: includes/CPT/Service.php:81
 msgctxt "Taxonomy singular name"
 msgid "Add New Target Group"
 msgstr "Neue Zielgruppe erstellen"
 
-#: includes/CPT/Service.php:99
+#: includes/CPT/Service.php:101
 msgctxt "Taxonomy singular name"
 msgid "Commitment Level"
 msgstr "Verbindlichkeit"
 
-#: includes/CPT/Service.php:100
+#: includes/CPT/Service.php:102
 msgctxt "Taxonomy singular name"
 msgid "Edit Commitment Level"
 msgstr "Verbindlichkeit bearbeiten"
 
-#: includes/CPT/Service.php:78
+#: includes/CPT/Service.php:80
 msgctxt "Taxonomy singular name"
 msgid "Edit Target Group"
 msgstr "Zielgruppe bearbeiten"
 
-#: includes/CPT/Service.php:121
+#: includes/CPT/Service.php:123
 msgctxt "Taxonomy singular name"
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: includes/CPT/Service.php:77
+#: includes/CPT/Service.php:79
 msgctxt "Taxonomy singular name"
 msgid "Target Group"
 msgstr "Zielgruppe"
 
-#: includes/CPT/Service.php:254
+#: includes/CPT/Service.php:256
 #| msgid ""
 #| "The order in which this commitment level is displayed e.g. in select "
 #| "lists."
@@ -319,7 +325,8 @@ msgstr ""
 msgid "Thumbnail"
 msgstr "Bild"
 
-#: templates/single-service.php:30 includes/Shortcodes/Servicekatalog.php:300
+#: includes/PDF.php:69 templates/single-service.php:30
+#: includes/Shortcodes/Servicekatalog.php:304
 msgid "Tutorial"
 msgstr "Anleitung"
 
@@ -327,7 +334,7 @@ msgstr "Anleitung"
 msgid "Type of output"
 msgstr "Ausgabe"
 
-#: includes/CPT/Service.php:53
+#: includes/CPT/Service.php:55
 msgid "Uploaded to this service"
 msgstr "Zu diesem Service hochgeladen"
 
@@ -335,42 +342,48 @@ msgstr "Zu diesem Service hochgeladen"
 msgid "URL Description"
 msgstr "URL Beschreibung"
 
-#: config/config.php:51 includes/CPT/Service.php:158
+#: config/config.php:51 includes/CPT/Service.php:160
 msgid "URL Portal"
 msgstr "URL Anwendung"
 
-#: includes/CPT/Service.php:164
+#: includes/CPT/Service.php:166
 msgid "URL Service Description"
 msgstr "URL Beschreibung"
 
-#: config/config.php:59 includes/CPT/Service.php:170
+#: config/config.php:59 includes/CPT/Service.php:172
 msgid "URL Tutorial"
 msgstr "URL Anleitung"
 
-#: config/config.php:63 includes/CPT/Service.php:176
+#: config/config.php:63 includes/CPT/Service.php:178
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
 
+#: includes/PDF.php:108 templates/single-service.php:69
 #: templates/single-service.php:69 templates/archive-service.php:31
-#: includes/Shortcodes/Servicekatalog.php:190
-#: includes/Shortcodes/Servicekatalog.php:336
-#: includes/Shortcodes/Servicekatalog.php:336
+#: includes/Shortcodes/Servicekatalog.php:192
+#: includes/Shortcodes/Servicekatalog.php:340
+#: includes/Shortcodes/Servicekatalog.php:340
 msgid "Use"
 msgstr "Nutzung"
 
-#: includes/CPT/Service.php:51
+#: includes/CPT/Service.php:53
 msgid "Use as service icon"
 msgstr "Als Service-Icon verwenden"
 
-#: includes/Shortcodes/Servicekatalog.php:212
+#: includes/Shortcodes/Servicekatalog.php:214
 msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr "Suchen"
 
-#: templates/single-service.php:33 includes/Shortcodes/Servicekatalog.php:303
+#: includes/PDF.php:71 templates/single-service.php:33
+#: includes/Shortcodes/Servicekatalog.php:307
 msgid "Video Tutorial"
 msgstr "Video-Tutorial"
 
-#: includes/CPT/Service.php:42
+#: includes/CPT/Service.php:44
 msgid "View Service"
 msgstr "Service ansehen"
+
+#: includes/PDF.php:56
+msgid "Your RRZE Service Catalogue"
+msgstr "Ihr RRZE Servicekatalog"
