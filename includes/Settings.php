@@ -47,7 +47,7 @@ class Settings {
 
         $settings = (new Shortcodes\Servicekatalog)->fillGutenbergOptions();
         foreach ($settings as $key => $setting) {
-            if (!in_array($key, ['display', 'searchform', 'hide'])) continue;
+            if (!in_array($key, ['display', 'searchform', 'pdf_link', 'orderby', 'hide'])) continue;
             $options = [];
             $attributes = [];
             switch ($setting['field_type']) {

@@ -17,17 +17,36 @@ function getShortcodeSettings(): array {
         ],
         'display' => [
             'values' => [
-                'grid' => __( 'Grid', 'rrze-servicekatalog' ), // Abkürzung
-                'list' => __( 'List', 'rrze-servicekatalog' ) // Ausgeschriebene Form
+                'grid' => __( 'Grid', 'rrze-servicekatalog' ),
+                'list' => __( 'List', 'rrze-servicekatalog' )
             ],
             'default' => 'grid',
             'field_type' => 'radio',
             'label' => __( 'Type of output', 'rrze-servicekatalog' ),
             'type' => 'string'
         ],
+        'orderby' => [
+            'values' => [
+                'title' => __( 'Title', 'rrze-servicekatalog' ),
+                'commitment' => __( 'Commitment Level', 'rrze-servicekatalog' ) ,
+                'group' => __( 'Target Group', 'rrze-servicekatalog' ) ,
+                'tag' => __( 'Tag', 'rrze-servicekatalog' ) ,
+            ],
+            'default' => 'title',
+            'field_type' => 'radio',
+            'label' => __( 'Order by', 'rrze-servicekatalog' ),
+            'type' => 'string'
+        ],
         'searchform' => [
             'field_type' => 'toggle',
             'label' => __( 'Show Searchform', 'rrze-servicekatalog' ),
+            'type' => 'boolean',
+            'default' => FALSE,
+            'checked'   => FALSE
+        ],
+        'pdf_link' => [
+            'field_type' => 'toggle',
+            'label' => __( 'Show PDF Download Button', 'rrze-servicekatalog' ),
             'type' => 'boolean',
             'default' => FALSE,
             'checked'   => FALSE
