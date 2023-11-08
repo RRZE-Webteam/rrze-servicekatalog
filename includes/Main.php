@@ -20,6 +20,9 @@ class Main
         Service::init();
         new Servicekatalog();
         new Settings();
+        if (isset($_GET['action']) && $_GET['action'] == 'print_pdf') {
+            new PDF();
+        }
     }
 
     public function adminEnqueueScripts()

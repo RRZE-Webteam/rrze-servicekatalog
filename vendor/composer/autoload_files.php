@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'a537f845f8134c434356d8cf510c3f8d' => $vendorDir . '/cmb2/cmb2/init.php',
+    '81644fb5b713298193f885ff29a47791' => $vendorDir . '/tecnickcom/tcpdf/tcpdf.php',
 );
