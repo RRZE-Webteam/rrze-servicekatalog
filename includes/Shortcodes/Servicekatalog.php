@@ -368,6 +368,7 @@ class Servicekatalog
         }
 
         wp_enqueue_style('rrze-servicekatalog');
+        wp_enqueue_style('dashicons');
         if ($showFilter) {
             wp_enqueue_script('rrze-servicekatalog-sc');
         }
