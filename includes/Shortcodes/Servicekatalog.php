@@ -18,6 +18,7 @@ class Servicekatalog
         add_action('init', [$this, 'initGutenberg']);
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         add_shortcode('servicekatalog', [$this, 'shortcodeOutput']);
+        add_action('wp_head', 'wp_oembed_add_discovery_links');
     }
 
     public function shortcodeOutput($atts, $content = "") {

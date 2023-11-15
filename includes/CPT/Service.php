@@ -20,6 +20,9 @@ class Service
         add_action('init', [__CLASS__, 'registerPostType']);
         add_filter('get_the_excerpt', [__CLASS__, 'generateExcerpt'], 99, 2);
         add_filter('pre_get_posts', [__CLASS__, 'addToSearch'], 99);
+        add_action('wp_head', 'wp_oembed_add_discovery_links');
+        add_filter('embed_thumbnail_image_size',[__CLASS__, 'oembedImgSize'], 10, 2);
+        add_filter ('embed_thumbnail_image_shape', [__CLASS__, 'oembedImgShape']);
         // Register Taxonomies.
         add_action('init', [__CLASS__, 'registerTaxonomies']);
         // CMB2 Fields
@@ -66,6 +69,9 @@ class Service
             'has_archive'        => true,
             'exclude_from_search' => false,
             'publicly_queryable' => true,
+            'show_in_rest'       => true,
+            'rest_base'          => 'services',
+            'rest_controller_class' => 'WP_REST_Posts_Controller',
         ];
 
         register_post_type(self::POST_TYPE, $args);
@@ -324,5 +330,13 @@ class Service
                 $query->set( 'post_type', $postTypes );
             }
         }
+    }
+
+    public static function oembedImgSize($image_size, $thumbnail_id) {
+        return 'small';
+    }
+
+    public static function oembedImgShape($shape) {
+        return 'square';
     }
 }
