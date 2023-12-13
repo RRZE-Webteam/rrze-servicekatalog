@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd5842ec2b745063914e46060ae9c923",
+    "content-hash": "d4e044fd3bdb51f6dafe9d980b18aa07",
     "packages": [
         {
             "name": "cmb2/cmb2",
@@ -67,16 +67,16 @@
         },
         {
             "name": "rrze/wp",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/rrze-wp.git",
-                "reference": "404f0ed48d6ead0482d720123df7eb78b00e8aa4"
+                "reference": "b0c51e6a07011ec1d3ebf8a71fae5a93c05a6014"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/rrze-wp/zipball/404f0ed48d6ead0482d720123df7eb78b00e8aa4",
-                "reference": "404f0ed48d6ead0482d720123df7eb78b00e8aa4",
+                "url": "https://api.github.com/repos/RRZE-Webteam/rrze-wp/zipball/b0c51e6a07011ec1d3ebf8a71fae5a93c05a6014",
+                "reference": "b0c51e6a07011ec1d3ebf8a71fae5a93c05a6014",
                 "shasum": ""
             },
             "require": {
@@ -111,9 +111,9 @@
             ],
             "support": {
                 "issues": "https://github.com/RRZE-Webteam/rrze-wp/issues",
-                "source": "https://github.com/RRZE-Webteam/rrze-wp/tree/1.2.1"
+                "source": "https://github.com/RRZE-Webteam/rrze-wp/tree/1.2.2"
             },
-            "time": "2023-08-01T09:41:43+00:00"
+            "time": "2023-11-28T09:49:37+00:00"
         },
         {
             "name": "tecnickcom/tcpdf",
