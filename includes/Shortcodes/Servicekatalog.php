@@ -55,9 +55,9 @@ class Servicekatalog
             ],
         ];
 
-        if (isset($getParams['search']) && $getParams['search'] != '') {
-            //$args['s'] = $getParams['search'];
-            $args['title'] = $getParams['search'];
+        if (isset($getParams['service-search']) && $getParams['service-search'] != '') {
+            //$args['s'] = $getParams['service-search'];
+            $args['title'] = $getParams['service-search'];
         }
 
         // Target Groups
@@ -184,8 +184,10 @@ class Servicekatalog
 
             $output .= '<form method="get" class="servicekatalog-filter">'
                 . '<div class="search-title">'
-                . '<label for="rrze-servicekatalog-search" class="label">' . __('Search term', 'rrze-servicekatalog') . '</label><input type="text" name="search" id="rrze-servicekatalog-search" placeholder="' . __('Search for...', 'rrze-servicekatalog') . '" value="' . ($getParams['search'] ?? "") . '">'
+                . '<label for="rrze-servicekatalog-search" class="label">' . __('Search term', 'rrze-servicekatalog') . '</label><input type="text" name="service-search" id="rrze-servicekatalog-search" placeholder="' . __('Search for...', 'rrze-servicekatalog') . '" value="' . ($getParams['service-search'] ?? "") . '">'
+                . '<input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '">'
                  . '</div>';
+            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
 
             if (!is_wp_error($taxCommitments) && !empty($taxCommitments)) {
                 $output .= '<div class="filter-commitment">'
@@ -211,9 +213,9 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            $output .= '<input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '">'
-                //. '</div>'
-                . '</form>';
+            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
+
+            $output .=  '</form>';
         }
 
         /*
@@ -328,8 +330,7 @@ class Servicekatalog
                         $output .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                //$output .= '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
-                                $output .= '<li>' . do_shortcode('[button url="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
+                                $output .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
                         $output .= '</ul></div>';
@@ -363,7 +364,7 @@ class Servicekatalog
          * PDF-Link
          */
         $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
-        if ($showPDF) {
+        if ($showPDF && !empty($ids)) {
             $output .= do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download PDF', 'rrze-servicekatalog') . '[/button]');
         }
 
