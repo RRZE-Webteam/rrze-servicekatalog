@@ -28,6 +28,7 @@ class PDF {
 
         // set auto page breaks
         $pdf->SetAutoPageBreak(TRUE, 30);
+        //$pdf->SetAutoPageBreak(FALSE, 30);
 
         // Set font
         $pdf->SetFont('helvetica', '', 10, '', true);
@@ -89,7 +90,7 @@ class PDF {
 
             // URL Service Description
             if ( ! empty($urlDescription)) {
-                $pdf->WriteHTMLCell(0, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
+                $pdf->WriteHTMLCell(50, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
             }
 
             $pdf->SetY($nextY);

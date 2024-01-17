@@ -190,14 +190,6 @@ class Servicekatalog
                  . '</div>';
             //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
 
-            if (!is_wp_error($taxCommitments) && !empty($taxCommitments)) {
-                $output .= '<div class="filter-commitment">'
-                    . '<button type="button" class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . $spanCommitmentsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
-                foreach ($taxCommitments as $taxCommitment) {
-                    $output .= '<label><input type="checkbox" name="commitment[]" value="' . $taxCommitment->slug . '"' . (isset($getParams['commitment']) && in_array($taxCommitment->slug, $getParams['commitment']) ? "checked" : "") . '>' . $taxCommitment->name . '</label>';
-                }
-                $output .= '</div></div>';
-            }
             if (!is_wp_error($taxGroups) && !empty($taxGroups)) {
                 $output .= '<div class="filter-group">'
                     . '<button type="button" class="checklist-toggle">' . __('Target Groups', 'rrze-servicekatalog') . $spanGroupsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
@@ -211,6 +203,14 @@ class Servicekatalog
                     . '<button type="button" class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . $spanTagsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
                     $output .= '<label><input type="checkbox" name="tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
+                }
+                $output .= '</div></div>';
+            }
+            if (!is_wp_error($taxCommitments) && !empty($taxCommitments)) {
+                $output .= '<div class="filter-commitment">'
+                    . '<button type="button" class="checklist-toggle">' . __('Use', 'rrze-servicekatalog') . $spanCommitmentsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
+                foreach ($taxCommitments as $taxCommitment) {
+                    $output .= '<label><input type="checkbox" name="commitment[]" value="' . $taxCommitment->slug . '"' . (isset($getParams['commitment']) && in_array($taxCommitment->slug, $getParams['commitment']) ? "checked" : "") . '>' . $taxCommitment->name . '</label>';
                 }
                 $output .= '</div></div>';
             }
@@ -338,13 +338,13 @@ class Servicekatalog
                     }
                     if ($showCommitment || $showGroup || $showTags) {
                         $output .= '<div class="service-meta">';
-                        if ($commitmentTerms && $showCommitment) {
-                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
-                        }
                         if ($groupTerms && $showGroup) {
                             $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
                                 . implode(', ', $groupLinks)
                                 . '</div>';
+                        }
+                        if ($commitmentTerms && $showCommitment) {
+                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
                         }
                         if ($tags && $showTags) {
                             $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
