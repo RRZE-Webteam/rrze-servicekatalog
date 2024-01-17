@@ -112,6 +112,7 @@ class Servicekatalog
 
         $services = get_posts($args );
 
+        $servicesOrdered = [];
         switch($orderby) {
             case 'commitment':
                 foreach($services as $service) {
