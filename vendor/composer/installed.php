@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'rrze/rrze-servicekatalog' => array(
-            'pretty_version' => '1.0.2',
-            'version' => '1.0.2.0',
+            'pretty_version' => '1.0.3',
+            'version' => '1.0.3.0',
             'reference' => NULL,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
