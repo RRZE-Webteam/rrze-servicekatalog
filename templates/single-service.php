@@ -65,11 +65,7 @@ while (have_posts()) : the_post();
 
                             <div class="service-info">
                                 <div class="rrze-service-meta">
-                                    <?php if ($commitmentTerms) {
-                                        echo '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentBgColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>';
-                                        echo '<a class="service-commitment" href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
-                                        echo '</div>';
-                                    }
+                                    <?php
                                     if ($groupTerms) {
                                         foreach ($groupTerms as $groupTerm) {
                                             $groupName = $groupTerm->name;
@@ -80,10 +76,16 @@ while (have_posts()) : the_post();
                                         echo '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . _n('Target Group', 'Target Groups', count($groupTerms), 'rrze-servicekatalog') . ': </span>'
                                             . implode(', ', $groupLinks)
                                             . '</div>';
-                                    } ?>
+                                    }
+                                    if ($commitmentTerms) {
+                                        echo '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentBgColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>';
+                                        echo '<a class="service-commitment" href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
+                                        echo '</div>';
+                                    }
+                                    ?>
                                 </div>
                                 <div class="service-description">
-                                    <?php echo wpautop(esc_html($description)); ?>
+                                    <?php echo wpautop($description); ?>
                                 </div>
                                 <?php if ($tags) {
                                     foreach ($tags as $tag) {
