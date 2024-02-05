@@ -91,8 +91,8 @@ class Servicekatalog
         }
 
         // Tags
-        if (isset($getParams['tag'])) {
-            $tags = $getParams['tag'];
+        if (isset($getParams['service-tag'])) {
+            $tags = $getParams['service-tag'];
             $spanTagsSelected = '<span class="filter-count">' . count($tags) . '</span>';
         } else {
             $spanTagsSelected = '';
@@ -133,7 +133,7 @@ class Servicekatalog
                     }
                 }
                 break;
-            case 'tag':
+            case 'service-tag':
                 foreach($services as $service) {
                     $tagTerms = get_the_terms($service->ID, 'rrze-service-tag');
                     if (!is_wp_error($tagTerms)) {
@@ -202,7 +202,7 @@ class Servicekatalog
                 $output .= '<div class="filter-tag">'
                     . '<button type="button" class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . $spanTagsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
-                    $output .= '<label><input type="checkbox" name="tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
+                    $output .= '<label><input type="checkbox" name="service-tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
                 }
                 $output .= '</div></div>';
             }
@@ -292,8 +292,8 @@ class Servicekatalog
                             $tagName = $tag->name;
                             $tagSlug = $tag->slug;
                             $tagURL = get_term_link($tagSlug, 'rrze-service-tag');
-                            $tagLinks[] = '<a href="' . esc_attr($tagURL) . '">' . strtoupper(esc_html($tagName)) . '</a>';
-                            $tagNames[] = strtoupper(esc_html($tagName));
+                            $tagLinks[] = '<a href="' . esc_attr($tagURL) . '">' . esc_html($tagName) . '</a>';
+                            $tagNames[] = esc_html($tagName);
                         }
                     }
                     $postMeta = get_post_meta($service->ID);

@@ -37,8 +37,8 @@ class PDF {
         $pdf->AddPage('P', '', true);
 
         // Write Title
-        $pdf->SetTextColor(40,60,122);
-        $pdf->WriteHTMLCell(0, 5, null, null, '<h1 style="font-weight: normal; font-size: 24px;">' . __('Your RRZE Service Catalogue', 'rrze-servicekatalog') . '</h1>', 0, 1);
+        //$pdf->SetTextColor(40,60,122);
+        $pdf->WriteHTMLCell(0, 5, null, null, '<h1 style="font-weight: normal; font-size: 24px; color: #04316A;">' . __('Your RRZE Service Catalogue', 'rrze-servicekatalog') . '</h1>', 0, 1);
 
         $pdf->SetY($pdf->getY() + 5);
 
@@ -49,14 +49,13 @@ class PDF {
             $meta = get_post_meta($id);
 
             // Title
-            $pdf->SetTextColor(40, 60, 122);
-            $pdf->WriteHTMLCell(0, 0, NULL, NULL, '<h2 style="font-size: 18px;">' . get_the_title($id) . '</h2>', 0, 1);
+            $pdf->WriteHTMLCell(0, 0, NULL, NULL, '<h2 style="font-size: 18px; color: #04316A;">' . get_the_title($id) . '</h2>', 0, 1);
 
             // Description
             $pdf->SetY($pdf->getY() + 1);
-            $pdf->SetTextColor(0, 0, 0);
+            //$pdf->SetTextColor(0, 0, 0);
             $pdf->SetFontSize(10);
-            $pdf->WriteHTMLCell(0, 0, NULL, NULL, Utils::getMeta($meta, 'description'), 0, 1);
+            $pdf->WriteHTMLCell(0, 0, NULL, NULL, '<p style="font-size: 10px; color: #000;">' . Utils::getMeta($meta, 'description') . '</p>', 0, 1);
 
             // Commitment
             $commitmentTerms = get_the_terms($id, 'rrze-service-commitment');
@@ -70,13 +69,12 @@ class PDF {
                 (strlen($commitmentColor) === 4) ? list($commitmentColorR, $commitmentColorG, $commitmentColorB) = sscanf($commitmentColor, "#%1x%1x%1x") : list($commitmentColorR, $commitmentColorG, $commitmentColorB) = sscanf($commitmentColor, "#%2x%2x%2x");
 
                 $pdf->SetY($pdf->getY() + $pdf->getFontSize() / 2, FALSE);
-                $pdf->Rect($pdf->getX(), $pdf->getY() + 0.25, 2.5, 4, 'DF', ['all' => ['width' => 1, 'color' => ['255', '255', '255']]], [$commitmentColorR, $commitmentColorG, $commitmentColorB]);
-                $pdf->MultiCell(0, 0, __('Use', 'rrze-servicekatalog') . ': ' . $commitmentName, 0, 'L', FALSE, 1, $pdf->getX() + 2, NULL);
+                $pdf->MultiCell(0, 0, ' ' . __('Use', 'rrze-servicekatalog') . ': ' . $commitmentName, array('L' => array('width' => 1, 'dash' => 0, 'color' => [$commitmentColorR, $commitmentColorG, $commitmentColorB])), 'L', FALSE, 1, $pdf->getX() + 1, NULL);
                 $pdf->SetY($pdf->GetY() + 2);
             }
 
             // QR Code Service Description
-            $nextY = $pdf->getY();
+            $nextY = $pdf->getY() + 5;
             $urlDescription = esc_url(Utils::getMeta($meta, 'url-description'));
             if ( ! empty($urlDescription)) {
                 $style = [
@@ -90,7 +88,7 @@ class PDF {
 
             // URL Service Description
             if ( ! empty($urlDescription)) {
-                $pdf->WriteHTMLCell(50, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
+                $pdf->WriteHTMLCell(55, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
             }
 
             $pdf->SetY($nextY);
