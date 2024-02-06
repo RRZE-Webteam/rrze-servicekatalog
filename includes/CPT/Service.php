@@ -125,7 +125,7 @@ class Service
         $args = [
             'labels'            => $labels,
             'public'            => true,
-            'hierarchical'      => false,
+            'hierarchical'      => true,
             'show_ui'           => true,
             'show_admin_column' => true,
             'show_in_rest'      => true
@@ -215,6 +215,20 @@ class Service
                 'orderby' => 'meta_value_num',
                 'meta_key'  => 'rrze-service-commitment-order',
                 'hide_empty' => false,
+            ),
+        ) );
+        $cmb->add_field( array(
+            'name'           => esc_html__('Tags', 'rrze-servicekatalog'),
+            //'desc'           => esc_html__('', 'rrze-servicekatalog'),
+            'id'             => 'rrze-service-tag',
+            'taxonomy'       => 'rrze-service-tag', //Enter Taxonomy Slug
+            'type'           => 'taxonomy_multicheck',
+            //'show_option_none' => esc_html__('None', 'rrze-servicekatalog'),
+            'show_option_none' => false,
+            'remove_default' => 'true', // Removes the default metabox provided by WP core.
+            // Optionally override the args sent to the WordPress get_terms function.
+            'text'           => array(
+                'no_terms_text' => esc_html__('Sorry, no tags could be found.', 'rrze-servicekatalog') // Change default text. Default: "No terms"
             ),
         ) );
     }
