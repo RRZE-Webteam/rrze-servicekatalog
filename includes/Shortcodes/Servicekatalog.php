@@ -217,7 +217,12 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
+            $output .= do_shortcode('<div class="settings-area"><div><a href="' . get_permalink() . '">' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
+                . '<div class="layout-settings">'
+                . '<a href="" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-serviceportal') . '</span></a>'
+                . '<a href="" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
+                . '</div>'
+                . '</div>');
 
             $output .=  '</form>';
         }
