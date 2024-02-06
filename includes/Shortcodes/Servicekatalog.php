@@ -57,7 +57,8 @@ class Servicekatalog
 
         if (isset($getParams['service-search']) && $getParams['service-search'] != '') {
             //$args['s'] = $getParams['service-search'];
-            $args['title'] = $getParams['service-search'];
+            $args['service_title'] = $getParams['service-search'];
+            $args['suppress_filters'] = false;
         }
 
         // Target Groups
@@ -110,7 +111,9 @@ class Servicekatalog
             $args['post__in'] = $IDs;
         }
 
+        add_filter( 'posts_where', [$this, 'serviceTitleFilter'], 10, 2 );
         $services = get_posts($args );
+        remove_filter( 'posts_where', [$this, 'serviceTitleFilter'], 10 );
 
         $servicesOrdered = [];
         switch($orderby) {
@@ -202,7 +205,7 @@ class Servicekatalog
                 $output .= '<div class="filter-tag">'
                     . '<button type="button" class="checklist-toggle">' . __('Tags', 'rrze-servicekatalog') . $spanTagsSelected . '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></button><div class="checklist">';
                 foreach ($taxTags as $taxTag) {
-                    $output .= '<label><input type="checkbox" name="service-tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['tag']) && in_array($taxTag->slug, $getParams['tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
+                    $output .= '<label><input type="checkbox" name="service-tag[]" value="' . $taxTag->slug . '"' . (isset($getParams['service-tag']) && in_array($taxTag->slug, $getParams['service-tag']) ? "checked" : "") . '>' . ucfirst($taxTag->name) . '</label>';
                 }
                 $output .= '</div></div>';
             }
@@ -397,6 +400,14 @@ class Servicekatalog
         $args = shortcode_atts($defaults, $atts);
         array_walk($args, 'sanitize_text_field');
         return $args;
+    }
+
+    public function serviceTitleFilter($where, $wp_query) {
+        global $wpdb;
+        if ( $search_term = $wp_query->get( 'service_title' ) ) {
+            $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\'';
+        }
+        return $where;
     }
 
     public function fillGutenbergOptions(): array {
