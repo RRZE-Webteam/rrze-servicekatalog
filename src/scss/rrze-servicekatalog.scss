@@ -200,6 +200,16 @@
             left: 0;
         }
     }
+    .service-search-summary {
+        margin: 1em 0 2em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .service-download {
+        margin: 2em 0 1em;
+    }
     ul.display-grid {
         display: flex;
         flex-direction: row;

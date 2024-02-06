@@ -225,9 +225,14 @@ class Servicekatalog
         /*
          * Output
          */
-        if (count($services) < 1) {
-            $output .= __('No services found.', 'rrze-servicekatalog');
+        $countServices = count($services);
+        if ($countServices < 1) {
+            $outputNumServices = __('No services found.', 'rrze-servicekatalog');
+            $outputList = '';
         } else {
+            // Results area
+            $outputNumServices = sprintf(_n('%d service found','%d services found', $countServices, 'rrze-servicekatalog'), $countServices);
+
             $ids = [];
             // Hide Items
             $showThumbnail = true;
@@ -255,7 +260,7 @@ class Servicekatalog
             }
             // Services List / Grid
             $layout = $atts['display'] == 'list' ? 'list' : 'grid';
-            $output .= '<ul class="display-' . $layout . '">';
+            $outputList = '<ul class="display-' . $layout . '">';
             $prevID = '';
             foreach ($servicesOrdered as $services) {
                 foreach ($services as $service) {
@@ -314,63 +319,66 @@ class Servicekatalog
                     $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
                     $links['video']['icon'] = 'dashicons-video-alt2';
 
-                    $output .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
+                    $outputList .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
                     if (has_post_thumbnail($service->ID) && $showThumbnail) {
-                        //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
-                        $output .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
+                        //$outputList .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
+                        $outputList .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
                     } else {
-                        $output .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
+                        $outputList .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
-                    $output .= '</a>';
-                    $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
+                    $outputList .= '</a>';
+                    $outputList .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
                     if ($showDescription) {
-                        $output .= '<div class="service-description">' . $description . '</div>';
+                        $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
                     if (($showUrlPortal && $links['portal']['url'] != '')
                         || ($showUrlDescription && $links['description']['url'] != '')
                         || ($showUrlTutorial && $links['tutorial']['url'] != '')
                         || ($showUrlVideo && $links['video']['url'] != '')) {
-                        $output .= '<div class="service-urls"><ul>';
+                        $outputList .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                $output .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
+                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
-                        $output .= '</ul></div>';
+                        $outputList .= '</ul></div>';
                     }
                     if ($showCommitment || $showGroup || $showTags) {
-                        $output .= '<div class="service-meta">';
+                        $outputList .= '<div class="service-meta">';
                         if ($groupTerms && $showGroup) {
-                            $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
+                            $outputList .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
                                 . implode(', ', $groupLinks)
                                 . '</div>';
                         }
                         if ($commitmentTerms && $showCommitment) {
-                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
+                            $outputList .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
                         }
                         if ($tags && $showTags) {
-                            $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
+                            $outputList .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
                                 . implode(', ', $tagLinks)
                                 . '</div>';
                         }
-                        $output .= '</div>';
+                        $outputList .= '</div>';
                     }
-                    $output .= '</div>';
-                    $output .= '</div></li>';
+                    $outputList .= '</div>';
+                    $outputList .= '</div></li>';
                 }
             }
-            $output .= '</ul>';
+            $outputList .= '</ul>';
         }
-        $output .= '</div>';
-
         /*
          * PDF-Link
          */
         $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
         if ($showPDF && !empty($ids)) {
-            $output .= do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download PDF', 'rrze-servicekatalog') . '[/button]');
+            $outputPDFButton = do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download search results as PDF', 'rrze-servicekatalog') . '[/button]');
+        } else {
+            $outputPDFButton = '';
         }
+        $output .= '<div class="service-search-summary">' . '<p class="services-count">' . $outputNumServices . '</p>'. $outputPDFButton . '</div>' . $outputList . '<div class="service-download">' . $outputPDFButton . '</div>';
+
+        $output .= '</div>';
 
         wp_enqueue_style('rrze-servicekatalog');
         wp_enqueue_style('dashicons');
