@@ -22,6 +22,7 @@ class Servicekatalog
 
     public function shortcodeOutput($atts, $content = "") {
         $atts = self::sanitizeAtts($atts);
+        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
 
         if (!empty($atts['target-group'])) {
             $atts['group'] = $atts['target-group'];
@@ -43,7 +44,11 @@ class Servicekatalog
         $hideItems = $atts['hide'];
         $orderby = $atts['orderby'];
 
-        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
+        if (isset($getParams['display']) && in_array($getParams['display'], ['list', 'grid'])) {
+            $layout = sanitize_key($getParams['display']);
+        } else {
+            $layout = $atts['display'] == 'list' ? 'list' : 'grid';
+        }
 
         $args = [
             'post_type' => Service::POST_TYPE,
@@ -186,12 +191,11 @@ class Servicekatalog
                 'hide_empty' => false,
                 'orderby' => 'name',]);
 
-            $output .= '<form method="get" class="servicekatalog-filter">'
+            $output .= '<form method="get" action="?display=' . $layout . '" class="servicekatalog-filter">'
                 . '<div class="search-title">'
                 . '<label for="rrze-servicekatalog-search" class="label">' . __('Search term', 'rrze-servicekatalog') . '</label><input type="text" name="service-search" id="rrze-servicekatalog-search" placeholder="' . __('Search for...', 'rrze-servicekatalog') . '" value="' . ($getParams['service-search'] ?? "") . '">'
                 . '<input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '">'
                  . '</div>';
-            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
 
             if (!is_wp_error($taxGroups) && !empty($taxGroups)) {
                 $output .= '<div class="filter-group">'
@@ -228,9 +232,9 @@ class Servicekatalog
             } else {
                 $displaySwitcher = '';
             }
-            $output .= do_shortcode('<div class="settings-area"><div><a href="' . get_permalink() . '">&#9747; ' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
-                . $displaySwitcher
-                . '</div>');
+            $output .= '<div class="settings-area"><div class="filter-reset"><a href="' . get_permalink() . '?display=' . $layout . '">&#9747; ' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
+                . do_shortcode($displaySwitcher)
+                . '</div>';
 
             $output .=  '</form>';
         }
@@ -272,11 +276,6 @@ class Servicekatalog
                 }
             }
             // Services List / Grid
-            if (isset($getParams['display']) && in_array($getParams['display'], ['list', 'grid'])) {
-                $layout = sanitize_key($getParams['display']);
-            } else {
-                $layout = $atts['display'] == 'list' ? 'list' : 'grid';
-            }
             $outputList = '<ul class="display-' . $layout . '">';
             $prevID = '';
             foreach ($servicesOrdered as $services) {
@@ -356,7 +355,7 @@ class Servicekatalog
                         $outputList .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
+                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="xsmall"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
                         $outputList .= '</ul></div>';

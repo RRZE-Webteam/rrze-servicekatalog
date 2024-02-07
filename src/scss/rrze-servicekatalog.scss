@@ -506,6 +506,12 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
+            .filter-reset a {
+                text-decoration-thickness: .1rem;
+                &:hover, &:focus, &:active {
+                    text-decoration-thickness: 0.2rem;
+                }
+            }
             a > svg.rrze-elements-icon {
                 border-radius: 0 !important;
             }
