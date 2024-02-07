@@ -217,11 +217,19 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            $output .= do_shortcode('<div class="settings-area"><div><a href="' . get_permalink() . '">' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
-                . '<div class="layout-settings">'
-                . '<a href="" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-serviceportal') . '</span></a>'
-                . '<a href="" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
-                . '</div>'
+
+            if (in_array($atts['display-switcher'], [true, 'true', '1', 'yes', 'ja', 'on'])) {
+                $url_parts = parse_url( home_url() );
+                $url = $url_parts['scheme'] . "://" . $url_parts['host'];
+                $displaySwitcher = '<div class="layout-settings">'
+                    . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-serviceportal') . '</span></a>'
+                    . '<a href="' . $url . add_query_arg( 'display', 'list' ) . '" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
+                    . '</div>';
+            } else {
+                $displaySwitcher = '';
+            }
+            $output .= do_shortcode('<div class="settings-area"><div><a href="' . get_permalink() . '">&#9747; ' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
+                . $displaySwitcher
                 . '</div>');
 
             $output .=  '</form>';
@@ -264,7 +272,11 @@ class Servicekatalog
                 }
             }
             // Services List / Grid
-            $layout = $atts['display'] == 'list' ? 'list' : 'grid';
+            if (isset($getParams['display']) && in_array($getParams['display'], ['list', 'grid'])) {
+                $layout = sanitize_key($getParams['display']);
+            } else {
+                $layout = $atts['display'] == 'list' ? 'list' : 'grid';
+            }
             $outputList = '<ul class="display-' . $layout . '">';
             $prevID = '';
             foreach ($servicesOrdered as $services) {
@@ -409,6 +421,7 @@ class Servicekatalog
             'searchform' => '',
             'orderby' => '',
             'pdf' => '',
+            'display-switcher' => ''
             ];
         $args = shortcode_atts($defaults, $atts);
         array_walk($args, 'sanitize_text_field');
