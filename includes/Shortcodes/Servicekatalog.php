@@ -12,6 +12,8 @@ defined('ABSPATH') || exit;
 
 class Servicekatalog
 {
+    protected $settings;
+    
     public function __construct() {
         $this->settings = getShortcodeSettings();
         add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
@@ -343,8 +345,9 @@ class Servicekatalog
                         $outputList .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
                     $outputList .= '</a>';
-                    $outputList .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
-                        . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
+                    $outputList .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
+                        . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
+                        . do_shortcode('<label class="pdf-select" title="' . sprintf(__('Select %s for PDF', 'rrze-servicekatalog'), $service->post_title) . '"><input type="checkbox" checked>[icon icon="solid file-pdf"]<span class="screen-reader-text">' . sprintf(__('Select %s for PDF', 'rrze-servicekatalog'), $service->post_title) . '</span></label>');
                     if ($showDescription) {
                         $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
