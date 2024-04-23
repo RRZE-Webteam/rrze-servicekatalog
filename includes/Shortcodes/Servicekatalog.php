@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 class Servicekatalog
 {
     protected $settings;
-    
+
     public function __construct() {
         $this->settings = getShortcodeSettings();
         add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
