@@ -3,17 +3,20 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2024-05-08 07:52+0000\n"
+"PO-Revision-Date: 2024-05-08 07:39+0000\n"
 "Last-Translator: Barbara Bothe\n"
-"Language-Team: Deutsch\n"
-"Language: de_DE\n"
+"Language-Team: Deutsch (Sie)\n"
+"Language: de_DE_formal\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.6.7; wp-6.5.2\n"
-"X-Domain: rrze-servicekatalog"
+"X-Domain: rrze-servicekatalog\n"
+"X-Loco-Fallback: de_DE\n"
+"X-Loco-Template: languages/rrze-servicekatalog-de_DE.po\n"
+"X-Loco-Template-Mode: PO"
 
 #: includes/Shortcodes/Servicekatalog.php:253
 #| msgid "%d service found."
@@ -30,8 +33,9 @@ msgstr "-- alle --"
 
 #: includes/Shortcodes/Servicekatalog.php:350
 #, php-format
-msgid "Add %s to print/PDF"
-msgstr "%s zu Druck/PDF hinzufügen"
+#| msgid "Add %s \to PDF"
+msgid "Add %s to PDF"
+msgstr "%s zum PDF hinzufügen"
 
 #: includes/CPT/Service.php:39
 msgctxt "add new on admin bar"
@@ -81,9 +85,9 @@ msgstr ""
 "Diese Zielgruppe nicht öffentlich anzeigen (z.B. im Filter-Dropdown). Sie "
 "kann dennoch als Shortcode-Filter verwendet werden."
 
-#: includes/Shortcodes/Servicekatalog.php:351
-msgid "drucken"
-msgstr "drucken"
+#: includes/Shortcodes/Servicekatalog.php:396
+msgid "Download search results as PDF"
+msgstr "Suchergebnisse als PDF herunterladen"
 
 #: includes/CPT/Service.php:43
 msgid "Edit Service"
@@ -161,6 +165,10 @@ msgstr "Reihenfolge"
 msgid "Parent Services:"
 msgstr "Übergeordnete Services:"
 
+#: includes/Shortcodes/Servicekatalog.php:351
+msgid "PDF"
+msgstr "PDF"
+
 #. 1: The plugin name, 2: The error string.
 #: rrze-servicekatalog.php:88 rrze-servicekatalog.php:145
 #, php-format
@@ -184,10 +192,6 @@ msgstr "Service"
 #. Description of the plugin
 msgid "Presentation of RRZE Services"
 msgstr "Präsentation der RRZE-Services"
-
-#: includes/Shortcodes/Servicekatalog.php:396
-msgid "Print/PDF"
-msgstr "Drucken/PDF"
 
 #: includes/CPT/Service.php:52
 msgid "Remove service icon"

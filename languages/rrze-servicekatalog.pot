@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 13:42+0000\n"
+"POT-Creation-Date: 2024-05-08 07:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,15 +16,20 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: rrze-servicekatalog"
 
-#: includes/Shortcodes/Servicekatalog.php:239
+#: includes/Shortcodes/Servicekatalog.php:253
 msgid "%d service found"
 msgid_plural "%d services found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Shortcodes/Servicekatalog.php:436
-#: includes/Shortcodes/Servicekatalog.php:467
+#: includes/Shortcodes/Servicekatalog.php:453
+#: includes/Shortcodes/Servicekatalog.php:484
 msgid "-- all --"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:350
+#, php-format
+msgid "Add %s to print/PDF"
 msgstr ""
 
 #: includes/CPT/Service.php:39
@@ -73,8 +78,8 @@ msgid ""
 "can still use it as shortcode filter."
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:380
-msgid "Download search results as PDF"
+#: includes/Shortcodes/Servicekatalog.php:351
+msgid "drucken"
 msgstr ""
 
 #: includes/CPT/Service.php:43
@@ -89,7 +94,7 @@ msgstr ""
 msgid "Grid"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:222
+#: includes/Shortcodes/Servicekatalog.php:231
 msgid "Grid view"
 msgstr ""
 
@@ -133,7 +138,7 @@ msgstr ""
 msgid "No services found in Trash."
 msgstr ""
 
-#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:235
+#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:249
 msgid "No services found."
 msgstr ""
 
@@ -159,7 +164,7 @@ msgstr ""
 msgid "Plugins: %1$s: %2$s"
 msgstr ""
 
-#: templates/single-service.php:24 includes/Shortcodes/Servicekatalog.php:314
+#: templates/single-service.php:24 includes/Shortcodes/Servicekatalog.php:327
 msgid "Portal"
 msgstr ""
 
@@ -177,11 +182,15 @@ msgstr ""
 msgid "Presentation of RRZE Services"
 msgstr ""
 
+#: includes/Shortcodes/Servicekatalog.php:396
+msgid "Print/PDF"
+msgstr ""
+
 #: includes/CPT/Service.php:52
 msgid "Remove service icon"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:220
+#: includes/Shortcodes/Servicekatalog.php:237
 msgid "Reset all filters"
 msgstr ""
 
@@ -194,7 +203,7 @@ msgstr ""
 msgid "RRZE Webteam"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:191
+#: includes/Shortcodes/Servicekatalog.php:198
 msgid "Search for..."
 msgstr ""
 
@@ -202,11 +211,11 @@ msgstr ""
 msgid "Search Services"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:191
+#: includes/Shortcodes/Servicekatalog.php:198
 msgid "Search term"
 msgstr ""
 
-#: templates/single-service.php:27 includes/Shortcodes/Servicekatalog.php:317
+#: templates/single-service.php:27 includes/Shortcodes/Servicekatalog.php:330
 msgid "Service Description"
 msgstr ""
 
@@ -243,16 +252,12 @@ msgstr ""
 msgid "Sorry, no target groups could be found."
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:223
-msgid "Table View"
-msgstr ""
-
-#: includes/Shortcodes/Servicekatalog.php:223
+#: includes/Shortcodes/Servicekatalog.php:232
 msgid "Table view"
 msgstr ""
 
 #: config/config.php:33 templates/archive-service.php:35
-#: includes/Shortcodes/Servicekatalog.php:363
+#: includes/Shortcodes/Servicekatalog.php:378
 msgid "Tag"
 msgid_plural "Tags"
 msgstr[0] ""
@@ -260,20 +265,20 @@ msgstr[1] ""
 
 #: config/config.php:94 config/config.php:120 templates/single-service.php:97
 #: templates/single-service.php:97 includes/CPT/Service.php:221
-#: includes/Shortcodes/Servicekatalog.php:206
-#: includes/Shortcodes/Servicekatalog.php:363
+#: includes/Shortcodes/Servicekatalog.php:212
+#: includes/Shortcodes/Servicekatalog.php:378
 msgid "Tags"
 msgstr ""
 
 #: config/config.php:32 config/config.php:90 templates/single-service.php:76
 #: templates/single-service.php:76 templates/archive-service.php:27
-#: includes/Shortcodes/Servicekatalog.php:355
-#: includes/Shortcodes/Servicekatalog.php:355
+#: includes/Shortcodes/Servicekatalog.php:370
+#: includes/Shortcodes/Servicekatalog.php:370
 msgid "Target Group"
 msgstr ""
 
 #: config/config.php:108 includes/CPT/Service.php:184
-#: includes/Shortcodes/Servicekatalog.php:198
+#: includes/Shortcodes/Servicekatalog.php:204
 msgid "Target Groups"
 msgstr ""
 
@@ -356,7 +361,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: templates/single-service.php:30 includes/Shortcodes/Servicekatalog.php:320
+#: templates/single-service.php:30 includes/Shortcodes/Servicekatalog.php:333
 msgid "Tutorial"
 msgstr ""
 
@@ -390,9 +395,9 @@ msgstr ""
 
 #: includes/PDF.php:72 templates/single-service.php:81
 #: templates/single-service.php:81 templates/archive-service.php:31
-#: includes/Shortcodes/Servicekatalog.php:214
-#: includes/Shortcodes/Servicekatalog.php:360
-#: includes/Shortcodes/Servicekatalog.php:360
+#: includes/Shortcodes/Servicekatalog.php:220
+#: includes/Shortcodes/Servicekatalog.php:375
+#: includes/Shortcodes/Servicekatalog.php:375
 msgid "Use"
 msgstr ""
 
@@ -400,12 +405,12 @@ msgstr ""
 msgid "Use as service icon"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:192
+#: includes/Shortcodes/Servicekatalog.php:199
 msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr ""
 
-#: templates/single-service.php:33 includes/Shortcodes/Servicekatalog.php:323
+#: templates/single-service.php:33 includes/Shortcodes/Servicekatalog.php:336
 msgid "Video Tutorial"
 msgstr ""
 

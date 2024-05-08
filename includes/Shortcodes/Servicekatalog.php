@@ -345,9 +345,10 @@ class Servicekatalog
                         $outputList .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
                     $outputList .= '</a>';
-                    $outputList .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
+                    $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
-                        . do_shortcode('<label class="pdf-select" title="' . sprintf(__('Select %s for PDF', 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '"><input type="checkbox" data-id="' . $service->ID . '" checked>[icon icon="solid file-pdf"]<span class="screen-reader-text">' . sprintf(__('Select %s for PDF', 'rrze-servicekatalog'), $service->post_title) . '</span></label>');
+                        . '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;')
+                        . '">[icon icon="solid print" color="#797676"]<input type="checkbox" data-id="' . $service->ID . '" checked></label>');
                     if ($showDescription) {
                         $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
@@ -392,7 +393,7 @@ class Servicekatalog
         $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
         if ($showPDF && !empty($ids)) {
             //$outputPDFButton = do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download search results as PDF', 'rrze-servicekatalog') . '[/button]');
-            $outputPDFButton = '<a class="pdf-download standard-btn primary-btn" href="?action=print_pdf&amp;services=' . implode(',', $ids) . '" ><span>' . __('Download search results as PDF', 'rrze-servicekatalog') . '</span></a>';
+            $outputPDFButton = do_shortcode('<a class="pdf-download standard-btn primary-btn" href="?action=print_pdf&amp;services=' . implode(',', $ids) . '" >[icon icon="solid print" color="#ffffff"]<span>' . __('Print/PDF', 'rrze-servicekatalog') . '</span></a>');
         } else {
             $outputPDFButton = '';
         }
