@@ -244,6 +244,7 @@ class Servicekatalog
         /*
          * Output
          */
+        $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on'], true);
         $countServices = count($services);
         if ($countServices < 1) {
             $outputNumServices = __('No services found.', 'rrze-servicekatalog');
@@ -347,8 +348,7 @@ class Servicekatalog
                     $outputList .= '</a>';
                     $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
-                        . '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;')
-                        . '">[icon icon="solid print" color="#797676"]<input type="checkbox" data-id="' . $service->ID . '" checked></label>');
+                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
                     if ($showDescription) {
                         $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
@@ -390,7 +390,6 @@ class Servicekatalog
         /*
          * PDF-Link
          */
-        $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
         if ($showPDF && !empty($ids)) {
             //$outputPDFButton = do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download search results as PDF', 'rrze-servicekatalog') . '[/button]');
             $outputPDFButton = do_shortcode('<a class="pdf-download standard-btn primary-btn" href="?action=print_pdf&amp;services=' . implode(',', $ids) . '" >[icon icon="solid print" color="#ffffff"]<span>' . __('Print/PDF', 'rrze-servicekatalog') . '</span></a>');

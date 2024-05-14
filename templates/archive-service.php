@@ -37,6 +37,7 @@ if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-t
 }
 
 $atts['orderby'] = 'commitment';
+$atts['pdf'] = 'false';
 
 $settings = get_option('rrze-servicekatalog-settings');
 
