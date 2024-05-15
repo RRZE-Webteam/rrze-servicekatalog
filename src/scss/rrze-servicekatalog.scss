@@ -64,7 +64,7 @@
     }
     .service-tags {
         padding: 5px 0;
-        border-top: 1px solid var(--color-content-borders,#dfe6ec);
+        border-top: 1px solid var(--color-ContentBorders,#dfe6ec);
     }
     .rrze-service-main {
         @media (min-width: 768px) {
@@ -113,11 +113,11 @@
             flex-grow: 2;
             ul {
                 margin: 0;
-                border-top: 2px solid var(--color-content-borders,#dfe6ec);
+                border-top: 2px solid var(--color-ContentBorders,#dfe6ec);
                 padding-top: var(--width-gutter-half, 15px);
                 @media (min-width: 768px) {
                     border-top: none;
-                    border-left: 2px solid var(--color-content-borders,#dfe6ec);
+                    border-left: 2px solid var(--color-ContentBorders,#dfe6ec);
                     padding: var(--width-gutter-half, 15px) 0 var(--width-gutter-half, 15px) var(--width-gutter-half, 15px);
                 }
                 li {
@@ -302,7 +302,7 @@
         li.service-preview {
             .service-preview-content {
                 padding: 5px 0;
-                border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                border-top: 1px solid var(--color-ContentBorders, #dfe6ec);
                 display: flex;
                 flex-direction: row;
                 column-gap: 10px;
@@ -356,7 +356,7 @@
                 .service-urls {
                     padding: 5px 0;
                     flex: 15% 1 0;
-                    //border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                    //border-top: 1px solid var(--color-ContentBorders, #dfe6ec);
                     @media (min-width: 1200px) {
                         flex: 15% 0 0;
                     }
@@ -440,7 +440,7 @@
     .servicekatalog-filter {
         //background-color: lighten(#e9edf2, 3%);
         //border: 1px solid #dde5f0;
-        border: 1px solid var(--color-content-borders,#dfe6ec);
+        border: 1px solid var(--color-ContentBorders,#dfe6ec);
         width: 100%;
         padding: var(--width-gutter, 30px);
         margin-top: 0;
@@ -522,7 +522,7 @@
                 top: -.1em;
             }
             .checklist {
-                border: 1px solid var(--color-content-borders,#dfe6ec);
+                border: 1px solid var(--color-ContentBorders,#dfe6ec);
                 border-top-width: 0;
                 padding: 0 5px;
                 overflow-x: hidden;

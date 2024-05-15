@@ -295,6 +295,9 @@ class Servicekatalog
                         $commitmentSlug = $commitmentTerms[0]->slug;
                         $commitmentURL = get_term_link($commitmentSlug, 'rrze-service-commitment');
                         $commitmentBgColor = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-color', TRUE);
+                        if($commitmentBgColor == '') {
+                            $commitmentBgColor = '#ffffff';
+                        }
                         //$commitmentTextColor = Utils::calculateContrastColor($commitmentBgColor);
                         $commitmentLink = '<a href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
                     }
