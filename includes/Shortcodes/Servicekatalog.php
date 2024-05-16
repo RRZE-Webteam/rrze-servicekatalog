@@ -351,7 +351,7 @@ class Servicekatalog
                     $outputList .= '</a>';
                     $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
-                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
+                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<span class="screen-reader-text">' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '</span><input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
                     if ($showDescription) {
                         $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
