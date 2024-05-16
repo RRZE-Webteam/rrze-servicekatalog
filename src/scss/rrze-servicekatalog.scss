@@ -272,7 +272,8 @@
                 text-decoration: none;
                 box-shadow: none;
                 font-size: 1.1em;
-                margin-right: 65px;
+                margin-right: 50px;
+                hyphens: auto;
             }
             .service-meta {
                 background-color: var(--color-ContentRegions, #f5f7f9);
@@ -284,7 +285,7 @@
 
             .service-description {
                 margin-top: 10px;
-
+                hyphens: auto;
             }
             .service-urls {
                 margin-top: 10px;
@@ -295,6 +296,13 @@
                     flex-wrap: wrap;
                     column-gap: .5em;
                 }
+            }
+            .pdf-select {
+                position: absolute;
+                top: 18px;
+                right: 15px;
+                padding: 0;
+                margin: 0;
             }
         }
     }
@@ -344,13 +352,14 @@
                     display: block;
                     flex: 15% 1 0;
                     @media (min-width: 1200px) {
-                        flex: 10% 0 0;
+                        flex: 10% 1 0;
                     }
                 }
                 .service-description {
                     flex: 20% 1 0;
+                    hyphens: auto;
                     @media (min-width: 1200px) {
-                        flex: 20% 0 0;
+                        flex: 20% 1 0;
                     }
                 }
                 .service-urls {
@@ -369,21 +378,21 @@
                     padding: 5px 0;
                     flex: 25% 1 0;
                     @media (min-width: 480px) {
-                        flex: 25% 1 0;
+                        flex: 30% 1 0;
                         width: 100%;
                         display: flex;
                         flex-wrap: wrap;
                         column-gap: var(--width-gutter-half, 15px);
                     }
                     .service-commitments {
-                        flex-basis: 20%;
-                        flex-grow: 0;
+                        flex-basis: 30%;
+                        flex-grow: 1;
                         flex-shrink: 0;
                     }
 
                     .service-groups {
-                        flex-basis: 40%;
-                        flex-grow: 0;
+                        flex-basis: 30%;
+                        flex-grow: 1;
                         flex-shrink: 0;
 
                         .service-group {
@@ -391,21 +400,20 @@
                     }
                     .service-tags {
                         flex-basis: 30%;
-                        flex-grow: 0;
+                        flex-grow: 1;
                         flex-shrink: 0;
                         //font-size: .9em;
                     }
+                }
+                .pdf-select {
+                    order: 1;
+                    margin-top: 2px;
                 }
             }
         }
     }
 
     .pdf-select {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 0;
-        margin: 0;
         cursor: pointer;
         //color: var(--color-TextLight);
         font-size: .875rem;
