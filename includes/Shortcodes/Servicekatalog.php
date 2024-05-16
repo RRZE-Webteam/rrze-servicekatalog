@@ -12,6 +12,8 @@ defined('ABSPATH') || exit;
 
 class Servicekatalog
 {
+    protected $settings;
+
     public function __construct() {
         $this->settings = getShortcodeSettings();
         add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
@@ -22,6 +24,7 @@ class Servicekatalog
 
     public function shortcodeOutput($atts, $content = "") {
         $atts = self::sanitizeAtts($atts);
+        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
 
         if (!empty($atts['target-group'])) {
             $atts['group'] = $atts['target-group'];
@@ -43,7 +46,11 @@ class Servicekatalog
         $hideItems = $atts['hide'];
         $orderby = $atts['orderby'];
 
-        $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
+        if (isset($getParams['display']) && in_array($getParams['display'], ['list', 'grid'])) {
+            $layout = sanitize_key($getParams['display']);
+        } else {
+            $layout = $atts['display'] == 'list' ? 'list' : 'grid';
+        }
 
         $args = [
             'post_type' => Service::POST_TYPE,
@@ -186,12 +193,11 @@ class Servicekatalog
                 'hide_empty' => false,
                 'orderby' => 'name',]);
 
-            $output .= '<form method="get" class="servicekatalog-filter">'
+            $output .= '<form method="get" action="?display=' . $layout . '" class="servicekatalog-filter">'
                 . '<div class="search-title">'
                 . '<label for="rrze-servicekatalog-search" class="label">' . __('Search term', 'rrze-servicekatalog') . '</label><input type="text" name="service-search" id="rrze-servicekatalog-search" placeholder="' . __('Search for...', 'rrze-servicekatalog') . '" value="' . ($getParams['service-search'] ?? "") . '">'
                 . '<input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '">'
                  . '</div>';
-            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
 
             if (!is_wp_error($taxGroups) && !empty($taxGroups)) {
                 $output .= '<div class="filter-group">'
@@ -217,7 +223,20 @@ class Servicekatalog
                 }
                 $output .= '</div></div>';
             }
-            //$output .= '<div class="submit-area"><input type="submit" value="' . _x('Search', 'Verb, infinitive', 'rrze-servicekatalog') . '"></div>';
+
+            if (in_array($atts['display-switcher'], [true, 'true', '1', 'yes', 'ja', 'on'])) {
+                $url_parts = parse_url( home_url() );
+                $url = $url_parts['scheme'] . "://" . $url_parts['host'];
+                $displaySwitcher = '<div class="layout-settings">'
+                    . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-serviceportal') . '</span></a>'
+                    . '<a href="' . $url . add_query_arg( 'display', 'list' ) . '" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
+                    . '</div>';
+            } else {
+                $displaySwitcher = '';
+            }
+            $output .= '<div class="settings-area"><div class="filter-reset"><a href="' . get_permalink() . '?display=' . $layout . '">&#9747; ' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
+                . do_shortcode($displaySwitcher)
+                . '</div>';
 
             $output .=  '</form>';
         }
@@ -225,9 +244,15 @@ class Servicekatalog
         /*
          * Output
          */
-        if (count($services) < 1) {
-            $output .= __('No services found.', 'rrze-servicekatalog');
+        $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on'], true);
+        $countServices = count($services);
+        if ($countServices < 1) {
+            $outputNumServices = __('No services found.', 'rrze-servicekatalog');
+            $outputList = '';
         } else {
+            // Results area
+            $outputNumServices = sprintf(_n('%d service found','%d services found', $countServices, 'rrze-servicekatalog'), $countServices);
+
             $ids = [];
             // Hide Items
             $showThumbnail = true;
@@ -254,8 +279,7 @@ class Servicekatalog
                 }
             }
             // Services List / Grid
-            $layout = $atts['display'] == 'list' ? 'list' : 'grid';
-            $output .= '<ul class="display-' . $layout . '">';
+            $outputList = '<ul class="display-' . $layout . '">';
             $prevID = '';
             foreach ($servicesOrdered as $services) {
                 foreach ($services as $service) {
@@ -271,6 +295,9 @@ class Servicekatalog
                         $commitmentSlug = $commitmentTerms[0]->slug;
                         $commitmentURL = get_term_link($commitmentSlug, 'rrze-service-commitment');
                         $commitmentBgColor = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-color', TRUE);
+                        if($commitmentBgColor == '') {
+                            $commitmentBgColor = '#ffffff';
+                        }
                         //$commitmentTextColor = Utils::calculateContrastColor($commitmentBgColor);
                         $commitmentLink = '<a href="' . esc_attr($commitmentURL) . '">' . esc_html($commitmentName) . '</a>';
                     }
@@ -314,63 +341,67 @@ class Servicekatalog
                     $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
                     $links['video']['icon'] = 'dashicons-video-alt2';
 
-                    $output .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
+                    $outputList .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
                     if (has_post_thumbnail($service->ID) && $showThumbnail) {
-                        //$output .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
-                        $output .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
+                        //$outputList .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
+                        $outputList .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
                     } else {
-                        $output .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
+                        $outputList .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
-                    $output .= '</a>';
-                    $output .= '<div class="service-details" style="border-color: ' . $commitmentBgColor . ';">'
-                        . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>';
+                    $outputList .= '</a>';
+                    $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
+                        . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
+                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
                     if ($showDescription) {
-                        $output .= '<div class="service-description">' . $description . '</div>';
+                        $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
                     if (($showUrlPortal && $links['portal']['url'] != '')
                         || ($showUrlDescription && $links['description']['url'] != '')
                         || ($showUrlTutorial && $links['tutorial']['url'] != '')
                         || ($showUrlVideo && $links['video']['url'] != '')) {
-                        $output .= '<div class="service-urls"><ul>';
+                        $outputList .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                $output .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="small"]' . $link['label'] . '[/button]') . '</li>';
+                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="xsmall"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
-                        $output .= '</ul></div>';
+                        $outputList .= '</ul></div>';
                     }
                     if ($showCommitment || $showGroup || $showTags) {
-                        $output .= '<div class="service-meta">';
+                        $outputList .= '<div class="service-meta">';
                         if ($groupTerms && $showGroup) {
-                            $output .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
+                            $outputList .= '<div class="service-groups"><span class="dashicons dashicons-admin-users" title="' . __('Target Group', 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Target Group', 'rrze-servicekatalog') . ': </span>'
                                 . implode(', ', $groupLinks)
                                 . '</div>';
                         }
                         if ($commitmentTerms && $showCommitment) {
-                            $output .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
+                            $outputList .= '<div class="service-commitments"><span class="dashicons dashicons-shield" title="' . __('Use', 'rrze-servicekatalog') . '" style="color:' . $commitmentIconColor . ';" aria-hidden="true"></span><span class="screen-reader-text">' . __('Use', 'rrze-servicekatalog') . ': </span>' . $commitmentLink . '</div>';
                         }
                         if ($tags && $showTags) {
-                            $output .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
+                            $outputList .= '<div class="service-tags"><span class="dashicons dashicons-tag" title="' . _n('Tag', 'Tags', count($tags), 'rrze-servicekatalog') . '" aria-hidden="true"></span><span class="screen-reader-text">' . __('Tags', 'rrze-servicekatalog') . ': </span>'
                                 . implode(', ', $tagLinks)
                                 . '</div>';
                         }
-                        $output .= '</div>';
+                        $outputList .= '</div>';
                     }
-                    $output .= '</div>';
-                    $output .= '</div></li>';
+                    $outputList .= '</div>';
+                    $outputList .= '</div></li>';
                 }
             }
-            $output .= '</ul>';
+            $outputList .= '</ul>';
         }
-        $output .= '</div>';
-
         /*
          * PDF-Link
          */
-        $showPDF = in_array($atts['pdf'], [true, 'true', '1', 'yes', 'ja', 'on']);
         if ($showPDF && !empty($ids)) {
-            $output .= do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download PDF', 'rrze-servicekatalog') . '[/button]');
+            //$outputPDFButton = do_shortcode('[button link="?action=print_pdf&services=' . implode(',', $ids) . '"]' . __('Download search results as PDF', 'rrze-servicekatalog') . '[/button]');
+            $outputPDFButton = do_shortcode('<a class="pdf-download standard-btn primary-btn" href="?action=print_pdf&amp;services=' . implode(',', $ids) . '" >[icon icon="solid print" color="#ffffff"]<span>' . __('Print/PDF', 'rrze-servicekatalog') . '</span></a>');
+        } else {
+            $outputPDFButton = '';
         }
+        $output .= '<div class="service-search-summary">' . '<p class="services-count">' . $outputNumServices . '</p>'. $outputPDFButton . '</div>' . $outputList . '<div class="service-download">' . $outputPDFButton . '</div>';
+
+        $output .= '</div>';
 
         wp_enqueue_style('rrze-servicekatalog');
         wp_enqueue_style('dashicons');
@@ -396,6 +427,7 @@ class Servicekatalog
             'searchform' => '',
             'orderby' => '',
             'pdf' => '',
+            'display-switcher' => ''
             ];
         $args = shortcode_atts($defaults, $atts);
         array_walk($args, 'sanitize_text_field');

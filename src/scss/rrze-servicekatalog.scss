@@ -3,6 +3,18 @@
  */
 .rrze-servicekatalog,
 .rrze-service {
+    .screen-reader-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        min-width: 1px;
+        min-height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
     .service-commitments,
     .service-groups,
     .service-tags,
@@ -52,7 +64,7 @@
     }
     .service-tags {
         padding: 5px 0;
-        border-top: 1px solid var(--color-content-borders,#dfe6ec);
+        border-top: 1px solid var(--color-ContentBorders,#dfe6ec);
     }
     .rrze-service-main {
         @media (min-width: 768px) {
@@ -101,11 +113,11 @@
             flex-grow: 2;
             ul {
                 margin: 0;
-                border-top: 2px solid var(--color-content-borders,#dfe6ec);
+                border-top: 2px solid var(--color-ContentBorders,#dfe6ec);
                 padding-top: var(--width-gutter-half, 15px);
                 @media (min-width: 768px) {
                     border-top: none;
-                    border-left: 2px solid var(--color-content-borders,#dfe6ec);
+                    border-left: 2px solid var(--color-ContentBorders,#dfe6ec);
                     padding: var(--width-gutter-half, 15px) 0 var(--width-gutter-half, 15px) var(--width-gutter-half, 15px);
                 }
                 li {
@@ -200,6 +212,16 @@
             left: 0;
         }
     }
+    .service-search-summary {
+        margin: 1em 0 2em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .service-download {
+        margin: 2em 0 1em;
+    }
     ul.display-grid {
         display: flex;
         flex-direction: row;
@@ -215,8 +237,8 @@
             flex-grow: 1;
             padding: 0;
             width: 100%;
-            min-width: 248px;
-            max-width: 300px;
+            min-width: 30ch;
+            max-width: 50ch;
             .service-preview-content {
                 //border-radius: 9px;
                 box-shadow: 0 3px 12px 0 #ebebeb;
@@ -250,6 +272,7 @@
                 text-decoration: none;
                 box-shadow: none;
                 font-size: 1.1em;
+                margin-right: 65px;
             }
             .service-meta {
                 background-color: var(--color-ContentRegions, #f5f7f9);
@@ -279,7 +302,7 @@
         li.service-preview {
             .service-preview-content {
                 padding: 5px 0;
-                border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                border-top: 1px solid var(--color-ContentBorders, #dfe6ec);
                 display: flex;
                 flex-direction: row;
                 column-gap: 10px;
@@ -333,7 +356,7 @@
                 .service-urls {
                     padding: 5px 0;
                     flex: 15% 1 0;
-                    //border-top: 1px solid var(--color-content-borders, #dfe6ec);
+                    //border-top: 1px solid var(--color-ContentBorders, #dfe6ec);
                     @media (min-width: 1200px) {
                         flex: 15% 0 0;
                     }
@@ -377,11 +400,47 @@
         }
     }
 
+    .pdf-select {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        //color: var(--color-TextLight);
+        font-size: .875rem;
+        input[type=checkbox] {
+            //@extend .screen-reader-text;
+            margin-right: 0;
+            position: relative;
+            top: 2px;
+            margin-left: .3rem;
+            vertical-align: top;
+        }
+        svg.rrze-elements-icon {
+            opacity: 0.9;
+        }
+       &:has(input[type="checkbox"]:checked) {
+            svg.rrze-elements-icon {
+                opacity: 1;
+                fill: var(--color-button-bg, #004a9f) !important;
+            }
+        }
+    }
+
+    a.pdf-download {
+        svg {
+            border-radius: 0 !important;
+            padding: 0;
+            margin-right: .4em;
+        }
+    }
+
     // Filter area
     .servicekatalog-filter {
         //background-color: lighten(#e9edf2, 3%);
         //border: 1px solid #dde5f0;
-        border: 1px solid var(--color-content-borders,#dfe6ec);
+        border: 1px solid var(--color-ContentBorders,#dfe6ec);
         width: 100%;
         padding: var(--width-gutter, 30px);
         margin-top: 0;
@@ -463,7 +522,7 @@
                 top: -.1em;
             }
             .checklist {
-                border: 1px solid var(--color-content-borders,#dfe6ec);
+                border: 1px solid var(--color-ContentBorders,#dfe6ec);
                 border-top-width: 0;
                 padding: 0 5px;
                 overflow-x: hidden;
@@ -489,6 +548,22 @@
         }
         .filter-group {
             clear: left;
+        }
+        .settings-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .filter-reset a {
+                text-decoration-thickness: .1rem;
+                &:hover, &:focus, &:active {
+                    text-decoration-thickness: 0.2rem;
+                }
+            }
+            a > svg.rrze-elements-icon {
+                border-radius: 0 !important;
+            }
         }
     }
 }

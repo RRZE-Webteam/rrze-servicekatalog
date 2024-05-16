@@ -36,6 +36,9 @@ if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-t
     $atts['tag'] = sanitize_title($queryVars['rrze-service-tag']);
 }
 
+$atts['orderby'] = 'commitment';
+$atts['pdf'] = 'false';
+
 $settings = get_option('rrze-servicekatalog-settings');
 
 $atts['display'] = isset($settings['display']) ? sanitize_text_field($settings['display']) : 'grid';
@@ -51,7 +54,7 @@ if (isset($settings['hide'])) {
 		    <div class="post-row">
 			    <main class="entry-content">
 
-                    <h1 id="maintop" class="archive-title"><span class="screen-reader-text"><?php echo __('Services', 'rrze-servicekatalog') . ' / '; ?> </span><?php echo $title; ?></h1>
+                    <h1 id="maintop" class="mobiletitle"><span class="screen-reader-text"><?php echo __('Services', 'rrze-servicekatalog') . ' / '; ?> </span><?php echo $title; ?></h1>
 
                     <?php
                     $servicekatalog = new Servicekatalog();

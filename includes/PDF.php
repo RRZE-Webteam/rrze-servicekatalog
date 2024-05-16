@@ -2,6 +2,7 @@
 
 namespace RRZE\Servicekatalog;
 
+use IntlDateFormatter;
 use TCPDF;
 
 class PDF {
@@ -48,6 +49,7 @@ class PDF {
         foreach ($services as $id) {
             $meta = get_post_meta($id);
 
+            $pdf->WriteHTML('<div style="page-break-inside:avoid;">');
             // Title
             $pdf->WriteHTMLCell(0, 0, NULL, NULL, '<h2 style="font-size: 18px; color: #04316A;">' . get_the_title($id) . '</h2>', 0, 1);
 
@@ -63,7 +65,7 @@ class PDF {
                 $commitmentName = $commitmentTerms[0]->name;
                 $commitmentColor = get_term_meta($commitmentTerms[0]->term_id, 'rrze-service-commitment-color', TRUE);
                 if ($commitmentColor == '') {
-                    $commitmentColor = '#ffffff';
+                    $commitmentColor = '#dfe6ec';
                 }
                 // hex2rgb
                 (strlen($commitmentColor) === 4) ? list($commitmentColorR, $commitmentColorG, $commitmentColorB) = sscanf($commitmentColor, "#%1x%1x%1x") : list($commitmentColorR, $commitmentColorG, $commitmentColorB) = sscanf($commitmentColor, "#%2x%2x%2x");
@@ -74,7 +76,6 @@ class PDF {
             }
 
             // QR Code Service Description
-            $nextY = $pdf->getY() + 5;
             $urlDescription = esc_url(Utils::getMeta($meta, 'url-description'));
             if ( ! empty($urlDescription)) {
                 $style = [
@@ -82,7 +83,6 @@ class PDF {
                     'hpadding' => 1,
                     'bgcolor' => FALSE
                 ];
-                $nextY = $pdf->getY() + 30;
                 $pdf->write2DBarcode(Utils::getMeta($meta, 'url-description'), 'QRCODE,H', NULL, NULL, 22, 20, $style, 'T');
             }
 
@@ -91,7 +91,7 @@ class PDF {
                 $pdf->WriteHTMLCell(55, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
             }
 
-            $pdf->SetY($nextY);
+            $pdf->WriteHTML('</div>');
         }
 
         $pdf->ResetColumns();
@@ -127,7 +127,15 @@ class RRZE_PDF extends TCPDF{
 
         $this->SetTextColor(40,60,122);
         $this->SetFontSize(8);
-        $this->MultiCell(110, 18, "Regionales Rechenzentrum Erlangen (RRZE) | Martensstraße 1 | 91058 Erlangen \nStand: " . date('M Y'), 0, 'L', false, 0, null, null, true, 0, false, true, 18, 'B');
+        $fmt = datefmt_create(
+            'de-DE',
+            IntlDateFormatter::FULL,
+            IntlDateFormatter::FULL,
+            'Europe/Berlin',
+            IntlDateFormatter::GREGORIAN,
+            'MMMM Y'
+        );
+        $this->MultiCell(110, 18, "Regionales Rechenzentrum Erlangen (RRZE) | Martensstraße 1 | 91058 Erlangen \nStand: " . datefmt_format($fmt, time()) . '  –  Seite ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, 'L', false, 0, null, null, true, 0, false, true, 18, 'B');
         //$this->Cell(110, 5, "Regionales Rechenzentrum Erlangen (RRZE) | Martensstraße 1 | 91058 Erlangen", 0, 1, 'L', false, '', 0, true, 'T', 'B');
         //$this->Cell(110, 5, "Stand: " . date('F Y'), 0, 1, 'L', false, '', 0, true, 'T', 'B');
         $this->SetX(155);
