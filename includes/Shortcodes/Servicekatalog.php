@@ -45,6 +45,7 @@ class Servicekatalog
         $IDs = $atts['id'];
         $hideItems = $atts['hide'];
         $orderby = $atts['orderby'];
+        $teaserLength = $atts['teaser-length'];
 
         if (isset($getParams['display']) && in_array($getParams['display'], ['list', 'grid'])) {
             $layout = sanitize_key($getParams['display']);
@@ -327,7 +328,13 @@ class Servicekatalog
                         }
                     }
                     $postMeta = get_post_meta($service->ID);
-                    $description = Utils::getMeta($postMeta, 'description');
+                    $excerpt = $service->post_excerpt;
+                    if ($excerpt != '') {
+                        $description = strip_tags($excerpt);
+                    } else {
+                        $descriptionRaw = Utils::getMeta($postMeta, 'description');
+                        $description = wp_trim_words(strip_tags($descriptionRaw), $teaserLength, '&hellip;');
+                    }
                     $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
                     $links['portal']['url'] = Utils::getMeta($postMeta, 'url-portal');
                     $links['portal']['icon'] = 'dashicons-admin-home';
@@ -341,14 +348,12 @@ class Servicekatalog
                     $links['video']['url'] = Utils::getMeta($postMeta, 'url-video');
                     $links['video']['icon'] = 'dashicons-video-alt2';
 
-                    $outputList .= '<li class="service-preview"><div class="service-preview-content"><a href="' . get_permalink($service->ID) . '" class="service-link">';
+                    $outputList .= '<li class="service-preview"><div class="service-preview-content">';
                     if (has_post_thumbnail($service->ID) && $showThumbnail) {
-                        //$outputList .= '<a class="service-link" href="' . get_permalink($service->ID) . '" style="border-color: ' . $commitmentBgColor . ';">' . get_the_post_thumbnail($service->ID, 'medium') . '</a>';
-                        $outputList .= get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]);
+                        $outputList .= '<a href="' . get_permalink($service->ID) . '" class="service-link">' . get_the_post_thumbnail($service->ID, 'medium', ['style' => 'border-color: ' . $commitmentBgColor]) . '</a>';
                     } else {
-                        $outputList .= '<div style="height: 5px; background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
+                        $outputList .= '<div class="commitment-color" style="background:' . $commitmentBgColor . ';" aria-hidden="true"></div>';
                     }
-                    $outputList .= '</a>';
                     $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
                         . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<span class="screen-reader-text">' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '</span><input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
@@ -427,7 +432,8 @@ class Servicekatalog
             'searchform' => '',
             'orderby' => '',
             'pdf' => '',
-            'display-switcher' => ''
+            'display-switcher' => '',
+            'teaser-length' => 50,
             ];
         $args = shortcode_atts($defaults, $atts);
         array_walk($args, 'sanitize_text_field');

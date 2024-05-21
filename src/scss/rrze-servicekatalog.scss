@@ -263,6 +263,9 @@
                 border-bottom: 5px solid transparent;
                 box-shadow: none;
             }
+            .commitment-color {
+                height: 5px;
+            }
             .service-details {
                 padding: 15px;
             }
@@ -325,6 +328,10 @@
                     box-shadow: none;
                     border-left: 5px solid transparent;
                     box-sizing: content-box;
+                }
+                .commitment-color {
+                    width: 5px;
+                    height: 1.5em;
                 }
                 &:hover, &:focus, &:active {
                     background-color: var(--color-StandardHellgrau, #e9edf2);

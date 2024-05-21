@@ -102,6 +102,16 @@ function getShortcodeSettings(): array {
                 'type' => 'string' // Variablentyp der auswählbaren Werte
             ]
         ],
+        'teaser_length' => [
+            'label' => __( 'Teaser Length', 'rrze-servicekatalog' ),
+            //'description' => __('', 'rrze-servicekatalog'),
+            'field_type' => 'text_small',
+            'default' => '50',
+            'attributes' => [
+                'type' => 'number',
+            ],
+            'type' => 'number',
+        ],
         'target-group' => [
             'default' => '',
             'field_type' => 'text',
