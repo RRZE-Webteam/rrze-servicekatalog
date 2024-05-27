@@ -1,7 +1,7 @@
 {
     "name": "rrze/rrze-servicekatalog",
     "description": "RRZE WordPress Plugin",
-    "version": "1.0.6",
+    "version": "1.2.0",
     "type": "wordpress-plugin",
     "license": "GPL",
     "require": {
