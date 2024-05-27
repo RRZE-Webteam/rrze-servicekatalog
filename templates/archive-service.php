@@ -36,13 +36,12 @@ if (isset($queryVars['rrze-service-target-group']) && $queryVars['rrze-service-t
     $atts['tag'] = sanitize_title($queryVars['rrze-service-tag']);
 }
 
-$atts['orderby'] = 'commitment';
-$atts['pdf'] = 'false';
-
 $settings = get_option('rrze-servicekatalog-settings');
-
+$atts['orderby'] = isset($settings['orderby']) ? sanitize_text_field($settings['orderby']) : 'commitment';
 $atts['display'] = isset($settings['display']) ? sanitize_text_field($settings['display']) : 'grid';
 $atts['searchform'] = isset($settings['searchform']) ? sanitize_text_field($settings['searchform']) : '';
+$atts['pdf'] = isset($settings['pdf_link']) ? sanitize_text_field($settings['pdf_link']) : 'false';
+
 if (isset($settings['hide'])) {
     array_walk($settings['hide'], 'sanitize_text_field');
     $atts['hide'] = implode(',', $settings['hide']);

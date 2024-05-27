@@ -60,7 +60,7 @@ class Service
             'labels'             => $labels,
             'hierarchical'       => false,
             'public'             => true,
-            'supports'           => ['title', 'author', 'thumbnail'],
+            'supports'           => ['title', 'author', 'thumbnail', 'excerpt'],
             'menu_icon'          => 'dashicons-portfolio',
             'capability_type'    => 'page',
             'has_archive'        => true,
