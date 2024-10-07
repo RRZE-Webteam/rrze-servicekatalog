@@ -16,8 +16,10 @@ class Settings {
 
     public function __construct() {
         add_action('cmb2_admin_init', [$this, 'registerSettings']);
-        add_action( 'cmb2_render_toggle', [$this, 'render_field' ], 10, 5 );
-        add_action( 'admin_head', [$this, 'add_style' ] );
+        if (has_action('cmb2_render_toggle')) {
+            add_action( 'cmb2_render_toggle', [$this, 'render_field' ], 10, 5 );
+            add_action( 'admin_head', [$this, 'add_style' ] );
+        }
     }
 
     public function registerSettings() {
