@@ -16,7 +16,7 @@ class Settings {
 
     public function __construct() {
         add_action('cmb2_admin_init', [$this, 'registerSettings']);
-        if (has_action('cmb2_render_toggle')) {
+        if (!has_action('cmb2_render_toggle')) {
             add_action( 'cmb2_render_toggle', [$this, 'render_field' ], 10, 5 );
             add_action( 'admin_head', [$this, 'add_style' ] );
         }
