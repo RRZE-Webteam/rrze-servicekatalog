@@ -4,7 +4,7 @@
 Plugin Name:     RRZE Servicekatalog
 Plugin URI:      https://github.com/RRZE-Webteam/rrze-servicekatalog
 Description:     Presentation of RRZE Services
-Version:         1.2.0
+Version:         1.2.1
 Author:          RRZE Webteam
 Author URI:      https://blogs.fau.de/webworking/
 License:         GNU General Public License v3.0
@@ -32,6 +32,7 @@ register_activation_hook(__FILE__, __NAMESPACE__ . '\activation');
 register_deactivation_hook(__FILE__, __NAMESPACE__ . '\deactivation');
 
 add_action('plugins_loaded', __NAMESPACE__ . '\loaded');
+add_action('init', __NAMESPACE__ . '\init');
 
 /**
  * loadTextdomain
@@ -130,7 +131,6 @@ function plugin()
  */
 function loaded()
 {
-    loadTextdomain();
     plugin()->loaded();
     if ($error = systemRequirements()) {
         add_action('admin_init', function () use ($error) {
@@ -153,4 +153,9 @@ function loaded()
         return;
     }
     new Main;
+}
+
+function init()
+{
+    loadTextdomain();
 }
