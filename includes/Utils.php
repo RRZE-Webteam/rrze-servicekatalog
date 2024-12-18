@@ -35,21 +35,6 @@ class Utils {
         );
     }
 
-    public static function addCSSVars() {
-        $options = get_option( 'rrze_projects_options' );
-        $constants = getConstants();
-        $accentColor = ( isset( $options[ 'accent-color' ] ) && $options[ 'accent-color' ] != '' ) ? $options[ 'accent-color' ] : $constants[ 'default-accent-color' ];
-        $linkColor = ( isset( $options[ 'link-color' ] ) && $options[ 'link-color' ] != '' ) ? $options[ 'link-color' ] : $constants[ 'default-link-color' ];
-        $linkHoverColor = Utils::adjustBrightness( $linkColor, - .4 );
-        echo '<style type="text/css">
-:root {
-    --rrze-projects-color-accent: ' . $accentColor . ';
-    --rrze-projects-color-link: ' . $linkColor . ';
-    --rrze-projects-color-link-hover: ' . $linkHoverColor . ';
-}
-</style>';
-    }
-
     /**
      * Calculate the corresponding contrast color (black or white) for a given
      * background color to match contrast requirements.

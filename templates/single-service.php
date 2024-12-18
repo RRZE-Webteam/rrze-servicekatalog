@@ -20,7 +20,12 @@ while (have_posts()) : the_post();
 
     $id = get_the_ID();
     $meta = get_post_meta($id);
-    $description = Utils::getMeta($meta, 'description');
+    $settings = get_option('rrze-servicekatalog-settings');
+    $allowShortcodes = (isset($settings['allow_shortcodes']) && $settings['allow_shortcodes'] == 'on');
+    $description = wpautop(Utils::getMeta($meta, 'description'));
+    if ($allowShortcodes) {
+        $description = do_shortcode($description);
+    }
     $links['portal']['label'] = __('Portal', 'rrze-servicekatalog');
     $links['portal']['url'] = Utils::getMeta($meta, 'url-portal');
     $links['portal']['icon'] = 'dashicons-admin-home';
@@ -85,7 +90,7 @@ while (have_posts()) : the_post();
                                     ?>
                                 </div>
                                 <div class="service-description">
-                                    <?php echo wpautop($description); ?>
+                                    <?php echo $description; ?>
                                 </div>
                                 <?php if ($tags) {
                                     foreach ($tags as $tag) {

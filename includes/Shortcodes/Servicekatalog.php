@@ -229,7 +229,7 @@ class Servicekatalog
                 $url_parts = parse_url( home_url() );
                 $url = $url_parts['scheme'] . "://" . $url_parts['host'];
                 $displaySwitcher = '<div class="layout-settings">'
-                    . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-serviceportal') . '</span></a>'
+                    . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-servicekatalog') . '</span></a>'
                     . '<a href="' . $url . add_query_arg( 'display', 'list' ) . '" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
                     . '</div>';
             } else {
@@ -252,6 +252,7 @@ class Servicekatalog
             $outputList = '';
         } else {
             // Results area
+            /* translators: Number of services */
             $outputNumServices = sprintf(_n('%d service found','%d services found', $countServices, 'rrze-servicekatalog'), $countServices);
 
             $ids = [];
@@ -356,7 +357,10 @@ class Servicekatalog
                     }
                     $outputList .= do_shortcode('<div class="service-details" style="border-color: ' . $commitmentBgColor . '; position: relative;">'
                         . '<a class="service-title" href="' . get_permalink($service->ID) . '">' . $service->post_title . '</a>'
-                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<span class="screen-reader-text">' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '</span><input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
+                        /* translators: Name of the item */
+                        . ($showPDF ? '<label class="pdf-select" title="' . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '">[icon icon="solid print" color="#797676"]<span class="screen-reader-text">'
+                        /* translators: Name of the item */
+                        . sprintf(__("Add %s to print/PDF", 'rrze-servicekatalog'), '&quot;' . $service->post_title . '&quot;') . '</span><input type="checkbox" data-id="' . $service->ID . '" checked></label>' : ''));
                     if ($showDescription) {
                         $outputList .= '<div class="service-description">' . $description . '</div>';
                     }
