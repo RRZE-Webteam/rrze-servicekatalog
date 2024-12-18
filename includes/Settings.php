@@ -53,12 +53,18 @@ class Settings {
 
         $main_options->add_field([
             'name' => __('Slug', 'rrze-servicekatalog'),
-            //'desc' => '',
+            'desc' => __('Allowed Characters: [a-z], [0-9], [-], [_]', 'rrze-servicekatalog'),
             'id' => 'slug',
             'type' => 'text',
             'default' => 'rrze-service',
             'sanitization_cb' => 'sanitize_title',
-            'description' => __('Allowed Characters: [a-z], [0-9], [-], [_]', 'rrze-servicekatalog'),
+        ]);
+
+        $main_options->add_field([
+            'name' => __('Allow Shortcodes', 'rrze-servicekatalog'),
+            'desc' => __('Allow shortcodes in description field', 'rrze-servicekatalog'),
+            'id' => 'allow_shortcodes',
+            'type' => 'toggle',
         ]);
 
         $main_options->add_field( array(
