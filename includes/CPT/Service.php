@@ -55,6 +55,8 @@ class Service
             'uploaded_to_this_item' => __( 'Uploaded to this service', 'rrze-servicekatalog' ), //used in post.php
 
         ];
+        $settings = get_option('rrze-servicekatalog-settings');
+        $slug = (isset($settings['slug']) && $settings['slug'] != '') ? $settings['slug'] : 'rrze-service';
 
         $args = [
             'labels'             => $labels,
@@ -66,6 +68,7 @@ class Service
             'has_archive'        => true,
             'exclude_from_search' => false,
             'publicly_queryable' => true,
+            'rewrite'            => ['slug' => $slug],
         ];
 
         register_post_type(self::POST_TYPE, $args);

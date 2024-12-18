@@ -20,9 +20,13 @@ class Settings {
             add_action( 'cmb2_render_toggle', [$this, 'render_field' ], 10, 5 );
             add_action( 'admin_head', [$this, 'add_style' ] );
         }
+        add_action( 'update_option', [$this, 'updatedOption'], 10, 3 );
     }
 
     public function registerSettings() {
+
+        if (delete_transient('rrze_servicekatalog_flush_rules')) flush_rewrite_rules();
+
         $main_options = new_cmb2_box([
             'id' => 'rrze-servicekatalog',
             'title' => esc_html__('RRZE Servicekatalog', 'rrze-servicekatalog'),
@@ -41,10 +45,27 @@ class Settings {
         ]);
 
         $main_options->add_field( array(
+            'name' => esc_html__('General', 'rrze-servicekatalog'),
+            'desc' => esc_html__('', 'rrze-servicekatalog'),
+            'type' => 'title',
+            'id'   => 'title_general'
+        ) );
+
+        $main_options->add_field([
+            'name' => __('Slug', 'rrze-servicekatalog'),
+            //'desc' => '',
+            'id' => 'slug',
+            'type' => 'text',
+            'default' => 'rrze-service',
+            'sanitization_cb' => 'sanitize_title',
+            'description' => __('Allowed Characters: [a-z], [0-9], [-], [_]', 'rrze-servicekatalog'),
+        ]);
+
+        $main_options->add_field( array(
             'name' => esc_html__('Layout Archive Pages', 'rrze-servicekatalog'),
             'desc' => esc_html__('', 'rrze-servicekatalog'),
             'type' => 'title',
-            'id'   => 'title'
+            'id'   => 'title_layout'
         ) );
 
         $settings = (new Shortcodes\Servicekatalog)->fillGutenbergOptions();
@@ -254,6 +275,18 @@ class Settings {
             }
         </style>
         <?php
+    }
+
+    public function updatedOption($option_name, $old_value, $new_value) {
+        //var_dump($option_name, $old_value, $new_value); exit;
+        if ( 'rrze-servicekatalog-settings' !== $option_name )
+            return;
+        if (!isset($new_value['slug']) || $new_value['slug'] == '') {
+            $new_value['slug'] = 'rrze-service';
+        }
+        if (!isset($old_value['slug']) || $new_value['slug'] != $old_value['slug']) {
+            set_transient('rrze_servicekatalog_flush_rules', true);
+        }
     }
 
 }
