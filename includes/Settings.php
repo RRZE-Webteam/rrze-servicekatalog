@@ -46,7 +46,7 @@ class Settings {
 
         $main_options->add_field( array(
             'name' => esc_html__('General', 'rrze-servicekatalog'),
-            'desc' => esc_html__('', 'rrze-servicekatalog'),
+            //'desc' => esc_html__('', 'rrze-servicekatalog'),
             'type' => 'title',
             'id'   => 'title_general'
         ) );
@@ -69,7 +69,7 @@ class Settings {
 
         $main_options->add_field( array(
             'name' => esc_html__('Layout Archive Pages', 'rrze-servicekatalog'),
-            'desc' => esc_html__('', 'rrze-servicekatalog'),
+            //'desc' => esc_html__('', 'rrze-servicekatalog'),
             'type' => 'title',
             'id'   => 'title_layout'
         ) );
@@ -171,7 +171,7 @@ class Settings {
     </svg>
   </span>
 
-  <span class="screen-reader-text"> ' . $field->args['name'] . '</span>
+  <span class="screen-reader-text"> ' . esc_html($field->args['name']) . '</span>
 </label>';
 
         $field_type_object->_desc( true, true );
