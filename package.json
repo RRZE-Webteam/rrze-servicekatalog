@@ -1,0 +1,21 @@
+{
+  "name": "rrze-servicekatalog",
+  "version": "1.3.0",
+  "main": "build/block/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/block-editor": "^14.13.0",
+    "@wordpress/element": "^6.18.0",
+    "@wordpress/i18n": "^4.58.0",
+    "@wordpress/scripts": "^30.7.0",
+    "sass-embedded": "^1.85.0"
+  }
+}

@@ -153,9 +153,17 @@ function loaded()
         return;
     }
     new Main;
+
+    add_action('init', __NAMESPACE__ . '\createBlock');
 }
 
 function init()
 {
     loadTextdomain();
+}
+
+function createBlock(): void {
+    register_block_type( __DIR__ . '/build/block' );
+    $script_handle = generate_block_asset_handle( 'rrze/servicekatalog', 'editorScript' );
+    wp_set_script_translations( $script_handle, 'rrze-servicekatalog', plugin_dir_path( __FILE__ ) . 'languages' );
 }

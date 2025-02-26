@@ -16,8 +16,8 @@ class Servicekatalog
 
     public function __construct() {
         $this->settings = getShortcodeSettings();
-        add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
-        add_action('init', [$this, 'initGutenberg']);
+        //add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
+        //add_action('init', [$this, 'initGutenberg']);
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         add_shortcode('servicekatalog', [$this, 'shortcodeOutput']);
     }

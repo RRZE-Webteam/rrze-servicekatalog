@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rrze/servicekatalog",
+	"version": "1.3.0",
+	"title": "Servicekatalog",
+	"category": "rrze-plugins",
+	"description": "Presentation of RRZE Services",
+	"example": {},
+	"attributes": {
+		"selectedTargetGroups": {
+			"type": "array",
+			"default": {}
+		},
+		"selectedCommitments": {
+			"type": "array",
+			"default": {}
+		},
+		"selectedTags": {
+			"type": "array",
+			"default": {}
+		},
+		"selectedIDs": {
+			"type": "integer",
+			"default": 0
+		},
+		"numServices": {
+			"type": "integer",
+			"default": -1
+		},
+		"orderBy": {
+			"type": "string",
+			"default": ""
+		},
+		"hideItems": {
+			"type": "array",
+			"default": {}
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"showSearchform": {
+			"type": "boolean",
+			"default": false
+		},
+		"showPdf": {
+			"type": "boolean",
+			"default": false
+		},
+		"showDisplaySwitcher": {
+			"type": "boolean",
+			"default": false
+		},
+		"teaserLength": {
+			"type": "integer",
+			"default": 50
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "rrze-servicekatalog",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
