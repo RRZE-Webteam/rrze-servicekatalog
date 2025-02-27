@@ -20,7 +20,7 @@
 			"type": "array",
 			"default": {}
 		},
-		"selectedIDs": {
+		"selectedServices": {
 			"type": "integer",
 			"default": 0
 		},
@@ -32,7 +32,7 @@
 			"type": "string",
 			"default": ""
 		},
-		"hideItems": {
+		"selectedHiddenItems": {
 			"type": "array",
 			"default": {}
 		},
