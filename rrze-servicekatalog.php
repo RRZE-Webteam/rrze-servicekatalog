@@ -167,3 +167,32 @@ function createBlock(): void {
     $script_handle = generate_block_asset_handle( 'rrze/servicekatalog', 'editorScript' );
     wp_set_script_translations( $script_handle, 'rrze-servicekatalog', plugin_dir_path( __FILE__ ) . 'languages' );
 }
+
+/**
+ * Adds custom block category if not already present.
+ *
+ * @param array   $categories Existing block categories.
+ * @param WP_Post $post       Current post object.
+ * @return array Modified block categories.
+ */
+function rrze_block_category($categories, $post) {
+    // Check if there is already a RRZE category present
+    foreach ($categories as $category) {
+        if (isset($category['slug']) && $category['slug'] === 'rrze') {
+            return $categories;
+        }
+    }
+
+    $custom_category = [
+        'slug'  => 'rrze',
+        'title' => __('RRZE', 'rrze-servicekatalog'),
+    ];
+
+    // Add RRZE to the end of the categories array
+    $categories[] = $custom_category;
+
+    return $categories;
+}
+
+// Register the Custom RRZE Category, if it is not set by another plugin
+add_filter('block_categories_all', __NAMESPACE__ . '\rrze_block_category', 10, 2);
