@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:05+0000\n"
+"POT-Creation-Date: 2025-03-12 13:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,17 +16,21 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: rrze-servicekatalog"
 
-#: includes/Shortcodes/Servicekatalog.php:255
+#. Number of services
+#: includes/Shortcodes/Servicekatalog.php:258
 msgid "%d service found"
 msgid_plural "%d services found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Shortcodes/Servicekatalog.php:461 includes/Shortcodes/Servicekatalog.php:492
+#: includes/Shortcodes/Servicekatalog.php:467
+#: includes/Shortcodes/Servicekatalog.php:498
 msgid "-- all --"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:359
+#. Name of the item
+#: includes/Shortcodes/Servicekatalog.php:363
+#: includes/Shortcodes/Servicekatalog.php:365
 #, php-format
 msgid "Add %s to print/PDF"
 msgstr ""
@@ -50,6 +54,10 @@ msgctxt "admin menu"
 msgid "Services"
 msgstr ""
 
+#: src/block/edit.js:39
+msgid "All links"
+msgstr ""
+
 #: includes/CPT/Service.php:45
 msgid "All Services"
 msgstr ""
@@ -58,24 +66,61 @@ msgstr ""
 msgid "All URLs"
 msgstr ""
 
-#: includes/Settings.php:61
+#: includes/Settings.php:64
+msgid "Allow Shortcodes"
+msgstr ""
+
+#: includes/Settings.php:65
+msgid "Allow shortcodes in description field"
+msgstr ""
+
+#: includes/Settings.php:56
 msgid "Allowed Characters: [a-z], [0-9], [-], [_]"
+msgstr ""
+
+#: build/block/block.json:1 src/block/block.json:1
+msgctxt "block description"
+msgid "Presentation of RRZE Services"
+msgstr ""
+
+#: build/block/block.json:1 src/block/block.json:1
+msgctxt "block title"
+msgid "Servicekatalog"
 msgstr ""
 
 #: includes/CPT/Service.php:250 includes/CPT/Service.php:257
 msgid "Color"
 msgstr ""
 
-#: config/config.php:31 config/config.php:86 config/config.php:124 includes/CPT/Service.php:205
+#: src/block/edit.js:32 src/block/edit.js:213
+msgid "Commitment"
+msgstr ""
+
+#: config/config.php:31 config/config.php:86 config/config.php:124
+#: includes/CPT/Service.php:205
 msgid "Commitment Level"
+msgstr ""
+
+#: src/block/edit.js:290
+msgid "Commitments"
+msgstr ""
+
+#: src/block/edit.js:356
+msgid "Count"
 msgstr ""
 
 #: config/config.php:62
 msgid "Description"
 msgstr ""
 
+#: src/block/edit.js:36
+msgid "Description link"
+msgstr ""
+
 #: includes/CPT/Service.php:292
-msgid "Don't show this target group publicly (e.g. in search form dropdown). You can still use it as shortcode filter."
+msgid ""
+"Don't show this target group publicly (e.g. in search form dropdown). You "
+"can still use it as shortcode filter."
 msgstr ""
 
 #: includes/CPT/Service.php:43
@@ -90,16 +135,20 @@ msgstr ""
 msgid "General Information"
 msgstr ""
 
-#: config/config.php:20
+#: config/config.php:20 src/block/edit.js:204
 msgid "Grid"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:232
+#: includes/Shortcodes/Servicekatalog.php:239
 msgid "Grid view"
 msgstr ""
 
 #: config/config.php:99
 msgid "Hide Elements"
+msgstr ""
+
+#: src/block/edit.js:360
+msgid "How many services do you want to show? Enter -1 for all services."
 msgstr ""
 
 #. Author URI of the plugin
@@ -118,11 +167,15 @@ msgstr ""
 msgid "Internal"
 msgstr ""
 
-#: includes/Settings.php:65
+#: src/block/edit.js:196 src/block/edit.js:201
+msgid "Layout"
+msgstr ""
+
+#: includes/Settings.php:71
 msgid "Layout Archive Pages"
 msgstr ""
 
-#: config/config.php:21
+#: config/config.php:21 src/block/edit.js:205
 msgid "List"
 msgstr ""
 
@@ -138,12 +191,16 @@ msgstr ""
 msgid "No services found in Trash."
 msgstr ""
 
-#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:251
+#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:253
 msgid "No services found."
 msgstr ""
 
 #: includes/CPT/Service.php:192
 msgid "None"
+msgstr ""
+
+#: src/block/edit.js:210
+msgid "Order"
 msgstr ""
 
 #: config/config.php:37
@@ -152,6 +209,10 @@ msgstr ""
 
 #: includes/CPT/Service.php:272
 msgid "Order Number"
+msgstr ""
+
+#: src/block/edit.js:221
+msgid "Overview"
 msgstr ""
 
 #: includes/CPT/Service.php:47
@@ -164,8 +225,12 @@ msgstr ""
 msgid "Plugins: %1$s: %2$s"
 msgstr ""
 
-#: templates/single-service.php:24 includes/Shortcodes/Servicekatalog.php:338
+#: templates/single-service.php:29 includes/Shortcodes/Servicekatalog.php:341
 msgid "Portal"
+msgstr ""
+
+#: src/block/edit.js:35
+msgid "Portal link"
 msgstr ""
 
 #: includes/CPT/Service.php:36
@@ -182,16 +247,25 @@ msgstr ""
 msgid "Presentation of RRZE Services"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:403
+#: includes/Shortcodes/Servicekatalog.php:409
 msgid "Print/PDF"
+msgstr ""
+
+#: src/block/edit.js:281 src/block/edit.js:303 src/block/edit.js:325
+#: src/block/edit.js:347
+msgid "Remove"
 msgstr ""
 
 #: includes/CPT/Service.php:52
 msgid "Remove service icon"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:238
+#: includes/Shortcodes/Servicekatalog.php:228
 msgid "Reset all filters"
+msgstr ""
+
+#: rrze-servicekatalog.php:188
+msgid "RRZE"
 msgstr ""
 
 #. Name of the plugin
@@ -215,7 +289,27 @@ msgstr ""
 msgid "Search term"
 msgstr ""
 
-#: templates/single-service.php:27 includes/Shortcodes/Servicekatalog.php:341
+#: src/block/edit.js:266
+msgid "Select Services"
+msgstr ""
+
+#: src/block/edit.js:295
+msgid "Selected Commitments"
+msgstr ""
+
+#: src/block/edit.js:339
+msgid "Selected Services"
+msgstr ""
+
+#: src/block/edit.js:317
+msgid "Selected Tags"
+msgstr ""
+
+#: src/block/edit.js:273
+msgid "Selected Target Groups"
+msgstr ""
+
+#: templates/single-service.php:32 includes/Shortcodes/Servicekatalog.php:344
 msgid "Service Description"
 msgstr ""
 
@@ -223,7 +317,8 @@ msgstr ""
 msgid "Service icon"
 msgstr ""
 
-#: config/config.php:136 templates/archive-service.php:24 templates/archive-service.php:56
+#: config/config.php:136 templates/archive-service.php:24
+#: templates/archive-service.php:56 src/block/edit.js:334
 msgid "Services"
 msgstr ""
 
@@ -235,12 +330,32 @@ msgstr ""
 msgid "Short Description"
 msgstr ""
 
+#: src/block/edit.js:236
+msgid "Show Display Switcher"
+msgstr ""
+
+#: src/block/edit.js:246
+msgid "Show PDF Download"
+msgstr ""
+
 #: config/config.php:49
 msgid "Show PDF Download Button"
 msgstr ""
 
+#: src/block/edit.js:226
+msgid "Show Search Form"
+msgstr ""
+
 #: config/config.php:42
 msgid "Show Searchform"
+msgstr ""
+
+#: src/block/edit.js:220
+msgid "Show/Hide Items"
+msgstr ""
+
+#: src/block/edit.js:254
+msgid "Single Service"
 msgstr ""
 
 #: includes/Settings.php:55
@@ -255,25 +370,36 @@ msgstr ""
 msgid "Sorry, no target groups could be found."
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:233
+#: includes/Shortcodes/Servicekatalog.php:240
 msgid "Table view"
 msgstr ""
 
-#: config/config.php:33 templates/archive-service.php:35 includes/Shortcodes/Servicekatalog.php:386
+#: config/config.php:33 templates/archive-service.php:35
+#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:34
+#: src/block/edit.js:215
 msgid "Tag"
-msgid_plural "Tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
-#: config/config.php:94 config/config.php:130 templates/single-service.php:97 templates/single-service.php:97 includes/CPT/Service.php:224 includes/Shortcodes/Servicekatalog.php:213 includes/Shortcodes/Servicekatalog.php:386
+#: config/config.php:94 config/config.php:130 templates/single-service.php:102
+#: templates/single-service.php:102 includes/CPT/Service.php:224
+#: includes/Shortcodes/Servicekatalog.php:213
+#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:312
 msgid "Tags"
 msgstr ""
 
-#: config/config.php:32 config/config.php:90 templates/single-service.php:76 templates/single-service.php:76 templates/archive-service.php:27 includes/Shortcodes/Servicekatalog.php:378 includes/Shortcodes/Servicekatalog.php:378
+#: config/config.php:32 config/config.php:90 templates/single-service.php:81
+#: templates/single-service.php:81 templates/archive-service.php:27
+#: includes/Shortcodes/Servicekatalog.php:384
+#: includes/Shortcodes/Servicekatalog.php:384 src/block/edit.js:214
 msgid "Target Group"
 msgstr ""
 
-#: config/config.php:118 includes/CPT/Service.php:187 includes/Shortcodes/Servicekatalog.php:205
+#: src/block/edit.js:33
+msgid "Target group"
+msgstr ""
+
+#: config/config.php:118 includes/CPT/Service.php:187
+#: includes/Shortcodes/Servicekatalog.php:205 src/block/edit.js:268
 msgid "Target Groups"
 msgstr ""
 
@@ -332,22 +458,27 @@ msgid "Teaser Length"
 msgstr ""
 
 #: includes/CPT/Service.php:273
-msgid "The order in which this commitment level is displayed e.g. in select lists."
+msgid ""
+"The order in which this commitment level is displayed e.g. in select lists."
 msgstr ""
 
 #. 1: Server PHP version number, 2: Required PHP version number.
 #: rrze-servicekatalog.php:63
 #, php-format
-msgid "The server is running PHP version %1$s. The Plugin requires at least PHP version %2$s."
+msgid ""
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
 msgstr ""
 
 #. 1: Server WordPress version number, 2: Required WordPress version number.
 #: rrze-servicekatalog.php:70
 #, php-format
-msgid "The server is running WordPress version %1$s. The Plugin requires at least WordPress version %2$s."
+msgid ""
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
 msgstr ""
 
-#: config/config.php:58
+#: config/config.php:58 src/block/edit.js:31
 msgid "Thumbnail"
 msgstr ""
 
@@ -355,8 +486,12 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: templates/single-service.php:30 includes/Shortcodes/Servicekatalog.php:344
+#: templates/single-service.php:35 includes/Shortcodes/Servicekatalog.php:347
 msgid "Tutorial"
+msgstr ""
+
+#: src/block/edit.js:37
+msgid "Tutorial link"
 msgstr ""
 
 #: config/config.php:25
@@ -387,7 +522,11 @@ msgstr ""
 msgid "URL Video Tutorial"
 msgstr ""
 
-#: includes/PDF.php:74 templates/single-service.php:81 templates/single-service.php:81 templates/archive-service.php:31 includes/Shortcodes/Servicekatalog.php:221 includes/Shortcodes/Servicekatalog.php:383 includes/Shortcodes/Servicekatalog.php:383
+#: includes/PDF.php:74 templates/single-service.php:86
+#: templates/single-service.php:86 templates/archive-service.php:31
+#: includes/Shortcodes/Servicekatalog.php:221
+#: includes/Shortcodes/Servicekatalog.php:389
+#: includes/Shortcodes/Servicekatalog.php:389
 msgid "Use"
 msgstr ""
 
@@ -400,12 +539,24 @@ msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr ""
 
-#: templates/single-service.php:33 includes/Shortcodes/Servicekatalog.php:347
+#: src/block/edit.js:38
+msgid "Video link"
+msgstr ""
+
+#: templates/single-service.php:38 includes/Shortcodes/Servicekatalog.php:350
 msgid "Video Tutorial"
 msgstr ""
 
 #: includes/CPT/Service.php:44
 msgid "View Service"
+msgstr ""
+
+#: src/block/edit.js:222
+msgid "Visibility of overview elements"
+msgstr ""
+
+#: src/block/edit.js:255
+msgid "Visibility of service attributes"
 msgstr ""
 
 #: includes/PDF.php:42

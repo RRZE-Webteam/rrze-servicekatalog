@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2024-12-18 13:14+0000\n"
-"Last-Translator: Barbara Bothe\n"
+"PO-Revision-Date: 2025-03-12 13:41+0000\n"
+"Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -12,10 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.7; wp-6.5.2\n"
+"X-Loco-Version: 2.7.1; wp-6.7.2\n"
 "X-Domain: rrze-servicekatalog"
 
-#: includes/Shortcodes/Servicekatalog.php:255
+#. Number of services
+#: includes/Shortcodes/Servicekatalog.php:258
 #| msgid "%d service found."
 #| msgid_plural "%d services found."
 msgid "%d service found"
@@ -23,11 +24,14 @@ msgid_plural "%d services found"
 msgstr[0] "%d Service gefunden"
 msgstr[1] "%d Services gefunden"
 
-#: includes/Shortcodes/Servicekatalog.php:461 includes/Shortcodes/Servicekatalog.php:492
+#: includes/Shortcodes/Servicekatalog.php:467
+#: includes/Shortcodes/Servicekatalog.php:498
 msgid "-- all --"
 msgstr "-- alle --"
 
-#: includes/Shortcodes/Servicekatalog.php:359
+#. Name of the item
+#: includes/Shortcodes/Servicekatalog.php:363
+#: includes/Shortcodes/Servicekatalog.php:365
 #, php-format
 msgid "Add %s to print/PDF"
 msgstr "%s zu Druck/PDF hinzufügen"
@@ -51,6 +55,10 @@ msgctxt "admin menu"
 msgid "Services"
 msgstr "Services"
 
+#: src/block/edit.js:39
+msgid "All links"
+msgstr "Alle Links"
+
 #: includes/CPT/Service.php:45
 msgid "All Services"
 msgstr "Alle Services"
@@ -59,25 +67,64 @@ msgstr "Alle Services"
 msgid "All URLs"
 msgstr "Alle URLs"
 
-#: includes/Settings.php:61
+#: includes/Settings.php:64
+msgid "Allow Shortcodes"
+msgstr "Shortcodes erlauben"
+
+#: includes/Settings.php:65
+msgid "Allow shortcodes in description field"
+msgstr "Shortcodes im Beschreibungsfeld erlauben"
+
+#: includes/Settings.php:56
 msgid "Allowed Characters: [a-z], [0-9], [-], [_]"
 msgstr "Erlaubte Zeichen:  [a-z], [0-9], [-], [_]"
+
+#: build/block/block.json:1 src/block/block.json:1
+msgctxt "block description"
+msgid "Presentation of RRZE Services"
+msgstr "Präsentation der RRZE-Services"
+
+#: build/block/block.json:1 src/block/block.json:1
+msgctxt "block title"
+msgid "Servicekatalog"
+msgstr "Servicekatalog"
 
 #: includes/CPT/Service.php:250 includes/CPT/Service.php:257
 msgid "Color"
 msgstr "Farbe"
 
-#: config/config.php:31 config/config.php:86 config/config.php:124 includes/CPT/Service.php:205
+#: src/block/edit.js:32 src/block/edit.js:213
+msgid "Commitment"
+msgstr "Verbindlichkeit"
+
+#: config/config.php:31 config/config.php:86 config/config.php:124
+#: includes/CPT/Service.php:205
 msgid "Commitment Level"
 msgstr "Verbindlichkeit"
+
+#: src/block/edit.js:290
+msgid "Commitments"
+msgstr "Verbindlichkeiten"
+
+#: src/block/edit.js:356
+msgid "Count"
+msgstr "Anzahl"
 
 #: config/config.php:62
 msgid "Description"
 msgstr "Beschreibung"
 
+#: src/block/edit.js:36
+msgid "Description link"
+msgstr "Link zur Beschreibung"
+
 #: includes/CPT/Service.php:292
-msgid "Don't show this target group publicly (e.g. in search form dropdown). You can still use it as shortcode filter."
-msgstr "Diese Zielgruppe nicht öffentlich anzeigen (z.B. im Filter-Dropdown). Sie kann dennoch als Shortcode-Filter verwendet werden."
+msgid ""
+"Don't show this target group publicly (e.g. in search form dropdown). You "
+"can still use it as shortcode filter."
+msgstr ""
+"Diese Zielgruppe nicht öffentlich anzeigen (z.B. im Filter-Dropdown). Sie "
+"kann dennoch als Shortcode-Filter verwendet werden."
 
 #: includes/CPT/Service.php:43
 msgid "Edit Service"
@@ -91,17 +138,21 @@ msgstr "Allgemein"
 msgid "General Information"
 msgstr "Allgemeine Informationen"
 
-#: config/config.php:20
+#: config/config.php:20 src/block/edit.js:204
 msgid "Grid"
 msgstr "Kacheln"
 
-#: includes/Shortcodes/Servicekatalog.php:232
+#: includes/Shortcodes/Servicekatalog.php:239
 msgid "Grid view"
 msgstr "Zur Gitteransicht wechseln"
 
 #: config/config.php:99
 msgid "Hide Elements"
 msgstr "Elemente verbergen"
+
+#: src/block/edit.js:360
+msgid "How many services do you want to show? Enter -1 for all services."
+msgstr "Wie viele Services sollen angezeigt werden? Für alle -1 eingeben."
 
 #. Author URI of the plugin
 msgid "https://blogs.fau.de/webworking/"
@@ -119,11 +170,15 @@ msgstr "Zum Service hinzufügen"
 msgid "Internal"
 msgstr "Intern"
 
-#: includes/Settings.php:65
+#: src/block/edit.js:196 src/block/edit.js:201
+msgid "Layout"
+msgstr "Layout"
+
+#: includes/Settings.php:71
 msgid "Layout Archive Pages"
 msgstr "Layout Archiv-Seiten"
 
-#: config/config.php:21
+#: config/config.php:21 src/block/edit.js:205
 msgid "List"
 msgstr "Liste"
 
@@ -139,13 +194,17 @@ msgstr "Neuer Service"
 msgid "No services found in Trash."
 msgstr "Keine Services im Papierkorb gefunden."
 
-#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:251
+#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:253
 msgid "No services found."
 msgstr "Keine Services gefunden."
 
 #: includes/CPT/Service.php:192
 msgid "None"
 msgstr "Keine"
+
+#: src/block/edit.js:210
+msgid "Order"
+msgstr "Reihenfolge"
 
 #: config/config.php:37
 msgid "Order by"
@@ -154,6 +213,10 @@ msgstr "Sortieren nach"
 #: includes/CPT/Service.php:272
 msgid "Order Number"
 msgstr "Reihenfolge"
+
+#: src/block/edit.js:221
+msgid "Overview"
+msgstr "Übersicht"
 
 #: includes/CPT/Service.php:47
 msgid "Parent Services:"
@@ -165,9 +228,13 @@ msgstr "Übergeordnete Services:"
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
 
-#: templates/single-service.php:24 includes/Shortcodes/Servicekatalog.php:338
+#: templates/single-service.php:29 includes/Shortcodes/Servicekatalog.php:341
 msgid "Portal"
 msgstr "Anwendung"
+
+#: src/block/edit.js:35
+msgid "Portal link"
+msgstr "Link zum Portal"
 
 #: includes/CPT/Service.php:36
 msgctxt "post type general name"
@@ -183,17 +250,26 @@ msgstr "Service"
 msgid "Presentation of RRZE Services"
 msgstr "Präsentation der RRZE-Services"
 
-#: includes/Shortcodes/Servicekatalog.php:403
+#: includes/Shortcodes/Servicekatalog.php:409
 msgid "Print/PDF"
 msgstr "Drucken/PDF"
+
+#: src/block/edit.js:281 src/block/edit.js:303 src/block/edit.js:325
+#: src/block/edit.js:347
+msgid "Remove"
+msgstr "Entfernen"
 
 #: includes/CPT/Service.php:52
 msgid "Remove service icon"
 msgstr "Service-Icon entfernen"
 
-#: includes/Shortcodes/Servicekatalog.php:238
+#: includes/Shortcodes/Servicekatalog.php:228
 msgid "Reset all filters"
 msgstr "Alle Filter zurücksetzen"
+
+#: rrze-servicekatalog.php:188
+msgid "RRZE"
+msgstr "RRZE"
 
 #. Name of the plugin
 #: includes/Settings.php:32 includes/Settings.php:36
@@ -216,7 +292,27 @@ msgstr "Services durchsuchen"
 msgid "Search term"
 msgstr "Suchbegriff"
 
-#: templates/single-service.php:27 includes/Shortcodes/Servicekatalog.php:341
+#: src/block/edit.js:266
+msgid "Select Services"
+msgstr "Services auswählen"
+
+#: src/block/edit.js:295
+msgid "Selected Commitments"
+msgstr "Ausgewählte Verbindlichkeiten"
+
+#: src/block/edit.js:339
+msgid "Selected Services"
+msgstr "Ausgewählte Services"
+
+#: src/block/edit.js:317
+msgid "Selected Tags"
+msgstr "Ausgewählte Schlagwörter"
+
+#: src/block/edit.js:273
+msgid "Selected Target Groups"
+msgstr "Ausgewählte Zielgruppen"
+
+#: templates/single-service.php:32 includes/Shortcodes/Servicekatalog.php:344
 msgid "Service Description"
 msgstr "Beschreibung"
 
@@ -224,7 +320,8 @@ msgstr "Beschreibung"
 msgid "Service icon"
 msgstr "Service-Icon"
 
-#: config/config.php:136 templates/archive-service.php:24 templates/archive-service.php:56
+#: config/config.php:136 templates/archive-service.php:24
+#: templates/archive-service.php:56 src/block/edit.js:334
 msgid "Services"
 msgstr "Services"
 
@@ -236,13 +333,33 @@ msgstr "Service-Icon setzen"
 msgid "Short Description"
 msgstr "Kurzbeschreibung"
 
+#: src/block/edit.js:236
+msgid "Show Display Switcher"
+msgstr "Layout-Umschalter anzeigen"
+
+#: src/block/edit.js:246
+msgid "Show PDF Download"
+msgstr "PDF-Download anzeigen"
+
 #: config/config.php:49
 msgid "Show PDF Download Button"
 msgstr "PDF-Download-Button anzeigen"
 
+#: src/block/edit.js:226
+msgid "Show Search Form"
+msgstr "Filterformular anzeigen"
+
 #: config/config.php:42
 msgid "Show Searchform"
 msgstr "Suchformular anzeigen"
+
+#: src/block/edit.js:220
+msgid "Show/Hide Items"
+msgstr "Elemente ein-/ausblenden"
+
+#: src/block/edit.js:254
+msgid "Single Service"
+msgstr "Einzelner Service"
 
 #: includes/Settings.php:55
 msgid "Slug"
@@ -256,25 +373,36 @@ msgstr "Leider wurden keine Schlagwörter gefunden."
 msgid "Sorry, no target groups could be found."
 msgstr "Es wurden leider keine Zielgruppen gefunden."
 
-#: includes/Shortcodes/Servicekatalog.php:233
+#: includes/Shortcodes/Servicekatalog.php:240
 msgid "Table view"
 msgstr "Zur Listenansicht wechseln"
 
-#: config/config.php:33 templates/archive-service.php:35 includes/Shortcodes/Servicekatalog.php:386
+#: config/config.php:33 templates/archive-service.php:35
+#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:34
+#: src/block/edit.js:215
 msgid "Tag"
-msgid_plural "Tags"
-msgstr[0] "Schlagwort"
-msgstr[1] "Schlagwörter"
+msgstr "Schlagwort"
 
-#: config/config.php:94 config/config.php:130 templates/single-service.php:97 templates/single-service.php:97 includes/CPT/Service.php:224 includes/Shortcodes/Servicekatalog.php:213 includes/Shortcodes/Servicekatalog.php:386
+#: config/config.php:94 config/config.php:130 templates/single-service.php:102
+#: templates/single-service.php:102 includes/CPT/Service.php:224
+#: includes/Shortcodes/Servicekatalog.php:213
+#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:312
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: config/config.php:32 config/config.php:90 templates/single-service.php:76 templates/single-service.php:76 templates/archive-service.php:27 includes/Shortcodes/Servicekatalog.php:378 includes/Shortcodes/Servicekatalog.php:378
+#: config/config.php:32 config/config.php:90 templates/single-service.php:81
+#: templates/single-service.php:81 templates/archive-service.php:27
+#: includes/Shortcodes/Servicekatalog.php:384
+#: includes/Shortcodes/Servicekatalog.php:384 src/block/edit.js:214
 msgid "Target Group"
 msgstr "Zielgruppe"
 
-#: config/config.php:118 includes/CPT/Service.php:187 includes/Shortcodes/Servicekatalog.php:205
+#: src/block/edit.js:33
+msgid "Target group"
+msgstr "Zielgruppe"
+
+#: config/config.php:118 includes/CPT/Service.php:187
+#: includes/Shortcodes/Servicekatalog.php:205 src/block/edit.js:268
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
@@ -333,23 +461,36 @@ msgid "Teaser Length"
 msgstr "Länge des Textauszugs"
 
 #: includes/CPT/Service.php:273
-#| msgid "The order in which this commitment level is displayed e.g. in select lists."
-msgid "The order in which this commitment level is displayed e.g. in select lists."
-msgstr "Reihenfolge, in der diese Verbindlichkeit z.B. in Auswahllisten angezeigt wird."
+#| msgid ""
+#| "The order in which this commitment level is displayed e.g. in select "
+#| "lists."
+msgid ""
+"The order in which this commitment level is displayed e.g. in select lists."
+msgstr ""
+"Reihenfolge, in der diese Verbindlichkeit z.B. in Auswahllisten angezeigt "
+"wird."
 
 #. 1: Server PHP version number, 2: Required PHP version number.
 #: rrze-servicekatalog.php:63
 #, php-format
-msgid "The server is running PHP version %1$s. The Plugin requires at least PHP version %2$s."
-msgstr "Auf dem Server läuft PHP Version %1$s. Das Plugin benötigt mindestens PHP Version %2$s."
+msgid ""
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
+msgstr ""
+"Auf dem Server läuft PHP Version %1$s. Das Plugin benötigt mindestens PHP "
+"Version %2$s."
 
 #. 1: Server WordPress version number, 2: Required WordPress version number.
 #: rrze-servicekatalog.php:70
 #, php-format
-msgid "The server is running WordPress version %1$s. The Plugin requires at least WordPress version %2$s."
-msgstr "Auf dem Server läuft WordPress Version %1$s. Das Plugin benötigt mindestens WordPress Version %2$s."
+msgid ""
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
+msgstr ""
+"Auf dem Server läuft WordPress Version %1$s. Das Plugin benötigt mindestens "
+"WordPress Version %2$s."
 
-#: config/config.php:58
+#: config/config.php:58 src/block/edit.js:31
 msgid "Thumbnail"
 msgstr "Bild"
 
@@ -357,9 +498,13 @@ msgstr "Bild"
 msgid "Title"
 msgstr "Titel"
 
-#: templates/single-service.php:30 includes/Shortcodes/Servicekatalog.php:344
+#: templates/single-service.php:35 includes/Shortcodes/Servicekatalog.php:347
 msgid "Tutorial"
 msgstr "Anleitung"
+
+#: src/block/edit.js:37
+msgid "Tutorial link"
+msgstr "Link zum Tutorial"
 
 #: config/config.php:25
 msgid "Type of output"
@@ -389,7 +534,11 @@ msgstr "URL Anleitung"
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
 
-#: includes/PDF.php:74 templates/single-service.php:81 templates/single-service.php:81 templates/archive-service.php:31 includes/Shortcodes/Servicekatalog.php:221 includes/Shortcodes/Servicekatalog.php:383 includes/Shortcodes/Servicekatalog.php:383
+#: includes/PDF.php:74 templates/single-service.php:86
+#: templates/single-service.php:86 templates/archive-service.php:31
+#: includes/Shortcodes/Servicekatalog.php:221
+#: includes/Shortcodes/Servicekatalog.php:389
+#: includes/Shortcodes/Servicekatalog.php:389
 msgid "Use"
 msgstr "Nutzung"
 
@@ -402,13 +551,25 @@ msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr "Suchen"
 
-#: templates/single-service.php:33 includes/Shortcodes/Servicekatalog.php:347
+#: src/block/edit.js:38
+msgid "Video link"
+msgstr "Link zum Video"
+
+#: templates/single-service.php:38 includes/Shortcodes/Servicekatalog.php:350
 msgid "Video Tutorial"
 msgstr "Video-Tutorial"
 
 #: includes/CPT/Service.php:44
 msgid "View Service"
 msgstr "Service ansehen"
+
+#: src/block/edit.js:222
+msgid "Visibility of overview elements"
+msgstr "Sichtbarkeit der Element in der Übersicht"
+
+#: src/block/edit.js:255
+msgid "Visibility of service attributes"
+msgstr "Sichtbarkeit der Elemente in den einzelnen Services"
 
 #: includes/PDF.php:42
 msgid "Your RRZE Service Catalogue"

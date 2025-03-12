@@ -18,10 +18,10 @@ export default ({ attributes, setAttributes }) => {
 	const [selectedCommitments, setSelectedCommitments] = useState(attributes.selectedCommitments || []);
 	const [selectedTags, setSelectedTags] = useState(attributes.selectedTags || []);
 	const [selectedServices, setSelectedServices] = useState(attributes.selectedServices || []);
-	const [showSearchform] = useState(attributes.showSearchform || false);
-	const [showDisplaySwitcher] = useState(attributes.showDisplaySwitcher || false);
-	const [showPdf] = useState(attributes.showPdf || false);
-	const [selectedHiddenItems, setSelectedHiddenItems] = useState(attributes.selectedHiddenItems || []);
+	const {showSearchform} = attributes;
+	const {showDisplaySwitcher} = attributes;
+	const {showPdf} = attributes;
+	const [selectedShowItems, setselectedShowItems] = useState(attributes.selectedShowItems || []);
 
 	/* * * * * * * * * * * * * * * * * * * * * * * *
 	 * Hidden Items Options
@@ -179,10 +179,11 @@ export default ({ attributes, setAttributes }) => {
 	};
 
 	const toggleHiddenItems = (value) => {
-		const newSelectedHiddenItems = selectedHiddenItems.includes(value)
-			? selectedHiddenItems.filter((item) => item !== value) // Entfernen, falls bereits gewählt
-			: [...selectedHiddenItems, value]; // Hinzufügen, falls nicht gewählt
-		setAttributes({ selectedHiddenItems: newSelectedHiddenItems });
+		const newSelectedShowItems = selectedShowItems.includes(value)
+			? selectedShowItems.filter((item) => item !== value) // Entfernen, falls bereits gewählt
+			: [...selectedShowItems, value]; // Hinzufügen, falls nicht gewählt
+		setselectedShowItems(newSelectedShowItems);
+		setAttributes({ selectedShowItems: newSelectedShowItems });
 	};
 
 	/* * * * * * * * * * * * * * * * * * * * * * * *
@@ -218,40 +219,46 @@ export default ({ attributes, setAttributes }) => {
 				</PanelBody>
 				<PanelBody title={__('Show/Hide Items', 'rrze-servicekatalog')}>
 					<BaseControl label={__('Overview', 'rrze-servicekatalog')}>
-						<p>Hier kannst du die Einstellungen für den Block vornehmen.</p>
+						<p>{__('Visibility of overview elements', 'rrze-servicekatalog')}</p>
 					</BaseControl>
 					<ToggleControl
-						//__nextHasNoMarginBottom
+						__nextHasNoMarginBottom
 						label={__('Show Search Form', 'rrze-servicekatalog')}
-						checked={ showSearchform }
-						onChange={ (value) => {
-							setAttributes({ showSearchform: value });
-						} }
+						checked={!!showSearchform }
+						onChange={() =>
+							setAttributes({
+								showSearchform: !showSearchform,
+							})
+						}
 					/>
 					<ToggleControl
-						//__nextHasNoMarginBottom
+						__nextHasNoMarginBottom
 						label={__('Show Display Switcher', 'rrze-servicekatalog')}
-						checked={ showDisplaySwitcher }
-						onChange={ (value) => {
-							setAttributes({ showDisplaySwitcher: value });
-						} }
+						checked={ !!showDisplaySwitcher }
+						onChange={() =>
+							setAttributes({
+								showDisplaySwitcher: !showDisplaySwitcher,
+							})
+						}
 					/>
 					<ToggleControl
-						//__nextHasNoMarginBottom
+						__nextHasNoMarginBottom
 						label={__('Show PDF Download', 'rrze-servicekatalog')}
-						checked={ showPdf }
-						onChange={ (value) => {
-							setAttributes({ showPdf: value });
-						} }
+						checked={ !!showPdf }
+						onChange={() =>
+							setAttributes({
+								showPdf: !showPdf,
+							})
+						}
 					/>
 					<BaseControl label={__('Single Service', 'rrze-servicekatalog')}>
-						<p>Hier kannst du die Einstellungen für den Block vornehmen.</p>
+						<p>{__('Visibility of service attributes', 'rrze-servicekatalog')}</p>
 					</BaseControl>
 					{hiddenItemsOptions.map((option) => (
 						<ToggleControl
 							key={option.value}
 							label={option.label}
-							checked={selectedHiddenItems.includes(option.value)}
+							checked={selectedShowItems.includes(option.value)}
 							onChange={() => toggleHiddenItems(option.value)}
 						/>
 					))}
