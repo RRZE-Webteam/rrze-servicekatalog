@@ -1,236 +1,187 @@
-#, fuzzy
+# Copyright (C) 2025 RRZE Webteam
+# This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: RRZE Servicekatalog\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 13:34+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: RRZE Servicekatalog 1.3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rrze-servicekatalog\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.6; wp-6.3.1\n"
-"X-Domain: rrze-servicekatalog"
+"POT-Creation-Date: 2025-03-13T14:19:17+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: rrze-servicekatalog\n"
 
-#. Number of services
-#: includes/Shortcodes/Servicekatalog.php:258
-msgid "%d service found"
-msgid_plural "%d services found"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/Shortcodes/Servicekatalog.php:467
-#: includes/Shortcodes/Servicekatalog.php:498
-msgid "-- all --"
+#. Plugin Name of the plugin
+#: rrze-servicekatalog.php
+#: includes/Settings.php:32
+#: includes/Settings.php:36
+msgid "RRZE Servicekatalog"
 msgstr ""
 
-#. Name of the item
-#: includes/Shortcodes/Servicekatalog.php:363
-#: includes/Shortcodes/Servicekatalog.php:365
-#, php-format
-msgid "Add %s to print/PDF"
+#. Plugin URI of the plugin
+#: rrze-servicekatalog.php
+msgid "https://github.com/RRZE-Webteam/rrze-servicekatalog"
 msgstr ""
 
-#: includes/CPT/Service.php:39
-msgctxt "add new on admin bar"
-msgid "Services"
-msgstr ""
-
-#: includes/CPT/Service.php:41
-msgid "Add New Service"
-msgstr ""
-
-#: includes/CPT/Service.php:40
-msgctxt "admin menu"
-msgid "Add New"
-msgstr ""
-
-#: includes/CPT/Service.php:38
-msgctxt "admin menu"
-msgid "Services"
-msgstr ""
-
-#: src/block/edit.js:39
-msgid "All links"
-msgstr ""
-
-#: includes/CPT/Service.php:45
-msgid "All Services"
-msgstr ""
-
-#: config/config.php:66
-msgid "All URLs"
-msgstr ""
-
-#: includes/Settings.php:64
-msgid "Allow Shortcodes"
-msgstr ""
-
-#: includes/Settings.php:65
-msgid "Allow shortcodes in description field"
-msgstr ""
-
-#: includes/Settings.php:56
-msgid "Allowed Characters: [a-z], [0-9], [-], [_]"
-msgstr ""
-
-#: build/block/block.json:1 src/block/block.json:1
-msgctxt "block description"
+#. Description of the plugin
+#: rrze-servicekatalog.php
 msgid "Presentation of RRZE Services"
 msgstr ""
 
-#: build/block/block.json:1 src/block/block.json:1
-msgctxt "block title"
-msgid "Servicekatalog"
+#. Author of the plugin
+#: rrze-servicekatalog.php
+msgid "RRZE Webteam"
 msgstr ""
 
-#: includes/CPT/Service.php:250 includes/CPT/Service.php:257
-msgid "Color"
+#. Author URI of the plugin
+#: rrze-servicekatalog.php
+msgid "https://blogs.fau.de/webworking/"
 msgstr ""
 
-#: src/block/edit.js:32 src/block/edit.js:213
-msgid "Commitment"
+#: config/config.php:20
+#: build/block/index.js:308
+#: src/block/edit.js:217
+#: build/block/index.js:217
+msgid "Grid"
 msgstr ""
 
-#: config/config.php:31 config/config.php:86 config/config.php:124
-#: includes/CPT/Service.php:205
+#: config/config.php:21
+#: build/block/index.js:311
+#: src/block/edit.js:218
+#: build/block/index.js:218
+msgid "List"
+msgstr ""
+
+#: config/config.php:25
+msgid "Type of output"
+msgstr ""
+
+#: config/config.php:30
+msgid "Title"
+msgstr ""
+
+#: config/config.php:31
+#: config/config.php:86
+#: config/config.php:124
+#: includes/CPT/Service.php:206
 msgid "Commitment Level"
 msgstr ""
 
-#: src/block/edit.js:290
-msgid "Commitments"
+#: config/config.php:32
+#: config/config.php:90
+#: includes/Shortcodes/Servicekatalog.php:384
+#: templates/archive-service.php:27
+#: templates/single-service.php:81
+#: build/block/index.js:322
+#: src/block/edit.js:227
+#: build/block/index.js:227
+msgid "Target Group"
+msgid_plural "Target Groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/config.php:33
+#: includes/Shortcodes/Servicekatalog.php:392
+#: templates/archive-service.php:35
+#: build/block/index.js:91
+#: build/block/index.js:325
+#: src/block/edit.js:35
+#: src/block/edit.js:228
+#: build/block/index.js:35
+#: build/block/index.js:228
+msgid "Tag"
+msgid_plural "Tags"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/config.php:37
+msgid "Order by"
 msgstr ""
 
-#: src/block/edit.js:356
-msgid "Count"
+#: config/config.php:42
+msgid "Show Searchform"
+msgstr ""
+
+#: config/config.php:49
+msgid "Show PDF Download Button"
+msgstr ""
+
+#: config/config.php:58
+#: build/block/index.js:82
+#: src/block/edit.js:32
+#: build/block/index.js:32
+msgid "Thumbnail"
 msgstr ""
 
 #: config/config.php:62
 msgid "Description"
 msgstr ""
 
-#: src/block/edit.js:36
-msgid "Description link"
+#: config/config.php:66
+msgid "All URLs"
 msgstr ""
 
-#: includes/CPT/Service.php:292
-msgid ""
-"Don't show this target group publicly (e.g. in search form dropdown). You "
-"can still use it as shortcode filter."
+#: config/config.php:70
+#: includes/CPT/Service.php:164
+msgid "URL Portal"
 msgstr ""
 
-#: includes/CPT/Service.php:43
-msgid "Edit Service"
+#: config/config.php:74
+msgid "URL Description"
 msgstr ""
 
-#: includes/Settings.php:48
-msgid "General"
+#: config/config.php:78
+#: includes/CPT/Service.php:176
+msgid "URL Tutorial"
 msgstr ""
 
-#: includes/CPT/Service.php:146
-msgid "General Information"
+#: config/config.php:82
+#: includes/CPT/Service.php:182
+msgid "URL Video Tutorial"
 msgstr ""
 
-#: config/config.php:20 src/block/edit.js:204
-msgid "Grid"
-msgstr ""
-
-#: includes/Shortcodes/Servicekatalog.php:239
-msgid "Grid view"
+#: config/config.php:94
+#: config/config.php:130
+#: includes/CPT/Service.php:225
+#: includes/Shortcodes/Servicekatalog.php:213
+#: includes/Shortcodes/Servicekatalog.php:392
+#: templates/single-service.php:102
+#: build/block/index.js:425
+#: src/block/edit.js:334
+#: build/block/index.js:334
+msgid "Tags"
 msgstr ""
 
 #: config/config.php:99
 msgid "Hide Elements"
 msgstr ""
 
-#: src/block/edit.js:360
-msgid "How many services do you want to show? Enter -1 for all services."
+#: config/config.php:106
+#: build/block/index.js:330
+#: src/block/edit.js:234
+#: build/block/index.js:234
+msgid "Teaser Length"
 msgstr ""
 
-#. Author URI of the plugin
-msgid "https://blogs.fau.de/webworking/"
+#: config/config.php:118
+#: includes/CPT/Service.php:188
+#: includes/Shortcodes/Servicekatalog.php:205
+#: build/block/index.js:377
+#: src/block/edit.js:290
+#: build/block/index.js:290
+msgid "Target Groups"
 msgstr ""
 
-#. URI of the plugin
-msgid "https://github.com/RRZE-Webteam/rrze-servicekatalog"
-msgstr ""
-
-#: includes/CPT/Service.php:54
-msgid "Insert into service"
-msgstr ""
-
-#: includes/CPT/Service.php:284 includes/CPT/Service.php:291
-msgid "Internal"
-msgstr ""
-
-#: src/block/edit.js:196 src/block/edit.js:201
-msgid "Layout"
-msgstr ""
-
-#: includes/Settings.php:71
-msgid "Layout Archive Pages"
-msgstr ""
-
-#: config/config.php:21 src/block/edit.js:205
-msgid "List"
-msgstr ""
-
-#: includes/CPT/Service.php:154
-msgid "Max. 240 characters"
-msgstr ""
-
-#: includes/CPT/Service.php:42
-msgid "New Service"
-msgstr ""
-
-#: includes/CPT/Service.php:49
-msgid "No services found in Trash."
-msgstr ""
-
-#: includes/CPT/Service.php:48 includes/Shortcodes/Servicekatalog.php:253
-msgid "No services found."
-msgstr ""
-
-#: includes/CPT/Service.php:192
-msgid "None"
-msgstr ""
-
-#: src/block/edit.js:210
-msgid "Order"
-msgstr ""
-
-#: config/config.php:37
-msgid "Order by"
-msgstr ""
-
-#: includes/CPT/Service.php:272
-msgid "Order Number"
-msgstr ""
-
-#: src/block/edit.js:221
-msgid "Overview"
-msgstr ""
-
-#: includes/CPT/Service.php:47
-msgid "Parent Services:"
-msgstr ""
-
-#. 1: The plugin name, 2: The error string.
-#: rrze-servicekatalog.php:89 rrze-servicekatalog.php:145
-#, php-format
-msgid "Plugins: %1$s: %2$s"
-msgstr ""
-
-#: templates/single-service.php:29 includes/Shortcodes/Servicekatalog.php:341
-msgid "Portal"
-msgstr ""
-
-#: src/block/edit.js:35
-msgid "Portal link"
+#: config/config.php:136
+#: templates/archive-service.php:24
+#: templates/archive-service.php:56
+#: build/block/index.js:449
+#: src/block/edit.js:356
+#: build/block/index.js:356
+msgid "Services"
 msgstr ""
 
 #: includes/CPT/Service.php:36
@@ -243,295 +194,225 @@ msgctxt "post type singular name"
 msgid "Service"
 msgstr ""
 
-#. Description of the plugin
-msgid "Presentation of RRZE Services"
+#: includes/CPT/Service.php:38
+msgctxt "admin menu"
+msgid "Services"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:409
-msgid "Print/PDF"
+#: includes/CPT/Service.php:39
+msgctxt "add new on admin bar"
+msgid "Services"
 msgstr ""
 
-#: src/block/edit.js:281 src/block/edit.js:303 src/block/edit.js:325
-#: src/block/edit.js:347
-msgid "Remove"
+#: includes/CPT/Service.php:40
+msgctxt "admin menu"
+msgid "Add New"
 msgstr ""
 
-#: includes/CPT/Service.php:52
-msgid "Remove service icon"
+#: includes/CPT/Service.php:41
+msgid "Add New Service"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:228
-msgid "Reset all filters"
+#: includes/CPT/Service.php:42
+msgid "New Service"
 msgstr ""
 
-#: rrze-servicekatalog.php:188
-msgid "RRZE"
+#: includes/CPT/Service.php:43
+msgid "Edit Service"
 msgstr ""
 
-#. Name of the plugin
-#: includes/Settings.php:32 includes/Settings.php:36
-msgid "RRZE Servicekatalog"
+#: includes/CPT/Service.php:44
+msgid "View Service"
 msgstr ""
 
-#. Author of the plugin
-msgid "RRZE Webteam"
-msgstr ""
-
-#: includes/Shortcodes/Servicekatalog.php:199
-msgid "Search for..."
+#: includes/CPT/Service.php:45
+msgid "All Services"
 msgstr ""
 
 #: includes/CPT/Service.php:46
 msgid "Search Services"
 msgstr ""
 
-#: includes/Shortcodes/Servicekatalog.php:199
-msgid "Search term"
+#: includes/CPT/Service.php:47
+msgid "Parent Services:"
 msgstr ""
 
-#: src/block/edit.js:266
-msgid "Select Services"
+#: includes/CPT/Service.php:48
+#: includes/Shortcodes/Servicekatalog.php:253
+msgid "No services found."
 msgstr ""
 
-#: src/block/edit.js:295
-msgid "Selected Commitments"
-msgstr ""
-
-#: src/block/edit.js:339
-msgid "Selected Services"
-msgstr ""
-
-#: src/block/edit.js:317
-msgid "Selected Tags"
-msgstr ""
-
-#: src/block/edit.js:273
-msgid "Selected Target Groups"
-msgstr ""
-
-#: templates/single-service.php:32 includes/Shortcodes/Servicekatalog.php:344
-msgid "Service Description"
+#: includes/CPT/Service.php:49
+msgid "No services found in Trash."
 msgstr ""
 
 #: includes/CPT/Service.php:50
 msgid "Service icon"
 msgstr ""
 
-#: config/config.php:136 templates/archive-service.php:24
-#: templates/archive-service.php:56 src/block/edit.js:334
-msgid "Services"
-msgstr ""
-
 #: includes/CPT/Service.php:51
 msgid "Set service icon"
 msgstr ""
 
-#: includes/CPT/Service.php:153
-msgid "Short Description"
+#: includes/CPT/Service.php:52
+msgid "Remove service icon"
 msgstr ""
 
-#: src/block/edit.js:236
-msgid "Show Display Switcher"
+#: includes/CPT/Service.php:53
+msgid "Use as service icon"
 msgstr ""
 
-#: src/block/edit.js:246
-msgid "Show PDF Download"
-msgstr ""
-
-#: config/config.php:49
-msgid "Show PDF Download Button"
-msgstr ""
-
-#: src/block/edit.js:226
-msgid "Show Search Form"
-msgstr ""
-
-#: config/config.php:42
-msgid "Show Searchform"
-msgstr ""
-
-#: src/block/edit.js:220
-msgid "Show/Hide Items"
-msgstr ""
-
-#: src/block/edit.js:254
-msgid "Single Service"
-msgstr ""
-
-#: includes/Settings.php:55
-msgid "Slug"
-msgstr ""
-
-#: includes/CPT/Service.php:234
-msgid "Sorry, no tags could be found."
-msgstr ""
-
-#: includes/CPT/Service.php:196 includes/CPT/Service.php:215
-msgid "Sorry, no target groups could be found."
-msgstr ""
-
-#: includes/Shortcodes/Servicekatalog.php:240
-msgid "Table view"
-msgstr ""
-
-#: config/config.php:33 templates/archive-service.php:35
-#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:34
-#: src/block/edit.js:215
-msgid "Tag"
-msgstr ""
-
-#: config/config.php:94 config/config.php:130 templates/single-service.php:102
-#: templates/single-service.php:102 includes/CPT/Service.php:224
-#: includes/Shortcodes/Servicekatalog.php:213
-#: includes/Shortcodes/Servicekatalog.php:392 src/block/edit.js:312
-msgid "Tags"
-msgstr ""
-
-#: config/config.php:32 config/config.php:90 templates/single-service.php:81
-#: templates/single-service.php:81 templates/archive-service.php:27
-#: includes/Shortcodes/Servicekatalog.php:384
-#: includes/Shortcodes/Servicekatalog.php:384 src/block/edit.js:214
-msgid "Target Group"
-msgstr ""
-
-#: src/block/edit.js:33
-msgid "Target group"
-msgstr ""
-
-#: config/config.php:118 includes/CPT/Service.php:187
-#: includes/Shortcodes/Servicekatalog.php:205 src/block/edit.js:268
-msgid "Target Groups"
-msgstr ""
-
-#: includes/CPT/Service.php:103
-msgctxt "Taxonomy general name"
-msgid "Commitment Levels"
-msgstr ""
-
-#: includes/CPT/Service.php:125
-msgctxt "Taxonomy general name"
-msgid "Tags"
-msgstr ""
-
-#: includes/CPT/Service.php:81
-msgctxt "Taxonomy general name"
-msgid "Target Groups"
-msgstr ""
-
-#: includes/CPT/Service.php:106
-msgctxt "Taxonomy singular name"
-msgid "Add New Commitment Level"
-msgstr ""
-
-#: includes/CPT/Service.php:84
-msgctxt "Taxonomy singular name"
-msgid "Add New Target Group"
-msgstr ""
-
-#: includes/CPT/Service.php:104
-msgctxt "Taxonomy singular name"
-msgid "Commitment Level"
-msgstr ""
-
-#: includes/CPT/Service.php:105
-msgctxt "Taxonomy singular name"
-msgid "Edit Commitment Level"
-msgstr ""
-
-#: includes/CPT/Service.php:83
-msgctxt "Taxonomy singular name"
-msgid "Edit Target Group"
-msgstr ""
-
-#: includes/CPT/Service.php:126
-msgctxt "Taxonomy singular name"
-msgid "Tag"
-msgstr ""
-
-#: includes/CPT/Service.php:82
-msgctxt "Taxonomy singular name"
-msgid "Target Group"
-msgstr ""
-
-#: config/config.php:106
-msgid "Teaser Length"
-msgstr ""
-
-#: includes/CPT/Service.php:273
-msgid ""
-"The order in which this commitment level is displayed e.g. in select lists."
-msgstr ""
-
-#. 1: Server PHP version number, 2: Required PHP version number.
-#: rrze-servicekatalog.php:63
-#, php-format
-msgid ""
-"The server is running PHP version %1$s. The Plugin requires at least PHP "
-"version %2$s."
-msgstr ""
-
-#. 1: Server WordPress version number, 2: Required WordPress version number.
-#: rrze-servicekatalog.php:70
-#, php-format
-msgid ""
-"The server is running WordPress version %1$s. The Plugin requires at least "
-"WordPress version %2$s."
-msgstr ""
-
-#: config/config.php:58 src/block/edit.js:31
-msgid "Thumbnail"
-msgstr ""
-
-#: config/config.php:30
-msgid "Title"
-msgstr ""
-
-#: templates/single-service.php:35 includes/Shortcodes/Servicekatalog.php:347
-msgid "Tutorial"
-msgstr ""
-
-#: src/block/edit.js:37
-msgid "Tutorial link"
-msgstr ""
-
-#: config/config.php:25
-msgid "Type of output"
+#: includes/CPT/Service.php:54
+msgid "Insert into service"
 msgstr ""
 
 #: includes/CPT/Service.php:55
 msgid "Uploaded to this service"
 msgstr ""
 
-#: config/config.php:74
-msgid "URL Description"
+#: includes/CPT/Service.php:82
+msgctxt "Taxonomy general name"
+msgid "Target Groups"
 msgstr ""
 
-#: config/config.php:70 includes/CPT/Service.php:163
-msgid "URL Portal"
+#: includes/CPT/Service.php:83
+msgctxt "Taxonomy singular name"
+msgid "Target Group"
 msgstr ""
 
-#: includes/CPT/Service.php:169
+#: includes/CPT/Service.php:84
+msgctxt "Taxonomy singular name"
+msgid "Edit Target Group"
+msgstr ""
+
+#: includes/CPT/Service.php:85
+msgctxt "Taxonomy singular name"
+msgid "Add New Target Group"
+msgstr ""
+
+#: includes/CPT/Service.php:104
+msgctxt "Taxonomy general name"
+msgid "Commitment Levels"
+msgstr ""
+
+#: includes/CPT/Service.php:105
+msgctxt "Taxonomy singular name"
+msgid "Commitment Level"
+msgstr ""
+
+#: includes/CPT/Service.php:106
+msgctxt "Taxonomy singular name"
+msgid "Edit Commitment Level"
+msgstr ""
+
+#: includes/CPT/Service.php:107
+msgctxt "Taxonomy singular name"
+msgid "Add New Commitment Level"
+msgstr ""
+
+#: includes/CPT/Service.php:126
+msgctxt "Taxonomy general name"
+msgid "Tags"
+msgstr ""
+
+#: includes/CPT/Service.php:127
+msgctxt "Taxonomy singular name"
+msgid "Tag"
+msgstr ""
+
+#: includes/CPT/Service.php:147
+msgid "General Information"
+msgstr ""
+
+#: includes/CPT/Service.php:154
+msgid "Short Description"
+msgstr ""
+
+#: includes/CPT/Service.php:155
+msgid "Max. 240 characters"
+msgstr ""
+
+#: includes/CPT/Service.php:170
 msgid "URL Service Description"
 msgstr ""
 
-#: config/config.php:78 includes/CPT/Service.php:175
-msgid "URL Tutorial"
+#: includes/CPT/Service.php:193
+msgid "None"
 msgstr ""
 
-#: config/config.php:82 includes/CPT/Service.php:181
-msgid "URL Video Tutorial"
+#: includes/CPT/Service.php:197
+#: includes/CPT/Service.php:216
+msgid "Sorry, no target groups could be found."
 msgstr ""
 
-#: includes/PDF.php:74 templates/single-service.php:86
-#: templates/single-service.php:86 templates/archive-service.php:31
+#: includes/CPT/Service.php:235
+msgid "Sorry, no tags could be found."
+msgstr ""
+
+#: includes/CPT/Service.php:251
+#: includes/CPT/Service.php:258
+msgid "Color"
+msgstr ""
+
+#: includes/CPT/Service.php:273
+msgid "Order Number"
+msgstr ""
+
+#: includes/CPT/Service.php:274
+msgid "The order in which this commitment level is displayed e.g. in select lists."
+msgstr ""
+
+#: includes/CPT/Service.php:285
+#: includes/CPT/Service.php:292
+msgid "Internal"
+msgstr ""
+
+#: includes/CPT/Service.php:293
+msgid "Don't show this target group publicly (e.g. in search form dropdown). You can still use it as shortcode filter."
+msgstr ""
+
+#: includes/PDF.php:42
+msgid "Your RRZE Service Catalogue"
+msgstr ""
+
+#: includes/PDF.php:74
 #: includes/Shortcodes/Servicekatalog.php:221
 #: includes/Shortcodes/Servicekatalog.php:389
-#: includes/Shortcodes/Servicekatalog.php:389
+#: templates/archive-service.php:31
+#: templates/single-service.php:86
 msgid "Use"
 msgstr ""
 
-#: includes/CPT/Service.php:53
-msgid "Use as service icon"
+#: includes/Settings.php:48
+msgid "General"
+msgstr ""
+
+#: includes/Settings.php:55
+msgid "Slug"
+msgstr ""
+
+#: includes/Settings.php:56
+msgid "Allowed Characters: [a-z], [0-9], [-], [_]"
+msgstr ""
+
+#: includes/Settings.php:64
+msgid "Allow Shortcodes"
+msgstr ""
+
+#: includes/Settings.php:65
+msgid "Allow shortcodes in description field"
+msgstr ""
+
+#: includes/Settings.php:71
+msgid "Layout Archive Pages"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:199
+msgid "Search term"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:199
+msgid "Search for..."
 msgstr ""
 
 #: includes/Shortcodes/Servicekatalog.php:200
@@ -539,26 +420,265 @@ msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr ""
 
-#: src/block/edit.js:38
-msgid "Video link"
+#: includes/Shortcodes/Servicekatalog.php:228
+msgid "Reset all filters"
 msgstr ""
 
-#: templates/single-service.php:38 includes/Shortcodes/Servicekatalog.php:350
+#: includes/Shortcodes/Servicekatalog.php:239
+msgid "Grid view"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:240
+msgid "Table view"
+msgstr ""
+
+#. translators: Number of services
+#: includes/Shortcodes/Servicekatalog.php:258
+msgid "%d service found"
+msgid_plural "%d services found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/Shortcodes/Servicekatalog.php:341
+#: templates/single-service.php:29
+msgid "Portal"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:344
+#: templates/single-service.php:32
+msgid "Service Description"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:347
+#: templates/single-service.php:35
+msgid "Tutorial"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:350
+#: templates/single-service.php:38
 msgid "Video Tutorial"
 msgstr ""
 
-#: includes/CPT/Service.php:44
-msgid "View Service"
+#. translators: Name of the item
+#: includes/Shortcodes/Servicekatalog.php:363
+#: includes/Shortcodes/Servicekatalog.php:365
+msgid "Add %s to print/PDF"
 msgstr ""
 
-#: src/block/edit.js:222
+#: includes/Shortcodes/Servicekatalog.php:409
+msgid "Print/PDF"
+msgstr ""
+
+#: includes/Shortcodes/Servicekatalog.php:467
+#: includes/Shortcodes/Servicekatalog.php:498
+msgid "-- all --"
+msgstr ""
+
+#. translators: 1: Server PHP version number, 2: Required PHP version number.
+#: rrze-servicekatalog.php:63
+msgid "The server is running PHP version %1$s. The Plugin requires at least PHP version %2$s."
+msgstr ""
+
+#. translators: 1: Server WordPress version number, 2: Required WordPress version number.
+#: rrze-servicekatalog.php:70
+msgid "The server is running WordPress version %1$s. The Plugin requires at least WordPress version %2$s."
+msgstr ""
+
+#. translators: 1: The plugin name, 2: The error string.
+#: rrze-servicekatalog.php:89
+#: rrze-servicekatalog.php:145
+msgid "Plugins: %1$s: %2$s"
+msgstr ""
+
+#: rrze-servicekatalog.php:188
+msgid "RRZE"
+msgstr ""
+
+#: build/block/index.js:85
+#: build/block/index.js:319
+#: src/block/edit.js:33
+#: src/block/edit.js:226
+#: build/block/index.js:33
+#: build/block/index.js:226
+msgid "Commitment"
+msgstr ""
+
+#: build/block/index.js:88
+#: src/block/edit.js:34
+#: build/block/index.js:34
+msgid "Target group"
+msgstr ""
+
+#: build/block/index.js:94
+#: src/block/edit.js:36
+#: build/block/index.js:36
+msgid "Portal link"
+msgstr ""
+
+#: build/block/index.js:97
+#: src/block/edit.js:37
+#: build/block/index.js:37
+msgid "Description link"
+msgstr ""
+
+#: build/block/index.js:100
+#: src/block/edit.js:38
+#: build/block/index.js:38
+msgid "Tutorial link"
+msgstr ""
+
+#: build/block/index.js:103
+#: src/block/edit.js:39
+#: build/block/index.js:39
+msgid "Video link"
+msgstr ""
+
+#: build/block/index.js:106
+#: src/block/edit.js:40
+#: build/block/index.js:40
+msgid "All links"
+msgstr ""
+
+#: build/block/index.js:303
+#: build/block/index.js:305
+#: src/block/edit.js:212
+#: src/block/edit.js:214
+#: build/block/index.js:212
+#: build/block/index.js:214
+msgid "Layout"
+msgstr ""
+
+#: build/block/index.js:316
+#: src/block/edit.js:223
+#: build/block/index.js:223
+msgid "Order"
+msgstr ""
+
+#: build/block/index.js:334
+#: src/block/edit.js:238
+#: build/block/index.js:238
+msgid "Number of words"
+msgstr ""
+
+#: build/block/index.js:337
+#: src/block/edit.js:242
+#: build/block/index.js:242
+msgid "Show/Hide Items"
+msgstr ""
+
+#: build/block/index.js:339
+#: src/block/edit.js:243
+#: build/block/index.js:243
+msgid "Overview"
+msgstr ""
+
+#: build/block/index.js:341
+#: src/block/edit.js:244
+#: build/block/index.js:244
 msgid "Visibility of overview elements"
 msgstr ""
 
-#: src/block/edit.js:255
+#: build/block/index.js:345
+#: src/block/edit.js:248
+#: build/block/index.js:248
+msgid "Show Search Form"
+msgstr ""
+
+#: build/block/index.js:352
+#: src/block/edit.js:258
+#: build/block/index.js:258
+msgid "Show Display Switcher"
+msgstr ""
+
+#: build/block/index.js:359
+#: src/block/edit.js:268
+#: build/block/index.js:268
+msgid "Show PDF Download"
+msgstr ""
+
+#: build/block/index.js:365
+#: src/block/edit.js:276
+#: build/block/index.js:276
+msgid "Single Service"
+msgstr ""
+
+#: build/block/index.js:367
+#: src/block/edit.js:277
+#: build/block/index.js:277
 msgid "Visibility of service attributes"
 msgstr ""
 
-#: includes/PDF.php:42
-msgid "Your RRZE Service Catalogue"
+#: build/block/index.js:375
+#: src/block/edit.js:288
+#: build/block/index.js:288
+msgid "Select Services"
+msgstr ""
+
+#: build/block/index.js:385
+#: src/block/edit.js:295
+#: build/block/index.js:295
+msgid "Selected Target Groups"
+msgstr ""
+
+#: build/block/index.js:395
+#: build/block/index.js:419
+#: build/block/index.js:443
+#: build/block/index.js:467
+#: src/block/edit.js:303
+#: src/block/edit.js:325
+#: src/block/edit.js:347
+#: src/block/edit.js:369
+#: build/block/index.js:303
+#: build/block/index.js:325
+#: build/block/index.js:347
+#: build/block/index.js:369
+msgid "Remove"
+msgstr ""
+
+#: build/block/index.js:401
+#: src/block/edit.js:312
+#: build/block/index.js:312
+msgid "Commitments"
+msgstr ""
+
+#: build/block/index.js:409
+#: src/block/edit.js:317
+#: build/block/index.js:317
+msgid "Selected Commitments"
+msgstr ""
+
+#: build/block/index.js:433
+#: src/block/edit.js:339
+#: build/block/index.js:339
+msgid "Selected Tags"
+msgstr ""
+
+#: build/block/index.js:457
+#: src/block/edit.js:361
+#: build/block/index.js:361
+msgid "Selected Services"
+msgstr ""
+
+#: build/block/index.js:473
+#: src/block/edit.js:378
+#: build/block/index.js:378
+msgid "Count"
+msgstr ""
+
+#: build/block/index.js:477
+#: src/block/edit.js:382
+#: build/block/index.js:382
+msgid "How many services do you want to show? Enter -1 for all services."
+msgstr ""
+
+#: build/block/block.json
+#: src/block/block.json
+msgctxt "block title"
+msgid "Servicekatalog"
+msgstr ""
+
+#: build/block/block.json
+#: src/block/block.json
+msgctxt "block description"
+msgid "Presentation of RRZE Services"
 msgstr ""

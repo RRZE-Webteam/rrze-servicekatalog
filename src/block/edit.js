@@ -22,6 +22,7 @@ export default ({ attributes, setAttributes }) => {
 	const {showDisplaySwitcher} = attributes;
 	const {showPdf} = attributes;
 	const [selectedShowItems, setselectedShowItems] = useState(attributes.selectedShowItems || []);
+	const {teaserLength } = attributes;
 
 	/* * * * * * * * * * * * * * * * * * * * * * * *
 	 * Hidden Items Options
@@ -129,7 +130,11 @@ export default ({ attributes, setAttributes }) => {
 
 	// Posts abrufen
 	const services = useSelect(select => {
-		return select('core').getEntityRecords('postType', 'rrze-service') || [];
+		return select('core').getEntityRecords('postType', 'rrze-service', {
+			per_page: -1,
+			orderby: 'title',
+			order: 'asc'
+		}) || [];
 	}, []);
 
 	// Begriffe für die Combobox-Optionen aufbereiten
@@ -168,6 +173,17 @@ export default ({ attributes, setAttributes }) => {
 		}
 	};
 
+	// Funktion zur Aktualisierung der numerischen Eingabe
+	const onChangeTeaserLength = (value) => {
+		// Sicherstellen, dass nur Zahlen gespeichert werden
+		const newTeaserLength = parseInt(value, 10);
+		if (!isNaN(newTeaserLength) && newTeaserLength > -1) {
+			setAttributes({ teaserLength: newTeaserLength });
+		} else {
+			setAttributes({ teaserLength: '' });
+		}
+	};
+
 	const onChangeLayout = (value) => {
 		setLayout( value );
 		setAttributes({layout: value});
@@ -194,9 +210,6 @@ export default ({ attributes, setAttributes }) => {
 		<div {...blockProps}>
 			<InspectorControls>
 				<PanelBody title={__('Layout', 'rrze-servicekatalog')}>
-					<BaseControl label="Hinweis">
-						<p>Hier kannst du die Einstellungen für den Block vornehmen.</p>
-					</BaseControl>
 					<RadioControl
 						label={__('Layout', 'rrze-servicekatalog')}
 						selected={ layout }
@@ -216,6 +229,15 @@ export default ({ attributes, setAttributes }) => {
 						] }
 						onChange={onChangeOrderBy}
 					/>
+					{layout === "grid" && (
+						<TextControl
+							label={__('Teaser Length', 'rrze-servicekatalog')}
+							type="number"
+							value={teaserLength}
+							onChange={onChangeTeaserLength}
+							help={__('Number of words', 'rrze-servicekatalog')}
+						/>
+					)}
 				</PanelBody>
 				<PanelBody title={__('Show/Hide Items', 'rrze-servicekatalog')}>
 					<BaseControl label={__('Overview', 'rrze-servicekatalog')}>

@@ -69,6 +69,7 @@ class Service
             'exclude_from_search' => false,
             'publicly_queryable' => true,
             'rewrite'            => ['slug' => $slug],
+            'show_in_rest'       => true,
         ];
 
         register_post_type(self::POST_TYPE, $args);

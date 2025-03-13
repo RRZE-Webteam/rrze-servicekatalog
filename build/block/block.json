@@ -21,8 +21,8 @@
       "default": {}
     },
     "selectedServices": {
-      "type": "integer",
-      "default": 0
+      "type": "array",
+      "default": {}
     },
     "numServices": {
       "type": "integer",
