@@ -16,8 +16,8 @@ class Servicekatalog
 
     public function __construct() {
         $this->settings = getShortcodeSettings();
-        add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
-        add_action('init', [$this, 'initGutenberg']);
+        //add_action('admin_enqueue_scripts', [$this, 'enqueueGutenberg']);
+        //add_action('init', [$this, 'initGutenberg']);
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         add_shortcode('servicekatalog', [$this, 'shortcodeOutput']);
     }
@@ -225,22 +225,24 @@ class Servicekatalog
                 $output .= '</div></div>';
             }
 
-            if (in_array($atts['display-switcher'], [true, 'true', '1', 'yes', 'ja', 'on'])) {
-                $url_parts = parse_url( home_url() );
-                $url = $url_parts['scheme'] . "://" . $url_parts['host'];
-                $displaySwitcher = '<div class="layout-settings">'
-                    . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-servicekatalog') . '</span></a>'
-                    . '<a href="' . $url . add_query_arg( 'display', 'list' ) . '" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
-                    . '</div>';
-            } else {
-                $displaySwitcher = '';
-            }
             $output .= '<div class="settings-area"><div class="filter-reset"><a href="' . get_permalink() . '?display=' . $layout . '">&#9747; ' . __('Reset all filters', 'rrze-servicekatalog') . '</a></div>'
-                . do_shortcode($displaySwitcher)
+                //. do_shortcode($displaySwitcher)
                 . '</div>';
 
             $output .=  '</form>';
         }
+
+        if (in_array($atts['display-switcher'], [true, 'true', '1', 'yes', 'ja', 'on'])) {
+            $url_parts = parse_url( home_url() );
+            $url = $url_parts['scheme'] . "://" . $url_parts['host'];
+            $displaySwitcher = '<div class="layout-settings">'
+                               . '<a href="' . $url . add_query_arg( 'display', 'grid' ) . '" title="' . __('Grid view', 'rrze-servicekatalog') . '">[icon icon="solid table-cells-large" style="2x"]<span class="screen-reader-text">' . __('Grid view', 'rrze-servicekatalog') . '</span></a>'
+                               . '<a href="' . $url . add_query_arg( 'display', 'list' ) . '" title="' . __('Table view', 'rrze-servicekatalog') . '">[icon icon="solid list" style="2x"]<span class="screen-reader-text">' . __('Table view', 'rrze-servicekatalog') . '</span></a>'
+                               . '</div>';
+        } else {
+            $displaySwitcher = '';
+        }
+        $output .= do_shortcode($displaySwitcher);
 
         /*
          * Output

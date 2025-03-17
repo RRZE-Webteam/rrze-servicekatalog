@@ -113,6 +113,7 @@
             flex-grow: 2;
             ul {
                 margin: 0;
+                padding-left: 0;
                 border-top: 2px solid var(--color-ContentBorders,#dfe6ec);
                 padding-top: var(--width-gutter-half, 15px);
                 @media (min-width: 768px) {
@@ -185,6 +186,7 @@
     .service-urls {
         ul {
             margin: 0;
+            padding-left: 0;
         }
         li {
             padding: 0;
@@ -579,6 +581,12 @@
             a > svg.rrze-elements-icon {
                 border-radius: 0 !important;
             }
+        }
+    }
+    .layout-settings {
+        float: right;
+        a > svg.rrze-elements-icon {
+            border-radius: 0 !important;
         }
     }
 }
