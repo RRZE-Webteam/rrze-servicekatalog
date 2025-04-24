@@ -120,7 +120,7 @@ class Settings {
         ) );
 
         $main_options->add_field([
-            'name' => __('PDF: Link Parameters for QR Code', 'rrze-servicekatalog'),
+            'name' => __('PDF: URL Parameters for QR Code', 'rrze-servicekatalog'),
             'desc' => __('Add tracking parameters that are added to QR code links', 'rrze-servicekatalog'),
             'id' => 'qr_link_parameters',
             'type' => 'text',
@@ -129,15 +129,15 @@ class Settings {
             ],
         ]);
 
-        /*$main_options->add_field([
-             'name' => __('Link Parameters for Text Links', 'rrze-servicekatalog'),
-             'desc' => __('', 'rrze-servicekatalog'),
-             'id' => 'text_link_parameters',
+        $main_options->add_field([
+             'name' => __('URL Parameters for Service Links', 'rrze-servicekatalog'),
+             //'desc' => __('', 'rrze-servicekatalog'),
+             'id' => 'service_link_parameters',
              'type' => 'text',
              'attributes' => [
                  'class' => 'large-text'
              ],
-         ]);*/
+         ]);
     }
 
     /*

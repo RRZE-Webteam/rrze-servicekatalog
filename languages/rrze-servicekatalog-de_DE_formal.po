@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE Servicekatalog\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-04 19:13+0000\n"
-"PO-Revision-Date: 2025-03-13 14:21+0000\n"
+"PO-Revision-Date: 2025-04-24 14:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch (Sie)\n"
 "Language: de_DE_formal\n"
@@ -47,6 +47,10 @@ msgstr "Services"
 msgid "Add New Service"
 msgstr "Neuen Service hinzufügen"
 
+#: includes/Settings.php:124
+msgid "Add tracking parameters that are added to QR code links"
+msgstr "Tracking-Parameter werden an die Links im QR-Code angefügt."
+
 #: includes/CPT/Service.php:40
 msgctxt "admin menu"
 msgid "Add New"
@@ -57,7 +61,7 @@ msgctxt "admin menu"
 msgid "Services"
 msgstr "Services"
 
-#: build/block/index.js:106 src/block/edit.js:40 build/block/index.js:40
+#: build/block/index.js:1 src/block/edit.js:40
 msgid "All links"
 msgstr "Alle Links"
 
@@ -95,8 +99,7 @@ msgstr "Servicekatalog"
 msgid "Color"
 msgstr "Farbe"
 
-#: build/block/index.js:85 build/block/index.js:319 src/block/edit.js:33
-#: src/block/edit.js:226 build/block/index.js:33 build/block/index.js:226
+#: build/block/index.js:1 src/block/edit.js:33 src/block/edit.js:226
 msgid "Commitment"
 msgstr "Verbindlichkeit"
 
@@ -105,11 +108,11 @@ msgstr "Verbindlichkeit"
 msgid "Commitment Level"
 msgstr "Verbindlichkeit"
 
-#: build/block/index.js:401 src/block/edit.js:312 build/block/index.js:312
+#: build/block/index.js:1 src/block/edit.js:312
 msgid "Commitments"
 msgstr "Verbindlichkeiten"
 
-#: build/block/index.js:473 src/block/edit.js:378 build/block/index.js:378
+#: build/block/index.js:1 src/block/edit.js:378
 msgid "Count"
 msgstr "Anzahl"
 
@@ -117,7 +120,7 @@ msgstr "Anzahl"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: build/block/index.js:97 src/block/edit.js:37 build/block/index.js:37
+#: build/block/index.js:1 src/block/edit.js:37
 msgid "Description link"
 msgstr "Link zur Beschreibung"
 
@@ -141,8 +144,7 @@ msgstr "Allgemein"
 msgid "General Information"
 msgstr "Allgemeine Informationen"
 
-#: config/config.php:20 build/block/index.js:308 src/block/edit.js:217
-#: build/block/index.js:217
+#: config/config.php:20 build/block/index.js:1 src/block/edit.js:217
 msgid "Grid"
 msgstr "Kacheln"
 
@@ -154,7 +156,7 @@ msgstr "Zur Gitteransicht wechseln"
 msgid "Hide Elements"
 msgstr "Elemente verbergen"
 
-#: build/block/index.js:477 src/block/edit.js:382 build/block/index.js:382
+#: build/block/index.js:1 src/block/edit.js:382
 msgid "How many services do you want to show? Enter -1 for all services."
 msgstr "Wie viele Services sollen angezeigt werden? Für alle -1 eingeben."
 
@@ -176,8 +178,7 @@ msgstr "Zum Service hinzufügen"
 msgid "Internal"
 msgstr "Intern"
 
-#: build/block/index.js:303 build/block/index.js:305 src/block/edit.js:212
-#: src/block/edit.js:214 build/block/index.js:212 build/block/index.js:214
+#: build/block/index.js:1 src/block/edit.js:212 src/block/edit.js:214
 msgid "Layout"
 msgstr "Layout"
 
@@ -185,10 +186,13 @@ msgstr "Layout"
 msgid "Layout Archive Pages"
 msgstr "Layout Archiv-Seiten"
 
-#: config/config.php:21 build/block/index.js:311 src/block/edit.js:218
-#: build/block/index.js:218
+#: config/config.php:21 build/block/index.js:1 src/block/edit.js:218
 msgid "List"
 msgstr "Liste"
+
+#: includes/Settings.php:116
+msgid "Marketing"
+msgstr "Marketing"
 
 #: includes/CPT/Service.php:155
 msgid "Max. 240 characters"
@@ -210,11 +214,11 @@ msgstr "Keine Services gefunden."
 msgid "None"
 msgstr "Keine"
 
-#: build/block/index.js:334 src/block/edit.js:238 build/block/index.js:238
+#: build/block/index.js:1 src/block/edit.js:238
 msgid "Number of words"
 msgstr "Anzahl Wörter"
 
-#: build/block/index.js:316 src/block/edit.js:223 build/block/index.js:223
+#: build/block/index.js:1 src/block/edit.js:223
 msgid "Order"
 msgstr "Reihenfolge"
 
@@ -226,7 +230,7 @@ msgstr "Sortieren nach"
 msgid "Order Number"
 msgstr "Reihenfolge"
 
-#: build/block/index.js:339 src/block/edit.js:243 build/block/index.js:243
+#: build/block/index.js:1 src/block/edit.js:243
 msgid "Overview"
 msgstr "Übersicht"
 
@@ -234,16 +238,20 @@ msgstr "Übersicht"
 msgid "Parent Services:"
 msgstr "Übergeordnete Services:"
 
+#: includes/Settings.php:123
+msgid "PDF: URL Parameters for QR Code"
+msgstr "PDF: URL-Parameter für QR-Codes"
+
 #. translators: 1: The plugin name, 2: The error string.
 #: rrze-servicekatalog.php:89 rrze-servicekatalog.php:145
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
 
-#: includes/Shortcodes/Servicekatalog.php:341 templates/single-service.php:29
+#: includes/Shortcodes/Servicekatalog.php:341 templates/single-service.php:30
 msgid "Portal"
 msgstr "Anwendung"
 
-#: build/block/index.js:94 src/block/edit.js:36 build/block/index.js:36
+#: build/block/index.js:1 src/block/edit.js:36
 msgid "Portal link"
 msgstr "Link zum Portal"
 
@@ -266,10 +274,8 @@ msgstr "Präsentation der RRZE-Services"
 msgid "Print/PDF"
 msgstr "Drucken/PDF"
 
-#: build/block/index.js:395 build/block/index.js:419 build/block/index.js:443
-#: build/block/index.js:467 src/block/edit.js:303 src/block/edit.js:325
-#: src/block/edit.js:347 src/block/edit.js:369 build/block/index.js:303
-#: build/block/index.js:325 build/block/index.js:347 build/block/index.js:369
+#: build/block/index.js:1 src/block/edit.js:303 src/block/edit.js:325
+#: src/block/edit.js:347 src/block/edit.js:369
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -307,27 +313,27 @@ msgstr "Services durchsuchen"
 msgid "Search term"
 msgstr "Suchbegriff"
 
-#: build/block/index.js:375 src/block/edit.js:288 build/block/index.js:288
+#: build/block/index.js:1 src/block/edit.js:288
 msgid "Select Services"
 msgstr "Services auswählen"
 
-#: build/block/index.js:409 src/block/edit.js:317 build/block/index.js:317
+#: build/block/index.js:1 src/block/edit.js:317
 msgid "Selected Commitments"
 msgstr "Ausgewählte Verbindlichkeiten"
 
-#: build/block/index.js:457 src/block/edit.js:361 build/block/index.js:361
+#: build/block/index.js:1 src/block/edit.js:361
 msgid "Selected Services"
 msgstr "Ausgewählte Services"
 
-#: build/block/index.js:433 src/block/edit.js:339 build/block/index.js:339
+#: build/block/index.js:1 src/block/edit.js:339
 msgid "Selected Tags"
 msgstr "Ausgewählte Schlagwörter"
 
-#: build/block/index.js:385 src/block/edit.js:295 build/block/index.js:295
+#: build/block/index.js:1 src/block/edit.js:295
 msgid "Selected Target Groups"
 msgstr "Ausgewählte Zielgruppen"
 
-#: includes/Shortcodes/Servicekatalog.php:344 templates/single-service.php:32
+#: includes/Shortcodes/Servicekatalog.php:344 templates/single-service.php:33
 msgid "Service Description"
 msgstr "Beschreibung"
 
@@ -336,8 +342,8 @@ msgid "Service icon"
 msgstr "Service-Icon"
 
 #: config/config.php:136 templates/archive-service.php:24
-#: templates/archive-service.php:56 build/block/index.js:449
-#: src/block/edit.js:356 build/block/index.js:356
+#: templates/archive-service.php:56 build/block/index.js:1
+#: src/block/edit.js:356
 msgid "Services"
 msgstr "Services"
 
@@ -349,11 +355,11 @@ msgstr "Service-Icon setzen"
 msgid "Short Description"
 msgstr "Kurzbeschreibung"
 
-#: build/block/index.js:352 src/block/edit.js:258 build/block/index.js:258
+#: build/block/index.js:1 src/block/edit.js:258
 msgid "Show Display Switcher"
 msgstr "Layout-Umschalter anzeigen"
 
-#: build/block/index.js:359 src/block/edit.js:268 build/block/index.js:268
+#: build/block/index.js:1 src/block/edit.js:268
 msgid "Show PDF Download"
 msgstr "PDF-Download anzeigen"
 
@@ -361,7 +367,7 @@ msgstr "PDF-Download anzeigen"
 msgid "Show PDF Download Button"
 msgstr "PDF-Download-Button anzeigen"
 
-#: build/block/index.js:345 src/block/edit.js:248 build/block/index.js:248
+#: build/block/index.js:1 src/block/edit.js:248
 msgid "Show Search Form"
 msgstr "Filterformular anzeigen"
 
@@ -369,11 +375,11 @@ msgstr "Filterformular anzeigen"
 msgid "Show Searchform"
 msgstr "Suchformular anzeigen"
 
-#: build/block/index.js:337 src/block/edit.js:242 build/block/index.js:242
+#: build/block/index.js:1 src/block/edit.js:242
 msgid "Show/Hide Items"
 msgstr "Elemente ein-/ausblenden"
 
-#: build/block/index.js:365 src/block/edit.js:276 build/block/index.js:276
+#: build/block/index.js:1 src/block/edit.js:276
 msgid "Single Service"
 msgstr "Einzelner Service"
 
@@ -394,9 +400,8 @@ msgid "Table view"
 msgstr "Zur Listenansicht wechseln"
 
 #: config/config.php:33 includes/Shortcodes/Servicekatalog.php:392
-#: templates/archive-service.php:35 build/block/index.js:91
-#: build/block/index.js:325 src/block/edit.js:35 src/block/edit.js:228
-#: build/block/index.js:35 build/block/index.js:228
+#: templates/archive-service.php:35 build/block/index.js:1 src/block/edit.js:35
+#: src/block/edit.js:228
 msgid "Tag"
 msgid_plural "Tags"
 msgstr[0] "Schlagwort"
@@ -404,27 +409,26 @@ msgstr[1] "Schlagwörter"
 
 #: config/config.php:94 config/config.php:130 includes/CPT/Service.php:225
 #: includes/Shortcodes/Servicekatalog.php:213
-#: includes/Shortcodes/Servicekatalog.php:392 templates/single-service.php:102
-#: build/block/index.js:425 src/block/edit.js:334 build/block/index.js:334
+#: includes/Shortcodes/Servicekatalog.php:392 templates/single-service.php:103
+#: build/block/index.js:1 src/block/edit.js:334
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: build/block/index.js:88 src/block/edit.js:34 build/block/index.js:34
+#: build/block/index.js:1 src/block/edit.js:34
 msgid "Target group"
 msgstr "Zielgruppe"
 
 #: config/config.php:32 config/config.php:90
 #: includes/Shortcodes/Servicekatalog.php:384 templates/archive-service.php:27
-#: templates/single-service.php:81 build/block/index.js:322
-#: src/block/edit.js:227 build/block/index.js:227
+#: templates/single-service.php:82 build/block/index.js:1 src/block/edit.js:227
 msgid "Target Group"
 msgid_plural "Target Groups"
 msgstr[0] "Zielgruppe"
 msgstr[1] "Zielgruppen"
 
 #: config/config.php:118 includes/CPT/Service.php:188
-#: includes/Shortcodes/Servicekatalog.php:205 build/block/index.js:377
-#: src/block/edit.js:290 build/block/index.js:290
+#: includes/Shortcodes/Servicekatalog.php:205 build/block/index.js:1
+#: src/block/edit.js:290
 msgid "Target Groups"
 msgstr "Zielgruppen"
 
@@ -478,8 +482,7 @@ msgctxt "Taxonomy singular name"
 msgid "Target Group"
 msgstr "Zielgruppe"
 
-#: config/config.php:106 build/block/index.js:330 src/block/edit.js:234
-#: build/block/index.js:234
+#: config/config.php:106 build/block/index.js:1 src/block/edit.js:234
 msgid "Teaser Length"
 msgstr "Länge des Textauszugs"
 
@@ -511,8 +514,7 @@ msgstr ""
 "Auf dem Server läuft WordPress Version %1$s. Das Plugin benötigt mindestens "
 "WordPress Version %2$s."
 
-#: config/config.php:58 build/block/index.js:82 src/block/edit.js:32
-#: build/block/index.js:32
+#: config/config.php:58 build/block/index.js:1 src/block/edit.js:32
 msgid "Thumbnail"
 msgstr "Bild"
 
@@ -520,11 +522,11 @@ msgstr "Bild"
 msgid "Title"
 msgstr "Titel"
 
-#: includes/Shortcodes/Servicekatalog.php:347 templates/single-service.php:35
+#: includes/Shortcodes/Servicekatalog.php:347 templates/single-service.php:36
 msgid "Tutorial"
 msgstr "Anleitung"
 
-#: build/block/index.js:100 src/block/edit.js:38 build/block/index.js:38
+#: build/block/index.js:1 src/block/edit.js:38
 msgid "Tutorial link"
 msgstr "Link zum Tutorial"
 
@@ -539,6 +541,10 @@ msgstr "Zu diesem Service hochgeladen"
 #: config/config.php:74
 msgid "URL Description"
 msgstr "URL Beschreibung"
+
+#: includes/Settings.php:133
+msgid "URL Parameters for Service Links"
+msgstr "URL-Parameter für Service-Links"
 
 #: config/config.php:70 includes/CPT/Service.php:164
 msgid "URL Portal"
@@ -556,9 +562,9 @@ msgstr "URL Anleitung"
 msgid "URL Video Tutorial"
 msgstr "URL Video-Tutorial"
 
-#: includes/PDF.php:74 includes/Shortcodes/Servicekatalog.php:221
+#: includes/PDF.php:76 includes/Shortcodes/Servicekatalog.php:221
 #: includes/Shortcodes/Servicekatalog.php:389 templates/archive-service.php:31
-#: templates/single-service.php:86
+#: templates/single-service.php:87
 msgid "Use"
 msgstr "Nutzung"
 
@@ -571,11 +577,11 @@ msgctxt "Verb, infinitive"
 msgid "Search"
 msgstr "Suchen"
 
-#: build/block/index.js:103 src/block/edit.js:39 build/block/index.js:39
+#: build/block/index.js:1 src/block/edit.js:39
 msgid "Video link"
 msgstr "Link zum Video"
 
-#: includes/Shortcodes/Servicekatalog.php:350 templates/single-service.php:38
+#: includes/Shortcodes/Servicekatalog.php:350 templates/single-service.php:39
 msgid "Video Tutorial"
 msgstr "Video-Tutorial"
 
@@ -583,14 +589,14 @@ msgstr "Video-Tutorial"
 msgid "View Service"
 msgstr "Service ansehen"
 
-#: build/block/index.js:341 src/block/edit.js:244 build/block/index.js:244
+#: build/block/index.js:1 src/block/edit.js:244
 msgid "Visibility of overview elements"
 msgstr "Sichtbarkeit der Element in der Übersicht"
 
-#: build/block/index.js:367 src/block/edit.js:277 build/block/index.js:277
+#: build/block/index.js:1 src/block/edit.js:277
 msgid "Visibility of service attributes"
 msgstr "Sichtbarkeit der Elemente in den einzelnen Services"
 
-#: includes/PDF.php:42
+#: includes/PDF.php:44
 msgid "Your RRZE Service Catalogue"
 msgstr "Ihr RRZE Servicekatalog"

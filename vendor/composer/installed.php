@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'rrze/rrze-servicekatalog',
-        'pretty_version' => '1.3.1',
-        'version' => '1.3.1.0',
+        'pretty_version' => '1.4.0',
+        'version' => '1.4.0.0',
         'reference' => NULL,
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'rrze/rrze-servicekatalog' => array(
-            'pretty_version' => '1.3.1',
-            'version' => '1.3.1.0',
+            'pretty_version' => '1.4.0',
+            'version' => '1.4.0.0',
             'reference' => NULL,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
@@ -38,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'tecnickcom/tcpdf' => array(
-            'pretty_version' => '6.8.2',
-            'version' => '6.8.2.0',
-            'reference' => 'f7a781073e1645062f163e058139e2f89355d420',
+            'pretty_version' => '6.9.3',
+            'version' => '6.9.3.0',
+            'reference' => 'd0e8dd17f8a1df3c97b94b9af8356e88e811ed59',
             'type' => 'library',
             'install_path' => __DIR__ . '/../tecnickcom/tcpdf',
             'aliases' => array(),

@@ -22,6 +22,8 @@ while (have_posts()) : the_post();
     $meta = get_post_meta($id);
     $settings = get_option('rrze-servicekatalog-settings');
     $allowShortcodes = (isset($settings['allow_shortcodes']) && $settings['allow_shortcodes'] == 'on');
+    $qrParams = $settings['service_link_parameters'] ?? '';
+    $qrParams = str_replace('?', '', $qrParams);
     $description = wpautop(Utils::getMeta($meta, 'description'));
     if ($allowShortcodes) {
         $description = do_shortcode($description);
@@ -111,7 +113,11 @@ while (have_posts()) : the_post();
                                 <ul>
                                 <?php foreach ($links as $link) {
                                     if ($link['url'] != '') {
-                                        echo '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . '">' . $link['label'] . '</a></li>';
+                                        if (!empty($qrParams)) {
+                                            $connector = str_contains($link['url'], '?') ? '&' : '?';
+                                            $qrParams = $connector . $qrParams;
+                                        }
+                                        echo '<li><span class="dashicons ' . $link['icon'] . '"></span><a href="' . $link['url'] . $qrParams . '">' . $link['label'] . '</a></li>';
                                     }
                                 } ?>
                                 </ul>
