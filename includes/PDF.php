@@ -14,6 +14,8 @@ class PDF {
         if (!isset($_GET['services']))
             return;
         $services = explode(',', sanitize_text_field($_GET['services']));
+        $settings = get_option('rrze-servicekatalog-settings');
+        $qrParams = $settings['qr_link_parameters'] ?? '';
 
         $pdf = new RRZE_PDF();
 
@@ -78,17 +80,18 @@ class PDF {
             // QR Code Service Description
             $urlDescription = esc_url(Utils::getMeta($meta, 'url-description'));
             if ( ! empty($urlDescription)) {
+                $qrParams = esc_url($qrParams);
+
+                // QR Code
                 $style = [
                     'border' => FALSE,
                     'hpadding' => 1,
                     'bgcolor' => FALSE
                 ];
-                $pdf->write2DBarcode(Utils::getMeta($meta, 'url-description'), 'QRCODE,H', NULL, NULL, 22, 20, $style, 'T');
-            }
+                $pdf->write2DBarcode(Utils::getMeta($meta, 'url-description') . $qrParams, 'QRCODE,H', NULL, NULL, 22, 20, $style, 'T');
 
-            // URL Service Description
-            if ( ! empty($urlDescription)) {
-                $pdf->WriteHTMLCell(55, 5, NULL, NULL, '<a href="' . $urlDescription . '" style="color: #004a9f;">' . $urlDescription . '</a>', 0, 1);
+                // URL Service Description
+                $pdf->WriteHTMLCell(55, 5, NULL, NULL, '<a href="' . $urlDescription . $qrParams . '" style="color: #004a9f;">' . $urlDescription .'</a>', 0, 1);
             }
 
             $pdf->WriteHTML('</div>');
