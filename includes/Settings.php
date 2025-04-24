@@ -111,6 +111,33 @@ class Settings {
                 'attributes' => $attributes,
             ]);
         }
+
+        $main_options->add_field( array(
+            'name' => esc_html__('Marketing', 'rrze-servicekatalog'),
+            //'desc' => esc_html__('', 'rrze-servicekatalog'),
+            'type' => 'title',
+            'id'   => 'title_marketing'
+        ) );
+
+        $main_options->add_field([
+            'name' => __('PDF: URL Parameters for QR Code', 'rrze-servicekatalog'),
+            'desc' => __('Add tracking parameters that are added to QR code links', 'rrze-servicekatalog'),
+            'id' => 'qr_link_parameters',
+            'type' => 'text',
+            'attributes' => [
+                'class' => 'large-text'
+            ],
+        ]);
+
+        $main_options->add_field([
+             'name' => __('URL Parameters for Service Links', 'rrze-servicekatalog'),
+             //'desc' => __('', 'rrze-servicekatalog'),
+             'id' => 'service_link_parameters',
+             'type' => 'text',
+             'attributes' => [
+                 'class' => 'large-text'
+             ],
+         ]);
     }
 
     /*
