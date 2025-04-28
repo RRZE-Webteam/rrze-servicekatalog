@@ -23,6 +23,9 @@ class Servicekatalog
     }
 
     public function shortcodeOutput($atts, $content = "") {
+        $settings = get_option('rrze-servicekatalog-settings');
+        $urlParams = $settings['service_link_parameters'] ?? '';
+        $urlParams = str_replace('?', '', $urlParams);
         $atts = self::sanitizeAtts($atts);
         $getParams = Utils::array_map_recursive('sanitize_text_field', $_GET);
 
@@ -373,7 +376,11 @@ class Servicekatalog
                         $outputList .= '<div class="service-urls"><ul>';
                         foreach ($links as $link) {
                             if ($link['url'] != '') {
-                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . '" style="ghost" size="xsmall"]' . $link['label'] . '[/button]') . '</li>';
+                                if (!empty($urlParams)) {
+                                    $connector = str_contains($link['url'], '?') ? '&' : '?';
+                                    $urlParams = $connector . $urlParams;
+                                }
+                                $outputList .= '<li>' . do_shortcode('[button link="' . $link['url'] . $urlParams . '" style="ghost" size="xsmall"]' . $link['label'] . '[/button]') . '</li>';
                             }
                         }
                         $outputList .= '</ul></div>';

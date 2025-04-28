@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'rrze/rrze-servicekatalog',
-        'pretty_version' => '1.4.0',
-        'version' => '1.4.0.0',
+        'pretty_version' => '1.4.1',
+        'version' => '1.4.1.0',
         'reference' => NULL,
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'rrze/rrze-servicekatalog' => array(
-            'pretty_version' => '1.4.0',
-            'version' => '1.4.0.0',
+            'pretty_version' => '1.4.1',
+            'version' => '1.4.1.0',
             'reference' => NULL,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
