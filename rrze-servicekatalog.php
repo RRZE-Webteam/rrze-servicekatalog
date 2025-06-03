@@ -4,7 +4,7 @@
 Plugin Name:     RRZE Servicekatalog
 Plugin URI:      https://github.com/RRZE-Webteam/rrze-servicekatalog
 Description:     Presentation of RRZE Services
-Version:         1.4.1
+Version:         1.4.2
 Author:          RRZE Webteam
 Author URI:      https://blogs.fau.de/webworking/
 License:         GNU General Public License v3.0
