@@ -122,7 +122,9 @@ class Servicekatalog
             $args['post__in'] = $IDs;
         }
 
-        add_filter( 'posts_where', [$this, 'serviceTitleFilter'], 10, 2 );
+        add_filter( 'posts_where', [$this, 'serviceTitleAndTagFilter'], 10, 2 );
+        add_filter( 'posts_join', [$this, 'serviceJoinTags'], 10, 2 );
+        add_filter( 'posts_groupby', [$this, 'serviceGroupBy'], 10, 2 );
         $services = get_posts($args );
         remove_filter( 'posts_where', [$this, 'serviceTitleFilter'], 10 );
 
@@ -453,12 +455,38 @@ class Servicekatalog
         return $args;
     }
 
-    public function serviceTitleFilter($where, $wp_query) {
+    public function serviceTitleAndTagFilter($where, $wp_query) {
         global $wpdb;
+
         if ( $search_term = $wp_query->get( 'service_title' ) ) {
-            $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\'';
+            $search_term_esc = $wpdb->esc_like( $search_term );
+            $where .= " AND (
+            {$wpdb->posts}.post_title LIKE '%{$search_term_esc}%' 
+            OR tt.taxonomy = 'rrze-service-tag' AND t.name LIKE '%{$search_term_esc}%'
+        )";
         }
+
         return $where;
+    }
+
+    public function serviceJoinTags($join, $wp_query) {
+        if ( $wp_query->get( 'service_title' ) ) {
+            global $wpdb;
+            $join .= " 
+            LEFT JOIN {$wpdb->term_relationships} AS tr ON ({$wpdb->posts}.ID = tr.object_id)
+            LEFT JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+            LEFT JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
+        ";
+        }
+        return $join;
+    }
+
+    public function serviceGroupBy($groupby, $wp_query) {
+        if ( $wp_query->get( 'service_title' ) ) {
+            global $wpdb;
+            $groupby = "{$wpdb->posts}.ID"; // notwendig wegen möglicher Duplikate durch Joins
+        }
+        return $groupby;
     }
 
     public function fillGutenbergOptions(): array {

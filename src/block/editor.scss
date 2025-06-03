@@ -12,5 +12,22 @@
 			cursor: not-allowed;
 			pointer-events: none;
 		}
+		.filter-group,
+		.filter-tag {
+			.checklist {
+				display: none;
+			}
+			button.checklist-toggle {
+				padding: 10px 18px;
+			}
+		}
+		.filter-group {
+			box-shadow: none;
+			border: none;
+			width: inherit;
+			padding: 0;
+			margin: inherit;
+			float: none;
+		}
 	}
 }
