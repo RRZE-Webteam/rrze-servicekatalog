@@ -38,12 +38,12 @@ class Main
                 [],
                 plugin()->getVersion(true)
             );
-            wp_enqueue_script(
+            /*wp_enqueue_script(
                 'rrze-servicekatalog-admin',
                 plugins_url('assets/js/admin.js', plugin()->getBasename()),
                 ['jquery', 'wp-color-picker'],
                 plugin()->getVersion(true)
-            );
+            );*/
         }
     }
 
